@@ -19,7 +19,19 @@
                         <a href="<?= base_url() ?>admin/Kullanicilar">Kullanıcıları Listele</a>
                     </li>
                     <li>
-                    <a href="<?= base_url() ?>admin/Kullanicilar/ekle">Kullanıcı EKle</a>
+                    <a href="<?= base_url() ?>admin/Kullanicilar/ekle">Kullanıcı Ekle</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Yazı İşlemleri<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="<?= base_url() ?>admin/Kullanicilar">Yazıları Listele</a>
+                    </li>
+                    <li>
+                    <a href="<?= base_url() ?>admin/Kullanicilar/ekle">yazı Ekle</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
