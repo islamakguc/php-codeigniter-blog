@@ -9,7 +9,7 @@ class Kullanicilar extends CI_Controller {
 		$this -> load -> helper ('url');
 		$this -> load -> database ();
 		$this -> load -> library ("session");
-		$this -> load -> model('Database_Model');
+		$this -> load -> model('Admin/Database_Model');
 		if(! $this -> session -> userdata('oturum_data'))
 		{
 			redirect(base_url().'admin/login');

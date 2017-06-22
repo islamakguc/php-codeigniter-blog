@@ -9,8 +9,10 @@ class Yazilar extends CI_Controller {
 		$this -> load -> helper ('url');
 		$this -> load -> database ();
 		$this -> load -> library ("session");
-		$this -> load -> model('Database_Model');
-		$this -> load -> model('Admin_Model');
+		$this -> load -> model('Admin/Database_Model');
+		$this -> load -> model('Admin/Admin_Model');
+		$this -> load -> model('Admin/post_model');
+		$this -> load -> model('Admin/Category_model');
 		if(! $this -> session -> userdata('oturum_data'))
 		{
 			redirect(base_url().'admin/login');
@@ -58,19 +60,24 @@ class Yazilar extends CI_Controller {
 
 	public function edit($id)
 	{
-		$sorgu=$this->db->query("SELECT * FROM yazilar WHERE id=$id");
-		$data["veri"]=$sorgu->result();
+
+		$data['categories'] = $this->Category_model->get_entries();
+		$data['data'] = $this->post_model->get_entry($id);
+
 		$this->load->view('admin/yazi_duzenle',$data,$id);
 	}
 	public function guncellekaydet($id)
 	{
 		$data=array(
-			"ad" => $this -> input -> post('ad'),
-			"sifre" => $this -> input -> post('sifre'),
-			"mail" => $this -> input -> post('mail'),
-			"yetki" => $this -> input -> post('yetki'),
+			"baslik" => $this -> input -> post('Title'),
+			"metin" => $this -> input -> post('Content'),
+			"yazilar.yazar_ad" => $this->session->oturum_data['ad'],
+			"yazilar.yazar_id" => $this->session->oturum_data['id'],
+			"yazilar.kategori_ad" => $this -> input -> post('yetki'),
+			"durum" => $this -> input -> post('IsDraft'),
 			);
 		$this->Database_Model->update_data("yazilar",$data,$id);
+		
 		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/yazilar");
 	}

@@ -9,7 +9,7 @@ class Login extends CI_Controller {
 		$this -> load -> helper ('url');
 		$this -> load -> library ('form_validation');
 		$this -> load -> library ('session');
-		$this -> load -> Model ("Admin_Model");
+		$this -> load -> Model ("Admin/Admin_Model");
 		$this -> load -> database ();
 	}
 	

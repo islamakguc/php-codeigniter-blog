@@ -62,8 +62,8 @@
                                     <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;İşlemler&nbsp;&nbsp;&nbsp;<span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?= base_url() ?>admin/Kullanicilar/edit/<?=$rs->id?>">Düzenle</a></li>
-                                        <li><a href="<?= base_url() ?>admin/Kullanicilar/delete/<?=$rs->id?>" onclick="return confirm('Silinecek !! emin misiniz. ?');">Sil</a></li>
+                                        <li><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->id?>">Düzenle</a></li>
+                                        <li><a href="<?= base_url() ?>admin/Yazilar/delete/<?=$rs->id?>" onclick="return confirm('Silinecek !! emin misiniz. ?');">Sil</a></li>
                                     </ul>
                                 </div></td>
                             </tr>
