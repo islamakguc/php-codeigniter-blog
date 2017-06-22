@@ -16,7 +16,6 @@ class Kullanicilar extends CI_Controller {
 		}
 	}
 
-
 	public function index()
 	{
 		$query=$this->db->get("kullanicilar");
@@ -25,59 +24,121 @@ class Kullanicilar extends CI_Controller {
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/kullanicilar_listesi',$data);
 		$this->load->view('admin/_footer');
-		//echo "Hoşgeldiniz";
 	}
+
 	public function ekle()
 	{
-		$this->load->view('admin/kullanici_ekle');
+		if($this -> session -> oturum_data['yetki'] == "Admin")
+		{
+
+			$this->load->view('admin/kullanici_ekle');
+		}
+		else 
+		{
+			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
+			redirect(base_url()."admin/kullanicilar");
+		}
+
 	}
+
 	public function eklekaydet()
 	{
-		$data=array(
-			"ad" => $this -> input -> post('ad'),
-			"sifre" => $this -> input -> post('sifre'),
-			"mail" => $this -> input -> post('mail'),
-			"yetki" => $this -> input -> post('yetki'),
-			);
-		$this->Database_Model->insert_data("kullanicilar",$data);
-		$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/kullanicilar");
+		if($this -> session -> oturum_data['yetki'] == "Admin")
+		{
+			$data=array(
+				"ad" => $this -> input -> post('ad'),
+				"sifre" => $this -> input -> post('sifre'),
+				"mail" => $this -> input -> post('mail'),
+				"yetki" => $this -> input -> post('yetki'),
+				);
+			$this->Database_Model->insert_data("kullanicilar",$data);
+			$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
+			redirect(base_url()."admin/kullanicilar");
+		}
+		else {
+			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
+			redirect(base_url()."admin/kullanicilar");
+		}
 	}
+
 	public function delete($id)
 	{
-		$this->db->query("DELETE FROM kullanicilar WHERE id=$id");
-		$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/kullanicilar");
+		if($this -> session -> oturum_data['yetki'] == "Admin")
+		{
+			$this->db->query("DELETE FROM kullanicilar WHERE id=$id");
+			$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
+			redirect(base_url()."admin/kullanicilar");
+			$data=array(
+				"ad" => $this -> input -> post('ad'),
+				"sifre" => $this -> input -> post('sifre'),
+				"mail" => $this -> input -> post('mail'),
+				"yetki" => $this -> input -> post('yetki'),
+				);
+			$this->Database_Model->update_data("kullanicilar",$data,$id);
+			$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
+			redirect(base_url()."admin/kullanicilar");
+		}
+		else {
+			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
+			redirect(base_url()."admin/kullanicilar");
+		}
 	}
 
 	public function edit($id)
 	{
-		$sorgu=$this->db->query("SELECT * FROM kullanicilar WHERE id=$id");
-		$data["veri"]=$sorgu->result();
-		$this->load->view('admin/kullanici_duzenle',$data,$id);
+		if($this -> session -> oturum_data['yetki'] == "Admin")
+		{
+
+			$sorgu=$this->db->query("SELECT * FROM kullanicilar WHERE id=$id");
+			$data["veri"]=$sorgu->result();
+			$this->load->view('admin/kullanici_duzenle',$data,$id);
+		}
+		else {
+			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
+			redirect(base_url()."admin/kullanicilar");
+		}
 	}
+
 	public function guncellekaydet($id)
 	{
-		$data=array(
-			"ad" => $this -> input -> post('ad'),
-			"sifre" => $this -> input -> post('sifre'),
-			"mail" => $this -> input -> post('mail'),
-			"yetki" => $this -> input -> post('yetki'),
-			);
-		$this->Database_Model->update_data("kullanicilar",$data,$id);
-		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/kullanicilar");
+		if($this -> session -> oturum_data['yetki'] == "Admin")
+		{
+			$data=array(
+				"ad" => $this -> input -> post('ad'),
+				"sifre" => $this -> input -> post('sifre'),
+				"mail" => $this -> input -> post('mail'),
+				"yetki" => $this -> input -> post('yetki'),
+				);
+			$this->Database_Model->update_data("kullanicilar",$data,$id);
+			$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
+			redirect(base_url()."admin/kullanicilar");
+		}
+		else {
+			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
+			redirect(base_url()."admin/kullanicilar");
+		}
+
 	}
+
 	public function goster($id)
 	{
-		if($this -> session -> oturum_data['id'] != $id)
+		if($this -> session -> oturum_data['yetki'] == "Admin")
 		{
-			$this -> session -> set_flashdata("sonuc","Yanlış bir istemde bulundunuz.");
-			redirect(base_url().'admin/kullanicilar/goster/'.$this -> session -> oturum_data['id']);
+			$sorgu = $this -> db -> query ("SELECT * FROM kullanicilar WHERE id=$id");
+			$data["veri"] = $sorgu -> result();
+			$this->load->view('admin/kullanici_goster',$data);
+
 		}
-		$sorgu = $this -> db -> query ("SELECT * FROM kullanicilar WHERE id=$id");
-		$data["veri"] = $sorgu -> result();
-		$this->load->view('admin/kullanici_goster',$data);
+		elseif ($this -> session -> oturum_data['id'] == $id)
+		{
+			$sorgu = $this -> db -> query ("SELECT * FROM kullanicilar WHERE id=$id");
+			$data["veri"] = $sorgu -> result();
+			$this->load->view('admin/kullanici_goster',$data);
+		}
+		else
+		{
+			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
+			redirect(base_url()."admin/kullanicilar");
+		}
 	}
-	
 }

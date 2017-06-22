@@ -17,8 +17,8 @@
                 <?php 
                 if($this->session->flashdata("sonuc"))
                 {
-                   ?>
-                   <div class="alert alert-success">
+                 ?>
+                 <div class="alert alert-success">
                     <strong>İşlem:</strong> <?=$this->session->flashdata("sonuc"); ?>
                 </div>
                 <?php
@@ -31,19 +31,19 @@
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
-                           <tr>
+                         <tr>
                             <th>Kategori Adı</th>
                             <th>İşlemler</th>
                         </tr>
                     </thead>
                     <tbody>
-                       <?php
-                       foreach ($veri as $rs) 
-                       {
-                           ?>
-                           <tr class="odd gradeX">
-                           <td><?=$rs->kategoriadi?></td>
-                            <td class="center"><div class="btn-group">
+                     <?php
+                     foreach ($veri as $rs) 
+                     {
+                         ?>
+                         <tr class="odd gradeX">
+                             <td><?=$rs->kategoriadi?></td>
+                             <td class="center"><div class="btn-group">
                                 <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;İşlemler&nbsp;&nbsp;&nbsp;<span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">

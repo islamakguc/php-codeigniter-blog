@@ -17,70 +17,71 @@
                 <?php 
                 if($this->session->flashdata("sonuc"))
                 {
-                   ?>
-                   <div class="alert alert-success">
+                 ?>
+                 <div class="alert alert-success">
                     <strong>İşlem:</strong> <?=$this->session->flashdata("sonuc"); ?>
                 </div>
                 <?php
-                } ?>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Kullanıcılar Tablosu
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                            <thead>
-                               <tr>
-                                <th>İsim Soyisim</th>
-                                <th>E-Mail</th>
-                                <th>Yetki</th>
-                                <th>Durum</th>
-                                <th>Kayıt Tarihi</th>
-                                <th>İşlemler</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                           <?php
-                           foreach ($veri as $rs) 
-                           {
-                               ?>
-                               <tr class="odd gradeX">
-                                <td><?=$rs->ad?></td>
-                                <td><?=$rs->mail?></td>
-                                <td><?=$rs->yetki?></td>
-                                <td class="center"><?php
-                                    if($rs->durum==1){
-                                        echo "aktif";
-                                    }else
-                                    {
-                                        echo "pasif";
-                                    }
-                                    ?></td>
-                                    <td class="center"><?=$rs->ktarih?></td>
-                                    <td class="center"><div class="btn-group">
-                                        <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;İşlemler&nbsp;&nbsp;&nbsp;<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="<?= base_url() ?>admin/Kullanicilar/edit/<?=$rs->id?>">Düzenle</a></li>
-                                            <li><a href="<?= base_url() ?>admin/Kullanicilar/delete/<?=$rs->id?>" onclick="return confirm('Silinecek !! emin misiniz. ?');">Sil</a></li>
-                                        </ul>
-                                    </div></td>
-                                </tr>
-                                <?php 
-                            } 
-                            ?>
-                        </tbody>
-                    </table>
-                    <!-- /.table-responsive -->
+            } ?>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Kullanıcılar Tablosu
                 </div>
-                <!-- /.panel-body -->
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                         <tr>
+                            <th>İsim Soyisim</th>
+                            <th>E-Mail</th>
+                            <th>Yetki</th>
+                            <th>Durum</th>
+                            <th>Kayıt Tarihi</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <?php
+                     foreach ($veri as $rs) 
+                     {
+                         ?>
+                         <tr class="odd gradeX">
+                            <td><?=$rs->ad?></td>
+                            <td><?=$rs->mail?></td>
+                            <td><?=$rs->yetki?></td>
+                            <td class="center"><?php
+                                if($rs->durum==1){
+                                    echo "aktif";
+                                }else
+                                {
+                                    echo "pasif";
+                                }
+                                ?></td>
+                                <td class="center"><?=$rs->ktarih?></td>
+                                <td class="center"><div class="btn-group">
+                                    <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;İşlemler&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?= base_url() ?>admin/Kullanicilar/goster/<?=$rs->id?>">İncele</a></li>
+                                        <li><a href="<?= base_url() ?>admin/Kullanicilar/edit/<?=$rs->id?>">Düzenle</a></li>
+                                        <li><a href="<?= base_url() ?>admin/Kullanicilar/delete/<?=$rs->id?>" onclick="return confirm('Silinecek !! emin misiniz. ?');">Sil</a></li>
+                                    </ul>
+                                </div></td>
+                            </tr>
+                            <?php 
+                        } 
+                        ?>
+                    </tbody>
+                </table>
+                <!-- /.table-responsive -->
             </div>
-            <!-- /.panel -->
+            <!-- /.panel-body -->
         </div>
-        <!-- /.col-lg-12 -->
+        <!-- /.panel -->
     </div>
-    <!-- /.row -->
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
 </div>
 <!-- /.container-fluid -->
 </div>
