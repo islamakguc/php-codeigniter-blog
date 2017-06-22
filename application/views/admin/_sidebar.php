@@ -28,10 +28,10 @@
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Yazı İşlemleri<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="<?= base_url() ?>admin/Home">Yazıları Listele</a>
+                        <a href="<?= base_url() ?>admin/Yazilar">Yazı Listele</a>
                     </li>
                     <li>
-                    <a href="<?= base_url() ?>admin/Home">yazı Ekle</a>
+                    <a href="<?= base_url() ?>admin/Yazilar/ekle">Yazı Ekle</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

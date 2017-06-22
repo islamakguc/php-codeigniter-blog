@@ -29,6 +29,8 @@
     <!-- Custom Fonts -->
     <link href="<?= base_url() ?>assets/admin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <script src="<?= base_url() ?>assets/ckeditor/ckeditor.js"></script>
+
 </head>
 
 <body>
