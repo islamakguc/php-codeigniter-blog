@@ -14,6 +14,9 @@ $this->load->view('admin/_sidebar');
                         <a href="<?= base_url() ?>admin/Home">Anasayfa</a>
                     </li>
                     <li>
+                        <a href="<?= base_url() ?>admin/Kullanicilar/">Kullanıcılar</a>
+                    </li>
+                    <li>
                         <a href="<?= base_url() ?>admin/Kullanicilar/edit/<?=$veri[0]->id?>">Kullanıcı Düzenle</a>
                     </li>
                 </ul>

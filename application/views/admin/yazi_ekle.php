@@ -13,6 +13,9 @@ $this->load->view('admin/_sidebar');
                     <li>
                         <a href="<?= base_url() ?>admin/Home">Anasayfa</a>
                     </li>
+                     <li>
+                        <a href="<?= base_url() ?>admin/Yazilar">Yazılar</a>
+                    </li>
                     <li>
                         <a href="<?= base_url() ?>admin/Yazilar/ekle">Yazı Ekle</a>
                     </li>

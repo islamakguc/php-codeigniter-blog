@@ -81,16 +81,5 @@ class Yazilar extends CI_Controller {
 		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/yazilar");
 	}
-	public function goster($id)
-	{
-		if($this -> session -> oturum_data['id'] != $id)
-		{
-			$this -> session -> set_flashdata("sonuc","Yanlış bir istemde bulundunuz.");
-			redirect(base_url().'admin/yazilar/goster/'.$this -> session -> oturum_data['id']);
-		}
-		$sorgu = $this -> db -> query ("SELECT * FROM yazilar WHERE id=$id");
-		$data["veri"] = $sorgu -> result();
-		$this->load->view('admin/yazi_goster',$data);
-	}
 	
 }

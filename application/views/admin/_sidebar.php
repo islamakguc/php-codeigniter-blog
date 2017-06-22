@@ -13,7 +13,7 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Kullanıcı İşlemleri<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-user"></i> Kullanıcı İşlemleri<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="<?= base_url() ?>admin/Kullanicilar">Kullanıcıları Listele</a>
@@ -25,13 +25,25 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Yazı İşlemleri<span class="fa arrow"></span></a>
+                <a href="#"><i class="glyphicon glyphicon-font"></i> Yazı İşlemleri<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="<?= base_url() ?>admin/Yazilar">Yazı Listele</a>
                     </li>
                     <li>
                     <a href="<?= base_url() ?>admin/Yazilar/ekle">Yazı Ekle</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+             <li>
+                <a href="#"><i class="glyphicon glyphicon-folder-close"></i> Kategori İşlemleri<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="<?= base_url() ?>admin/Kategori">Kategori Listele</a>
+                    </li>
+                    <li>
+                    <a href="<?= base_url() ?>admin/Kategori/ekle">Kategori Ekle</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
