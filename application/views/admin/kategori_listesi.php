@@ -25,15 +25,15 @@
             } ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Kullanıcılar Tablosu
+                    Kategoriler
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                          <tr>
-                            <th>Kategori Adı</th>
-                            <th>İşlemler</th>
+                            <th style="text-align: center;">Kategori Adı</th>
+                            <th style="text-align: center;">İşlemler </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,8 +42,8 @@
                      {
                          ?>
                          <tr class="odd gradeX">
-                             <td><?=$rs->kategoriadi?></td>
-                             <td class="center"><div class="btn-group">
+                             <td style="text-align: center;"><?=$rs->kategoriadi?></td>
+                             <td style="text-align: center;"><div class="btn-group">
                                 <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;İşlemler&nbsp;&nbsp;&nbsp;<span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">

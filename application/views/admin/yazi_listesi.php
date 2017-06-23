@@ -25,7 +25,7 @@
             } ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Kullanıcılar Tablosu
+                    Tüm Yazılar
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -46,7 +46,7 @@
                      {
                          ?>
                          <tr class="odd gradeX">
-                            <td><?=$rs->baslik?></td>  
+                            <td><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->id?>"><?=$rs->baslik?></a></td>  
                             <td><?=$rs->kategori_ad?></td>                              
                             <td><?=$rs->yazar_ad?></td>
                             <td class="center"><?php
