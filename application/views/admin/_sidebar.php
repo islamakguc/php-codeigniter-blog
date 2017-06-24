@@ -1,7 +1,8 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-           <!-- <li class="sidebar-search">
+          <fieldset disabled="">
+           <li class="sidebar-search">
                 <div class="input-group custom-search-form">
                     <input type="text" class="form-control" placeholder="Search...">
                     <span class="input-group-btn">
@@ -10,7 +11,8 @@
                         </button>
                     </span>
                 </div>
-            </li>-->
+            </li>
+            </fieldset>
             <?php 
             if($this -> session -> oturum_data['yetki'] == "Admin")
             {
