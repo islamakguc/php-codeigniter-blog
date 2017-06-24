@@ -11,7 +11,7 @@
                         </li>
                     </ul>
                 </div>
-                <h1 class="page-header">AnaSayfa</h1>
+                <h5 class="page-header">AnaSayfa</h5>
             </div>
             <!-- /.col-lg-12 -->
         </div>

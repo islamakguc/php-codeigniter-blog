@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="<?=$veri[0]->icerik?>">
+    <meta name="author" content="İslam AKGÜÇ">
 
-    <title>İslam AKGÜÇ - Blog</title>
+    <title><?=$veri[0]->baslik?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

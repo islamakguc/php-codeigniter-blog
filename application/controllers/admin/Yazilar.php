@@ -24,7 +24,9 @@ class Yazilar extends CI_Controller {
 	{
 		$query=$this->db->get("yazilar");
 		$data["veri"]=$query->result();
-		$this->load->view('admin/_header');
+		$query1=$this->db->get("ayarlar");
+		$data1["veri"]=$query1->result();
+		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/yazi_listesi',$data);
 		$this->load->view('admin/_footer');

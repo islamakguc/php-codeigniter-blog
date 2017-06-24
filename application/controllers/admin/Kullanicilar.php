@@ -20,7 +20,9 @@ class Kullanicilar extends CI_Controller {
 	{
 		$query=$this->db->get("kullanicilar");
 		$data["veri"]=$query->result();
-		$this->load->view('admin/_header');
+		$query1=$this->db->get("ayarlar");
+		$data1["veri"]=$query1->result();
+		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/kullanicilar_listesi',$data);
 		$this->load->view('admin/_footer');
@@ -31,6 +33,9 @@ class Kullanicilar extends CI_Controller {
 		if($this -> session -> oturum_data['yetki'] == "Admin")
 		{
 
+			$query1=$this->db->get("ayarlar");
+			$data1["veri"]=$query1->result();
+			$this->load->view('admin/_header',$data1);
 			$this->load->view('admin/kullanici_ekle');
 		}
 		else 
