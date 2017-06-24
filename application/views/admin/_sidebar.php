@@ -44,6 +44,18 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+             <li>
+                <a href="#"><i class="glyphicon glyphicon-file"></i> Sayfa İşlemleri<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="<?= base_url() ?>admin/Sayfalar">Sayfa Listele</a>
+                    </li>
+                    <li>
+                        <a href="<?= base_url() ?>admin/Sayfalar/ekle">Sayfa Ekle</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
             <li>
                 <a href="#"><i class="glyphicon glyphicon-folder-close"></i> Kategori İşlemleri<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
@@ -69,7 +81,7 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="<?= base_url() ?>admin/Yorum"><i class="fa fa-comments-o"></i> Yorumlar</a>
+                <a href="<?= base_url() ?>admin/Yorum"><i class="glyphicon glyphicon-comment"></i> Yorumlar</a>
             </li>
              <li>
                 <a href="<?= base_url() ?>admin/Ayarlar"><i class="fa fa-cog"></i> Site Ayarları</a>

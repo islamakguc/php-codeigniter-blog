@@ -1,5 +1,5 @@
 <?php
-class Post_model extends CI_Model {
+class Sayfa_Post_model extends CI_Model {
 
     public function __construct()
     {
@@ -9,7 +9,7 @@ class Post_model extends CI_Model {
 
     public function get_entry($Id)
     {
-        $query = $this->db->query("Select * From yazilar where id=$Id");
+        $query = $this->db->query("Select * From sayfalar where id=$Id");
         return $query->result();
     }
 }
