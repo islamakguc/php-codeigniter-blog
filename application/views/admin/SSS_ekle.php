@@ -11,7 +11,7 @@ $this->load->view('admin/_sidebar');
                <div>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="<?= base_url() ?>admin/Home">Anasayfa</a>
+                         <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
                     </li>
                      <li>
                     <a href="<?= base_url() ?>admin/Sikca_Sorulan_Sorular">S.S.S</a>

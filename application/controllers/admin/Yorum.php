@@ -31,7 +31,7 @@ class Yorum extends CI_Controller {
 	public function delete($id)
 	{
 		$this->db->query("DELETE FROM yorumlar WHERE id=$id");
-		$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
+		$this->session->set_flashdata("sonuc","Yorum Silme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Yorum");
 	}
 
@@ -42,7 +42,7 @@ class Yorum extends CI_Controller {
 			"durum" =>1,
 			);
 		$this->Database_Model->update_data("yorumlar",$data,$id);
-		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
+		$this->session->set_flashdata("sonuc","Yorum Onaylama İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Yorum");
 	}
 	public function onaykaldir($id)
@@ -51,7 +51,7 @@ class Yorum extends CI_Controller {
 			"durum" =>0,
 			);
 		$this->Database_Model->update_data("yorumlar",$data,$id);
-		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
+		$this->session->set_flashdata("sonuc","Yorum Onay Kaldırma İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Yorum");
 	}
 }

@@ -7,7 +7,7 @@
                 <div>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="<?= base_url() ?>admin/Home">Anasayfa</a>
+                             <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
                         </li>
                         <li>
                             <a href="<?= base_url() ?>admin/Kullanicilar">Kullanıcılar</a>
@@ -18,7 +18,8 @@
                 if($this->session->flashdata("sonuc"))
                 {
                  ?>
-                 <div class="alert alert-success">
+                 <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <strong>İşlem:</strong> <?=$this->session->flashdata("sonuc"); ?>
                 </div>
                 <?php

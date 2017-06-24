@@ -11,7 +11,7 @@ $this->load->view('admin/_sidebar');
              <div>
                 <ul class="breadcrumb">
                     <li>
-                        <a href="<?= base_url() ?>admin/Home">Anasayfa</a>
+                         <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
                     </li>
                     <li>
                         <a href="<?= base_url() ?>admin/Kullanicilar/">Kullanıcılar</a>
@@ -23,7 +23,7 @@ $this->load->view('admin/_sidebar');
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Yeni Kullanıcı Ekle
+                    Kullanıcı Düzenle
                 </div>
                 <div class="panel-body">
                 <form role="form" action="<?= base_url() ?>admin/Kullanicilar/guncellekaydet/<?=$veri[0]->id?>" method="post">

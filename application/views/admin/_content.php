@@ -7,7 +7,7 @@
                  <div>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="<?= base_url() ?>admin/Home">Anasayfa</a>
+                             <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
                         </li>
                     </ul>
                 </div>

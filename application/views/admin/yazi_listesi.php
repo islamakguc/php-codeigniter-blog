@@ -7,7 +7,7 @@
                 <div>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="<?= base_url() ?>admin/Home">Anasayfa</a>
+                            <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
                         </li>
                         <li>
                             <a href="<?= base_url() ?>admin/Yazilar">Yazılar</a>
@@ -17,8 +17,9 @@
                 <?php 
                 if($this->session->flashdata("sonuc"))
                 {
-                 ?>
-                 <div class="alert alert-success">
+                   ?>
+                   <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <strong>İşlem:</strong> <?=$this->session->flashdata("sonuc"); ?>
                 </div>
                 <?php
@@ -31,7 +32,7 @@
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
-                         <tr>
+                           <tr>
                             <th>Başlık</th>
                             <th>Kategori</th>
                             <th>Yazar Adı</th>
@@ -41,11 +42,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                     <?php
-                     foreach ($veri as $rs) 
-                     {
-                         ?>
-                         <tr class="odd gradeX">
+                       <?php
+                       foreach ($veri as $rs) 
+                       {
+                           ?>
+                           <tr class="odd gradeX">
                             <td><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->id?>"><?=$rs->baslik?></a></td>  
                             <td><?=$rs->kategori_ad?></td>                              
                             <td><?=$rs->yazar_ad?></td>
