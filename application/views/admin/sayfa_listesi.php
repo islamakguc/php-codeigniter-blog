@@ -7,9 +7,9 @@
                 <div>
                     <ul class="breadcrumb">
                         <li>
-                           <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
-                       </li>
-                       <li>
+                         <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
+                     </li>
+                     <li>
                         <a href="<?= base_url() ?>admin/Sayfalar">Sayfalar</a>
                     </li>
                 </ul>
@@ -17,8 +17,8 @@
             <?php 
             if($this->session->flashdata("sonuc"))
             {
-               ?>
-               <div class="alert alert-success alert-dismissable">
+             ?>
+             <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <strong>İşlem:</strong> <?=$this->session->flashdata("sonuc"); ?>
             </div>
@@ -39,16 +39,20 @@
                                 if($row->durum == 1)
                                 {
                                     ?>
-                                    <div class="btn btn-success">Aktif</div></span><br><br>
+                                    <fieldset disabled="">
+                                        <div class="btn btn-success">Aktif</div></span><br><br>
+                                    </fieldset>
                                     <?php
                                 }
                                 else
                                     {?>
 
-                                <div class="btn btn-default">Pasif</div></span><br><br>
+                                <fieldset disabled="">
+                                    <div class="btn btn-default">Pasif</div></span><br><br>
+                                </fieldset>
                                 <?php }?>
                                 <div class="dropdown">
-                                    <button class="btn btn-default btn-xs  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <button class="btn btn-default btn-sm  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         İşlemler
                                         <span class="caret"></span>
                                     </button>

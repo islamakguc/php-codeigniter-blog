@@ -35,7 +35,7 @@
                     <div class="panel-body">
                         <div style="float:right;">
                             <div class="dropdown">
-                                <button class="btn btn-default btn-xs  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <button class="btn btn-default btn-sm  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     İşlemler
                                     <span class="caret"></span>
                                 </button>

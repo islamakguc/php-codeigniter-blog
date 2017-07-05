@@ -39,16 +39,19 @@
                                 if($row->durum == 1)
                                 {
                                     ?>
-                                    <div class="btn btn-success">Aktif</div></span><br><br>
+                                    <fieldset disabled="">
+                                        <div class="btn btn-success">Aktif</div></span><br><br>
+                                    </fieldset>
                                     <?php
                                 }
                                 else
                                     {?>
-
-                                <div class="btn btn-default">Pasif</div></span><br><br>
+                                <fieldset disabled="">
+                                    <div class="btn btn-default">Pasif</div></span><br><br>
+                                </fieldset>
                                 <?php }?>
                                 <div class="dropdown">
-                                    <button class="btn btn-default btn-xs  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <button class="btn btn-default btn-sm  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         İşlemler
                                         <span class="caret"></span>
                                     </button>
