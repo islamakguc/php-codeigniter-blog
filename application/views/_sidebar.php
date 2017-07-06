@@ -17,7 +17,7 @@
                         foreach ($veri as $rs) 
                         {
                       ?>
-                        <li><a href="#" title=""><?=$rs->kategoriadi?></a> (2)</li>   
+                        <li><a href="<?= base_url() ?>Home/kategori/<?=$rs->id?>" title=""><?=$rs->kategoriadi?></a></li>   
                      <?php 
                         } 
                       ?>                 

@@ -34,9 +34,9 @@ $this->load->view('admin/_sidebar');
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="yetki">
-                            <option ><?php echo $data[0]->kategori_ad; ?></option>
+                            <option value="<?=$veri[0]->kategori_id ?>" ><?=$veri[0]->katadi ?></option>
                             <?php foreach($categories as $row){ ?>
-                            <option ><?php echo $row->kategoriadi;  ?></option>
+                            <option value="<?php echo $row->id;  ?>" ><?php echo $row->kategoriadi;  ?></option>
                             <?php } ?>
                         </select>
                     </div>

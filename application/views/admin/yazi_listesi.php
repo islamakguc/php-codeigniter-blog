@@ -48,7 +48,7 @@
                            ?>
                            <tr class="odd gradeX">
                             <td><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->id?>"><?=$rs->baslik?></a></td>  
-                            <td><?=$rs->kategori_ad?></td>                              
+                            <td><?=$rs->katadi?></td>                              
                             <td><?=$rs->yazar_ad?></td>
                             <td class="center"><?php
                                 if($rs->durum==1){

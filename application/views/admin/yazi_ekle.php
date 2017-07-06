@@ -39,7 +39,8 @@ $this->load->view('admin/_sidebar');
                 foreach ($veri as $rs) 
                 {
                  ?>
-                 <option><?=$rs->kategoriadi?></option>
+                 <option value="<?=$rs->id?>"><?=$rs->kategoriadi?></option>
+
                  <?php 
                } 
                ?>

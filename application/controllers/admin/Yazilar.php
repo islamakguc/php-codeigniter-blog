@@ -12,6 +12,7 @@ class Yazilar extends CI_Controller {
 		$this -> load -> model('Admin/Database_Model');
 		$this -> load -> model('Admin/Admin_Model');
 		$this -> load -> model('Admin/post_model');
+		$this -> load -> model('Post_model');
 		$this -> load -> model('Admin/Category_model');
 		if(! $this -> session -> userdata('oturum_data'))
 		{
@@ -24,8 +25,16 @@ class Yazilar extends CI_Controller {
 	{
 		$query=$this->db->get("yazilar");
 		$data["veri"]=$query->result();
+
+		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
+			LEFT JOIN kategori
+			ON yazilar.kategori_id=kategori.id";
+		$sorgular=$this->db->query($sql);
+		$data["veri"] =$sorgular->result();
+
 		$query1=$this->db->get("ayarlar");
 		$data1["veri"]=$query1->result();
+
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/yazi_listesi',$data);
@@ -45,7 +54,7 @@ class Yazilar extends CI_Controller {
 			"metin" => $this -> input -> post('Content'),
 			"yazilar.yazar_ad" => $this->session->oturum_data['ad'],
 			"yazilar.yazar_id" => $this->session->oturum_data['id'],
-			"yazilar.kategori_ad" => $this -> input -> post('yetki'),
+			"yazilar.kategori_id" => $this -> input -> post('yetki'),
 			"durum" => $this -> input -> post('IsDraft'),
 			
 			);
@@ -66,6 +75,12 @@ class Yazilar extends CI_Controller {
 		$data['categories'] = $this->Category_model->get_entries();
 		$data['data'] = $this->post_model->get_entry($id);
 
+		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
+			LEFT JOIN kategori
+			ON yazilar.kategori_id=kategori.id
+			WHERE yazilar.id=$id";
+		$sorgular=$this->db->query($sql);
+		$data["veri"] =$sorgular->result();
 		$this->load->view('admin/yazi_duzenle',$data,$id);
 	}
 	public function guncellekaydet($id)
@@ -75,7 +90,7 @@ class Yazilar extends CI_Controller {
 			"metin" => $this -> input -> post('Content'),
 			"yazilar.yazar_ad" => $this->session->oturum_data['ad'],
 			"yazilar.yazar_id" => $this->session->oturum_data['id'],
-			"yazilar.kategori_ad" => $this -> input -> post('yetki'),
+			"yazilar.kategori_id" => $this -> input -> post('yetki'),
 			"durum" => $this -> input -> post('IsDraft'),
 			);
 		$this->Database_Model->update_data("yazilar",$data,$id);

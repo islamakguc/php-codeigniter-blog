@@ -38,7 +38,7 @@
                               echo $sonhali;
                             } 
                             else
-                              echo $rs->metin;  
+                              echo $rs->metin; 
                         ?>
                     </p>
                 </div> 
