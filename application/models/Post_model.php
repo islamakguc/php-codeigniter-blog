@@ -29,7 +29,12 @@ class Post_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-
+ public function get_entries_by_sayfalar()
+    {
+        $this->db->from('sayfalar');
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function get_entries_by_category_id($id)
     {
         $this->db->from('yazilar');

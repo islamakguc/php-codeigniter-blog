@@ -1,7 +1,7 @@
    <!-- Content
    ================================================== -->
    <div id="content-wrap">
-
+<br><br>
    	<div class="row">
 
    		<div id="main" class="eight columns">
@@ -15,7 +15,7 @@
 
             <div class="entry-meta">
               <ul>
-                <li><?php echo turkcetarih('j F Y , l',$veri[0]->tarih); ?></li>
+                <li>Yayınlanma Tarihi: <?php echo turkcetarih('j F Y , l',$veri[0]->tarih); ?></li>
                 <span class="meta-sep">&bull;</span>                                
                 <li><a href="#" title="" rel="category tag"><?=$veri[0]->katadi?></a></li>
                 <span class="meta-sep">&bull;</span>
@@ -79,7 +79,7 @@
      <!-- respond -->
      <div class="respond">
 
-      <h3>Sende yap!</h3>
+      <h3>Yorum Yap!</h3>
 
       <!-- form -->
       <form name="contactForm" id="contactForm" method="post" action="">
@@ -87,22 +87,17 @@
 
          <div class="group">
           <label for="cName">Name <span class="required">*</span></label>
-          <input name="cName" type="text" id="cName" size="35" value="" />
+          <input name="cName" type="text" required="required" id="cName" size="35" value="" />
         </div>
 
         <div class="group">
           <label for="cEmail">Email <span class="required">*</span></label>
-          <input name="cEmail" type="text" id="cEmail" size="35" value="" />
-        </div>
-
-        <div class="group">
-          <label for="cWebsite">Website</label>
-          <input name="cWebsite" type="text" id="cWebsite" size="35" value="" />
+          <input name="cEmail" type="text" required="required" id="cEmail" size="35" value="" />
         </div>
 
         <div class="message group">
           <label  for="cMessage">Message <span class="required">*</span></label>
-          <textarea name="cMessage"  id="cMessage" rows="10" cols="50" ></textarea>
+          <textarea name="cMessage" required="required"  id="cMessage" rows="10" cols="50" ></textarea>
         </div>
 
         <button type="submit" class="submit">Submit</button>

@@ -1,7 +1,7 @@
  <!-- Content
  ================================================== -->
  <div id="content-wrap">
-
+<br><br>
     <div class="row">
 
         <div id="main" class="eight columns">
@@ -19,9 +19,9 @@
 
                     <div class="entry-meta">
                         <ul>
-                            <li><?php echo turkcetarih('j F Y , l',$rs->tarih); ?></li>
+                            <li>Yayınlanma Tarihi: <?php echo turkcetarih('j F Y , l',$rs->tarih); ?></li>
                             <span class="meta-sep">&bull;</span>                                
-                            <li><a href="#" title="" rel="category tag"><?=$rs->katadi?></a></li>
+                            <li><?=$rs->katadi?></li>
                             <span class="meta-sep">&bull;</span>
                             <li><?=$rs->yazar_ad?></li>
                         </ul>
@@ -29,7 +29,7 @@
 
                 </header> 
 
-                <div class="entry-content">
+                <div class="entry-content" style="font-size: 13px;">
                     <p> 
                         <?php
                          if (strlen($rs->metin) > 500) {
@@ -42,8 +42,9 @@
                         ?>
                     </p>
                 </div> 
-
-              </article> <!-- end entry -->        
+                <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title="">Devamını Oku »</a>
+              </article> <!-- end entry -->    
+              <hr>    
               <?php 
           } 
           ?>
