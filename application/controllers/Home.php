@@ -25,7 +25,7 @@ class Home extends CI_Controller {
 		$data3["veri"]=$this->Post_model->get_entries_by_sayfalar();
 
 		$this->load->view('_header',$data3);
-		$this->load->view('_slider');
+		$this->load->view('_slider',$data);
 		$this->load->view('_header2',$data3);
 		$this->load->view('_content',$data);		
 		$this->load->view('_sidebar',$data2);

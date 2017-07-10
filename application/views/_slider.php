@@ -5,7 +5,7 @@
     <div class="row">
 
      <div class="header-content twelve columns">
-<br><br>
+<br><br><br>
          <!-- Full Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">
         <!-- Indicators -->

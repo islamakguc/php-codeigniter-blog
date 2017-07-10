@@ -1,7 +1,7 @@
  <!-- Content
  ================================================== -->
  <div id="content-wrap">
-    <br><br>
+    <br><br><br><br>
     <div class="row">
 
         <div id="main" class="eight columns">
@@ -43,7 +43,8 @@
                       </p>
                   </div> 
                   <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title="">Devamını Oku »</a>
-              </article> <!-- end entry -->        
+              </article> <!-- end entry -->   
+              <hr>      
               <?php 
           } 
           ?>
