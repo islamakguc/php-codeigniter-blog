@@ -32,7 +32,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading" >
-                        <h3 class="panel-title">Kullanıcı Kayıt<div style="float: right;"> <a href="<?= base_url() ?>Login/login"> Kullanici Girişi</a></div></h3>
+                        <h3 class="panel-title">Kullanıcı Kayıt<div style="float: right;"> <a href="<?= base_url() ?>Login"> Kullanici Girişi</a></div></h3>
                     </div>
 
                     <div class="panel-body">

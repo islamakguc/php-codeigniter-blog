@@ -23,11 +23,7 @@ class Login extends CI_Controller {
 	{
 		$this->load->view('kayit_form');
 	}
-	public function bos()
-	{
-		$this->load->view('bos');
-	}
-
+	
 	public function kayit_ol()
 	{
 		$data=array(

@@ -18,7 +18,8 @@
      } 
      ?>
      <!-- end #nav -->    
-     <li><div style="width:350px; display:inline-block float: right;"><a href="#"></a></div></li>          
+     <li><div style="width:250px; display:inline-block float: right;"><a href="#"></a></div></li>
+            
      <li> <a href="">Hoşgeldin 
       <?php 
       if( $this -> session -> userdata('oturum_data'))
@@ -34,11 +35,13 @@
       if( $this -> session -> userdata('oturum_data'))
       {
         ?>
-        <li style=" float: right;"><a href="<?= base_url() ?>login/log_out">Çıkış Yap</a></div></li>
+        <li style=" float: right;"><a href="<?= base_url() ?>login/log_out">Çıkış Yap</a></li>
         <?php } 
           else{
             ?>
-            <li style=" float: right;"><a href="<?= base_url() ?>login">Giriş Yap</a></div></li>
+            <li><div style=" display:inline-block float: right;"><a href="<?= base_url() ?>login"> Giriş Yap  </a></div></li>   
+            <li style=" float: right;"><a href="<?= base_url() ?>login/kayit">Kayıt Ol</a></li>
+
             <?php
           }
         ?>
