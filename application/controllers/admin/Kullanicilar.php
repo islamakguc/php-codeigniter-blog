@@ -35,6 +35,8 @@ class Kullanicilar extends CI_Controller {
 
 			$query1=$this->db->get("ayarlar");
 			$data1["veri"]=$query1->result();
+			$query=$this->db->get("uyekategori");
+			$data1["kategori"]=$query->result();
 			$this->load->view('admin/_header',$data1);
 			$this->load->view('admin/kullanici_ekle');
 		}
@@ -96,6 +98,8 @@ class Kullanicilar extends CI_Controller {
 
 			$sorgu=$this->db->query("SELECT * FROM kullanicilar WHERE id=$id");
 			$data["veri"]=$sorgu->result();
+			$query1=$this->db->get("uyekategori");
+			$data["kategori"]=$query1->result();
 			$this->load->view('admin/kullanici_duzenle',$data,$id);
 		}
 		else {
@@ -113,6 +117,7 @@ class Kullanicilar extends CI_Controller {
 				"sifre" => $this -> input -> post('sifre'),
 				"mail" => $this -> input -> post('mail'),
 				"yetki" => $this -> input -> post('yetki'),
+				"durum" => $this -> input -> post('durum'),
 				);
 			$this->Database_Model->update_data("kullanicilar",$data,$id);
 			$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");

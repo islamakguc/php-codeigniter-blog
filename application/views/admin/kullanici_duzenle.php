@@ -8,13 +8,13 @@ $this->load->view('admin/_sidebar');
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-               <br>
-               <div>
+             <br>
+             <div>
                 <ul class="breadcrumb">
                     <li>
-                       <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
-                   </li>
-                   <li>
+                     <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
+                 </li>
+                 <li>
                     <a href="<?= base_url() ?>admin/Kullanicilar/">Kullanıcılar</a>
                 </li>
                 <li>
@@ -34,19 +34,37 @@ $this->load->view('admin/_sidebar');
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input name="sifre" type="text" value="<?=$veri[0]->sifre?>" class="form-control" placeholder="Şifre">
+                        <input name="sifre" type="password" value="<?=$veri[0]->sifre?>" class="form-control" placeholder="Şifre">
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon">@</span>
-                        <input name="mail" type="text" value="<?=$veri[0]->mail?>" class="form-control" placeholder="E-Mail">
+                        <input name="mail" type="email" value="<?=$veri[0]->mail?>" class="form-control" placeholder="E-Mail">
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <select name="yetki" class="form-control">
                             <option><?=$veri[0]->yetki?></option>
-                            <option>Yazar</option>
-                            <option>Admin</option>
+                            <?php foreach($kategori as $rows){ ?>
+                            <option><?php echo $rows->kategoriadi ?></option>
+                            <?php } ?>
                         </select>
+                    </div>
+                     <?php
+                    if($veri[0]->durum == 1)
+                    {
+                        $Draft = "checked";
+                        $NoDraft = "";
+                    }else{
+                        $Draft = "";
+                        $NoDraft = "checked";
+
+                    }
+                    ?>
+                    <div class="radio">
+                        <label><input type="radio" name="durum" value="1" <?php echo $Draft ?>>Aktif</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="durum" value="0" <?php echo $NoDraft ?>>pasif</label>
                     </div>
                     <div class="form-group input-group">
                         <button type="submit" class="btn btn-default">Güncelle</button>

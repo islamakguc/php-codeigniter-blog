@@ -65,6 +65,12 @@
                     <li>
                         <a href="<?= base_url() ?>admin/Kategori/ekle">Kategori Ekle</a>
                     </li>
+                    <li>
+                        <a href="<?= base_url() ?>admin/Uye_Kategori">Üye Kategori Listele</a>
+                    </li>
+                    <li>
+                        <a href="<?= base_url() ?>admin/Uye_Kategori/ekle">Üye Kategori Ekle</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>

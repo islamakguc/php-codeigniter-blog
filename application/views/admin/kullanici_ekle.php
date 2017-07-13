@@ -44,8 +44,9 @@ $this->load->view('admin/_sidebar');
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <select name="yetki" class="form-control">
-                            <option>Yazar</option>
-                            <option>Admin</option>
+                            <?php foreach($kategori as $rows){ ?>
+                            <option><?php echo $rows->kategoriadi ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="form-group input-group">
