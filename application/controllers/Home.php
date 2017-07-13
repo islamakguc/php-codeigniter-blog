@@ -17,7 +17,8 @@ class Home extends CI_Controller {
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 			LEFT JOIN kategori
 			ON yazilar.kategori_id=kategori.id
-			WHERE yazilar.durum=1";
+			WHERE yazilar.durum=1 
+			ORDER BY tarih DESC";
 		$sorgular=$this->db->query($sql);
 		$data["veri"] =$sorgular->result();
 

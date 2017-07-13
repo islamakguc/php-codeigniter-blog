@@ -9,7 +9,7 @@ class Home extends CI_Controller {
 		$this -> load -> library ('session');
 		$this -> load -> helper ('url');
 		$this -> load -> database ();
-		if(! $this -> session -> userdata('oturum_data')|| $this->session->oturum_data['yetki']=="Üye")
+		if(! $this -> session -> userdata('oturum_data')|| $this->session->oturum_data['yetki']!="Üye")
 		{
 			redirect(base_url().'admin/login');
 		}
@@ -19,9 +19,9 @@ class Home extends CI_Controller {
 	{
 		$query=$this->db->get("ayarlar");
 		$data["veri"]=$query->result();
-		$this->load->view('admin/_header',$data);
-		$this->load->view('admin/_sidebar');
-		$this->load->view('admin/_content');
-		$this->load->view('admin/_footer');
+		$this->load->view('uye/_header',$data);
+		$this->load->view('uye/_sidebar');
+		$this->load->view('uye/_content');
+		$this->load->view('uye/_footer');
 	}
 }

@@ -10,7 +10,7 @@ class Uye_Kategori extends CI_Controller {
 		$this -> load -> database ();
 		$this -> load -> library ("session");
 		$this -> load -> model('Admin/Database_Model');
-		if(! $this -> session -> userdata('oturum_data'))
+		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
 		{
 			redirect(base_url().'admin/login');
 		}

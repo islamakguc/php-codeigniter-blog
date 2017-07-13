@@ -13,7 +13,7 @@ class Sayfalar extends CI_Controller {
 		$this -> load -> model('Admin/Admin_Model');
 		$this -> load -> model('Admin/Sayfa_Post_model');
 		$this -> load -> model('Admin/Sayfa_model');
-		if(! $this -> session -> userdata('oturum_data'))
+		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
 		{
 			redirect(base_url().'admin/login');
 		}

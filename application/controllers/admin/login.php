@@ -24,14 +24,23 @@ class Login extends CI_Controller {
 		$result = $this->Admin_Model->login($email,$sifre);
 		if($result)
 		{
-			$oturum_dizi = array (
-				'id' => $result[0]->id,
-				'yetki' => $result[0]->yetki,
-				'mail' => $result[0]->mail,
-				'ad' => $result[0]->ad
-				);
-			$this->session->set_userdata('oturum_data',$oturum_dizi);
-			redirect(base_url().'admin/home');
+			if($result[0]->yetki=="Admin" || $result[0]->yetki=="Yazar" )
+			{
+				$oturum_dizi = array (
+					'id' => $result[0]->id,
+					'yetki' => $result[0]->yetki,
+					'mail' => $result[0]->mail,
+					'ad' => $result[0]->ad
+					);
+				$this->session->set_userdata('oturum_data',$oturum_dizi);
+				redirect(base_url().'admin/home');
+			}
+			else
+			{
+				$this ->session->set_flashdata("login_hata","Yetkisiz Giriş!");
+				$this->load ->view('admin/login_form'); 
+			}
+			
 		}
 		else
 		{

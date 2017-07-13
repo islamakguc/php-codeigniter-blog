@@ -9,12 +9,12 @@ class Yazilar extends CI_Controller {
 		$this -> load -> helper ('url');
 		$this -> load -> database ();
 		$this -> load -> library ("session");
-		$this -> load -> model('Admin/Database_Model');
-		$this -> load -> model('Admin/Admin_Model');
-		$this -> load -> model('Admin/post_model');
-		$this -> load -> model('Post_model');
-		$this -> load -> model('Admin/Category_model');
-		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
+		$this -> load -> model('uye/Database_Model');
+		$this -> load -> model('uye/Admin_Model');
+		$this -> load -> model('uye/post_model');
+		$this -> load -> model('uye/Post_modell');
+		$this -> load -> model('uye/Category_model');
+		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']!="Üye")
 		{
 			redirect(base_url().'admin/login');
 		}
@@ -23,29 +23,29 @@ class Yazilar extends CI_Controller {
 
 	public function index()
 	{
-		$query=$this->db->get("yazilar");
-		$data["veri"]=$query->result();
+		$id=$this->session->oturum_data['id'];
 
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
-			LEFT JOIN kategori
-			ON yazilar.kategori_id=kategori.id";
+		LEFT JOIN kategori
+		ON yazilar.kategori_id=kategori.id WHERE yazilar.yazar_id=$id";
+
 		$sorgular=$this->db->query($sql);
 		$data["veri"] =$sorgular->result();
 
 		$query1=$this->db->get("ayarlar");
 		$data1["veri"]=$query1->result();
 
-		$this->load->view('admin/_header',$data1);
-		$this->load->view('admin/_sidebar');
-		$this->load->view('admin/yazi_listesi',$data);
-		$this->load->view('admin/_footer');
+		$this->load->view('uye/_header',$data1);
+		$this->load->view('uye/_sidebar');
+		$this->load->view('uye/yazi_listesi',$data);
+		$this->load->view('uye/_footer');
 		//echo "Hoşgeldiniz";
 	}
 	public function ekle()
 	{
 		$query=$this->db->get("kategori");
 		$data["veri"]=$query->result();
-		$this->load->view('admin/yazi_ekle',$data);
+		$this->load->view('uye/yazi_ekle',$data);
 	}
 	public function eklekaydet()
 	{
@@ -60,13 +60,13 @@ class Yazilar extends CI_Controller {
 			);
 		$this->Database_Model->insert_data("yazilar",$data);
 		$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/yazilar");
+		redirect(base_url()."uye/yazilar");
 	}
 	public function delete($id)
 	{
 		$this->db->query("DELETE FROM yazilar WHERE id=$id");
 		$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/yazilar");
+		redirect(base_url()."uye/yazilar");
 	}
 
 	public function edit($id)
@@ -76,12 +76,12 @@ class Yazilar extends CI_Controller {
 		$data['data'] = $this->post_model->get_entry($id);
 
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
-			LEFT JOIN kategori
-			ON yazilar.kategori_id=kategori.id
-			WHERE yazilar.id=$id";
+		LEFT JOIN kategori
+		ON yazilar.kategori_id=kategori.id
+		WHERE yazilar.id=$id";
 		$sorgular=$this->db->query($sql);
 		$data["veri"] =$sorgular->result();
-		$this->load->view('admin/yazi_duzenle',$data,$id);
+		$this->load->view('uye/yazi_duzenle',$data,$id);
 	}
 	public function guncellekaydet($id)
 	{
@@ -96,7 +96,7 @@ class Yazilar extends CI_Controller {
 		$this->Database_Model->update_data("yazilar",$data,$id);
 		
 		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/yazilar");
+		redirect(base_url()."uye/yazilar");
 	}
 	
 }
