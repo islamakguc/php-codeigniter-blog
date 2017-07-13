@@ -11,6 +11,7 @@ class Admin_Model extends CI_Model {
 		$this->db->from('kullanicilar');
 		$this->db->where('mail',$email);
 		$this->db->where('sifre',$sifre);
+		$this->db->where('durum',1);
 		$this->db->limit(1);
 		
 		$query = $this->db->get();
