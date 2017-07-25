@@ -30,10 +30,10 @@ $this->load->view('admin/_sidebar');
             <div class="panel-body">
                 <form role="form" action="<?= base_url() ?>admin/Yazilar/guncellekaydet/<?php echo $data[0]->id; ?>" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="Title" placeholder="Başlık" value="<?php echo $data[0]->baslik;?>">
+                        <input type="text" class="form-control" name="Title" placeholder="Başlık" required="" value="<?php echo $data[0]->baslik;?>">
                     </div>
                     <div class="form-group">
-                        <select class="form-control" name="yetki">
+                        <select class="form-control" name="yetki" required="">
                             <option value="<?=$veri[0]->kategori_id ?>" ><?=$veri[0]->katadi ?></option>
                             <?php foreach($categories as $row){ ?>
                             <option value="<?php echo $row->id;  ?>" ><?php echo $row->kategoriadi;  ?></option>
@@ -41,7 +41,7 @@ $this->load->view('admin/_sidebar');
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea name="Content"><?php echo $data[0]->metin; ?> </textarea>
+                        <textarea name="Content" required="required"><?php echo $data[0]->metin; ?> </textarea>
                         <script>
                             CKEDITOR.replace( 'Content' );
                         </script>
@@ -58,10 +58,10 @@ $this->load->view('admin/_sidebar');
                     }
                     ?>
                     <div class="radio">
-                        <label><input type="radio" name="IsDraft" value="1" <?php echo $Draft ?>>Yayınla</label>
+                        <label><input type="radio" required="" name="IsDraft" value="1" <?php echo $Draft ?>>Yayınla</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="IsDraft" value="0" <?php echo $NoDraft ?>>Taslak Olarak Kaydet</label>
+                        <label><input type="radio" required="" name="IsDraft" value="0" <?php echo $NoDraft ?>>Taslak Olarak Kaydet</label>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-default">Kaydet</button>

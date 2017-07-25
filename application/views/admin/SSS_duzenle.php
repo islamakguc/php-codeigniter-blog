@@ -31,10 +31,10 @@ $this->load->view('admin/_sidebar');
                 <form role="form" action="<?= base_url() ?>admin/Sikca_Sorulan_Sorular/guncellekaydet/<?=$veri[0]->id?>" method="post">
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-question"></i></span>
-                        <input name="baslik" type="text" value="<?php echo $veri[0]->baslik;?>" class="form-control" placeholder="Soru">
+                        <input name="baslik" type="text" required="" value="<?php echo $veri[0]->baslik;?>" class="form-control" placeholder="Soru">
                     </div>
                     <div class="form-group">
-                        <textarea name="icerik"><?php echo $veri[0]->icerik;?></textarea>
+                        <textarea name="icerik" required=""><?php echo $veri[0]->icerik;?></textarea>
                         <script>
                             CKEDITOR.replace( 'icerik' );
                         </script>

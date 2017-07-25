@@ -3,11 +3,12 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="<?=$veri[0]->icerik?>">
-    <meta name="author" content="İslam AKGÜÇ">
+    <meta name="author" content="<?=$veri[0]->adsoyad?>,<?=$veri[0]->email?>"/>
+    <meta name="keywords" content="<?=$veri[0]->keywords?>"/>
 
     <title><?=$veri[0]->baslik?></title>
 
@@ -46,7 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?= base_url() ?>admin/Home">İslam AKGÜÇ</a>
+                <a class="navbar-brand" href="<?= base_url() ?>admin/Home">İslam AKGÜÇ - ADMİN GİRİŞİ</a>
             </div>
             <!-- /.navbar-header -->
 

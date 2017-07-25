@@ -32,16 +32,16 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Kullanıcı Girişi</h3>
+                        <h3 class="panel-title">Yönetici Girişi</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="<?= base_url() ?>admin/login/login_ol" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" name="email" placeholder="E-mail" type="email" autofocus>
+                                    <input class="form-control" name="email" placeholder="E-mail" type="email" autofocus required="">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="sifre" placeholder="Şifre" type="password">
+                                    <input class="form-control" name="sifre" placeholder="Şifre" type="password" required="">
                                 </div>
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Giriş Yap</button>
                             </fieldset>

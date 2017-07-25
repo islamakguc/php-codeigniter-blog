@@ -1,7 +1,6 @@
 <?php
 class Category_model extends CI_Model {
 
-    public $CategoryName;
 
     public function __construct()
     {

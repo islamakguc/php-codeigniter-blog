@@ -22,7 +22,9 @@ $this->load->view('admin/_sidebar');
 							<a href="<?= base_url() ?>/admin/kullanicilar/goster/<?=$this->session->oturum_data['id']?>">Profil</a>
 						</li>
 					</ul>
-				</div><?php if ($this->session->flashdata("sonuc"))
+				</div>
+				<?php 
+				if ($this->session->flashdata("sonuc"))
 				{ ?>
 				<div class="content-panel">
 					
@@ -32,11 +34,15 @@ $this->load->view('admin/_sidebar');
 					</div>
 
 				</div>
-				<?php }else { ?>
+				<?php }?>
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Kullanıcı Bilgileri
+						Kullanıcı Bilgileri 
+						<?php 
+						if($this -> session -> oturum_data['id'] == $veri[0]->id )
+							{?>
+						<div style="float: right;"><a href="<?= base_url() ?>admin/kullanicilar/profiledit">Profil Düzenle</a></div><?php } ?>
 					</div>
 					<div class="panel-body">
 						<table class="table">
@@ -75,7 +81,7 @@ $this->load->view('admin/_sidebar');
 							</table>
 
 						</div>
-					</div><?php }?>
+					</div>
 					<!-- /.col-lg-12 -->
 				</div>
 				<!-- /.row -->

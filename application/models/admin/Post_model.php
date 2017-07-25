@@ -12,6 +12,7 @@ class Post_model extends CI_Model {
         $query = $this->db->query("Select * From yazilar where id=$Id");
         return $query->result();
     }
+    
     public function get_entries_by_category_id($ad)
     {
         $this->db->from('yazilar');
@@ -24,6 +25,13 @@ class Post_model extends CI_Model {
     {
         $this->db->from('kategori');
         $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+       public function yazicount($ad)
+    {
+        $this->db->from('yazilar');
+        $this->db->where('yazar_ad', $ad);
         $query = $this->db->get();
         return $query->result();
     }

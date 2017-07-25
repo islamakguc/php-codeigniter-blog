@@ -31,15 +31,15 @@ $this->load->view('admin/_sidebar');
                 <form role="form" action="<?= base_url() ?>admin/Kullanicilar/eklekaydet" method="post">
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input name="ad" type="text" class="form-control" placeholder="Ad Soyad">
+                        <input name="ad" type="text" class="form-control" placeholder="Ad Soyad" required="">
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input name="sifre" type="text" class="form-control" placeholder="Şifre">
+                        <input name="sifre" type="text" class="form-control" placeholder="Şifre" required="">
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon">@</span>
-                        <input name="mail" type="text" class="form-control" placeholder="E-Mail">
+                        <input name="mail" type="email" class="form-control" placeholder="E-Mail" required="">
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>

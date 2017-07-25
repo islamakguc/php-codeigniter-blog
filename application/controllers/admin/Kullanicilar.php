@@ -30,104 +30,52 @@ class Kullanicilar extends CI_Controller {
 
 	public function ekle()
 	{
-		if($this -> session -> oturum_data['yetki'] == "Admin")
-		{
-
-			$query1=$this->db->get("ayarlar");
-			$data1["veri"]=$query1->result();
-			$query=$this->db->get("uyekategori");
-			$data1["kategori"]=$query->result();
-			$this->load->view('admin/_header',$data1);
-			$this->load->view('admin/kullanici_ekle');
-		}
-		else 
-		{
-			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
-			redirect(base_url()."admin/kullanicilar");
-		}
-
+		$query=$this->db->get("uyekategori");
+		$data1["kategori"]=$query->result();
+		$this->load->view('admin/kullanici_ekle',$data1);
 	}
 
 	public function eklekaydet()
 	{
-		if($this -> session -> oturum_data['yetki'] == "Admin")
-		{
-			$data=array(
-				"ad" => $this -> input -> post('ad'),
-				"sifre" => $this -> input -> post('sifre'),
-				"mail" => $this -> input -> post('mail'),
-				"yetki" => $this -> input -> post('yetki'),
-				);
-			$this->Database_Model->insert_data("kullanicilar",$data);
-			$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
-			redirect(base_url()."admin/kullanicilar");
-		}
-		else {
-			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
-			redirect(base_url()."admin/kullanicilar");
-		}
+		$data=array(
+			"ad" => $this -> input -> post('ad'),
+			"sifre" => $this -> input -> post('sifre'),
+			"mail" => $this -> input -> post('mail'),
+			"yetki" => $this -> input -> post('yetki'),
+			);
+		$this->Database_Model->insert_data("kullanicilar",$data);
+		$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
+		redirect(base_url()."admin/kullanicilar");
 	}
 
 	public function delete($id)
 	{
-		if($this -> session -> oturum_data['yetki'] == "Admin")
-		{
-			$this->db->query("DELETE FROM kullanicilar WHERE id=$id");
-			$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
-			redirect(base_url()."admin/kullanicilar");
-			$data=array(
-				"ad" => $this -> input -> post('ad'),
-				"sifre" => $this -> input -> post('sifre'),
-				"mail" => $this -> input -> post('mail'),
-				"yetki" => $this -> input -> post('yetki'),
-				);
-			$this->Database_Model->update_data("kullanicilar",$data,$id);
-			$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
-			redirect(base_url()."admin/kullanicilar");
-		}
-		else {
-			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
-			redirect(base_url()."admin/kullanicilar");
-		}
+		$this->db->query("DELETE FROM kullanicilar WHERE id=$id");
+		$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
+		redirect(base_url()."admin/kullanicilar");
 	}
 
 	public function edit($id)
 	{
-		if($this -> session -> oturum_data['yetki'] == "Admin")
-		{
-
-			$sorgu=$this->db->query("SELECT * FROM kullanicilar WHERE id=$id");
-			$data["veri"]=$sorgu->result();
-			$query1=$this->db->get("uyekategori");
-			$data["kategori"]=$query1->result();
-			$this->load->view('admin/kullanici_duzenle',$data,$id);
-		}
-		else {
-			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
-			redirect(base_url()."admin/kullanicilar");
-		}
+		$sorgu=$this->db->query("SELECT * FROM kullanicilar WHERE id=$id");
+		$data["veri"]=$sorgu->result();
+		$query1=$this->db->get("uyekategori");
+		$data["kategori"]=$query1->result();
+		$this->load->view('admin/kullanici_duzenle',$data,$id);
 	}
 
 	public function guncellekaydet($id)
 	{
-		if($this -> session -> oturum_data['yetki'] == "Admin")
-		{
-			$data=array(
-				"ad" => $this -> input -> post('ad'),
-				"sifre" => $this -> input -> post('sifre'),
-				"mail" => $this -> input -> post('mail'),
-				"yetki" => $this -> input -> post('yetki'),
-				"durum" => $this -> input -> post('durum'),
-				);
-			$this->Database_Model->update_data("kullanicilar",$data,$id);
-			$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
-			redirect(base_url()."admin/kullanicilar");
-		}
-		else {
-			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
-			redirect(base_url()."admin/kullanicilar");
-		}
-
+		$data=array(
+			"ad" => $this -> input -> post('ad'),
+			"sifre" => $this -> input -> post('sifre'),
+			"mail" => $this -> input -> post('mail'),
+			"yetki" => $this -> input -> post('yetki'),
+			"durum" => $this -> input -> post('durum'),
+			);
+		$this->Database_Model->update_data("kullanicilar",$data,$id);
+		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
+		redirect(base_url()."admin/kullanicilar");
 	}
 
 	public function goster($id)
@@ -150,5 +98,27 @@ class Kullanicilar extends CI_Controller {
 			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
 			redirect(base_url()."admin/kullanicilar");
 		}
+	}
+
+	public function profiledit()
+	{	
+		$id=$this -> session -> oturum_data['id'];
+		$sorgu=$this->db->query("SELECT * FROM kullanicilar WHERE id=$id");
+		$data["veri"]=$sorgu->result();
+		$query1=$this->db->get("uyekategori");
+		$data["kategori"]=$query1->result();
+		$this->load->view('admin/profil_duzenle',$data,$id);
+	}
+}
+
+	public function profilguncelle($id)
+	{
+		$data=array(
+			"ad" => $this -> input -> post('ad'),
+			"mail" => $this -> input -> post('mail'),
+			);
+		$this->Database_Model->update_data("kullanicilar",$data,$id);
+		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
+		redirect(base_url()."admin/kullanicilar/goster/$id");
 	}
 }

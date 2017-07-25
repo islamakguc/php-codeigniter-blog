@@ -6,7 +6,7 @@ class Yazilar extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this -> load -> helper ('url');
+		$this->load->helper(array('form', 'url'));
 		$this -> load -> database ();
 		$this -> load -> library ("session");
 		$this -> load -> model('uye/Database_Model');
@@ -49,18 +49,37 @@ class Yazilar extends CI_Controller {
 	}
 	public function eklekaydet()
 	{
-		$data=array(
-			"baslik" => $this -> input -> post('Title'),
-			"metin" => $this -> input -> post('Content'),
-			"yazilar.yazar_ad" => $this->session->oturum_data['ad'],
-			"yazilar.yazar_id" => $this->session->oturum_data['id'],
-			"yazilar.kategori_id" => $this -> input -> post('yetki'),
-			"durum" => $this -> input -> post('IsDraft'),
-			
-			);
-		$this->Database_Model->insert_data("yazilar",$data);
-		$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."uye/yazilar");
+		$config['upload_path']          = './uploads/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 1000000;
+		$config['max_width']            = 1024;
+		$config['max_height']           = 900;
+
+		$this->load->library('upload', $config);
+		if ( ! $this->upload->do_upload('userfile'))
+		{
+			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata("sonuc","Upload Hatası ".$error);
+			redirect(base_url()."uye/yazilar/ekle");
+		}
+		else
+		{
+			$data=array(
+				"baslik" => $this -> input -> post('Title'),
+				"metin" => $this -> input -> post('Content'),
+				"yazilar.yazar_ad" => $this->session->oturum_data['ad'],
+				"yazilar.yazar_id" => $this->session->oturum_data['id'],
+				"yazilar.kategori_id" => $this -> input -> post('yetki'),
+				"durum" => $this -> input -> post('IsDraft'),
+				"resim" => $this->upload->data('file_name')				
+				);
+			$this->Database_Model->insert_data("yazilar",$data);
+
+			$data = array('upload_data' => $this->upload->data());
+			$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
+			redirect(base_url()."uye/yazilar");
+		}
+		
 	}
 	public function delete($id)
 	{
@@ -97,6 +116,41 @@ class Yazilar extends CI_Controller {
 		
 		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."uye/yazilar");
+	}
+
+	public function resimekle($id)
+	{
+		$query=$this->db->query("SELECT * FROM yazilar WHERE id=$id");
+		$data["resim"]=$query->result();
+		$this->load->view('uye/resim_ekle',$data);
+	}
+	public function resim_upload($id)
+	{
+		$config['upload_path']          = './uploads/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 1000000;
+		$config['max_width']            = 1024;
+		$config['max_height']           = 900;
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('userfile'))
+		{
+			$error = array('error' => $this->upload->display_errors());
+			$this->session->set_flashdata("sonuc","Upload Hatası ".$error);
+			redirect(base_url()."uye/yazilar/resimekle/$id");
+		}
+		else
+		{
+			$data=array(
+				"resim" => $this->upload->data('file_name')			
+				);
+			$this->Database_Model->update_data("yazilar",$data,$id);
+
+			$data = array('upload_data' => $this->upload->data());
+			$this->session->set_flashdata("sonuc","Resim Upload İşlemi Başarı İle Gerçekleştirildi");
+			redirect(base_url()."uye/yazilar");
+		}
 	}
 	
 }

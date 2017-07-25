@@ -27,5 +27,12 @@ class Post_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+        public function yazicount($ad)
+    {
+        $this->db->from('yazilar');
+        $this->db->where('yazar_ad', $ad);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 ?>

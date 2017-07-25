@@ -24,5 +24,48 @@ class Admin_Model extends CI_Model {
 		{
 			return false;
 		}
-	}	
+	}
+	public function mesajaliciadi()
+	{
+		$this->db->select('*');
+		$this->db->from('kullanicilar');
+		$query = $this->db->get();
+		return $query->result();
+	}
+		public function mesajalici($ad)
+	{
+		$this->db->select('*');
+		$this->db->from('mesajlar');
+		$this->db->order_by("tarih", "desc");
+		$this->db->where('alici_adi',$ad);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	   public function mesajcount($ad)
+    {
+        $this->db->from('mesajlar');
+        $this->db->where('alici_adi', $ad);
+        $query = $this->db->get();
+        return $query->result();
+    }
+        public function kontrol($id,$sifre)
+    {
+    	$this->db->select('*');
+		$this->db->from('kullanicilar');
+		$this->db->where('id',$id);
+		$this->db->where('sifre',$sifre);
+		$this->db->limit(1);
+		
+		$query = $this->db->get();
+		
+		if($query->num_rows() == 1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+    }
+	
 }

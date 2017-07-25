@@ -7,20 +7,27 @@
   <div class="row">                       
 
     <ul id="nav" class="nav"  style="float: right;">
-      <li /*class="current"*/><a href="<?= base_url() ?>">Home</a></li>
-
-      <?php
-      foreach ($veri as $rs) 
-      {
-       ?>
-       <li><a href="<?= base_url() ?>home/"><?=$rs->baslik?></a></li>
-       <?php 
-     } 
-     ?>
+      <li><a href="<?= base_url() ?>">Home</a></li>
+      <li><a href="<?= base_url() ?>Home/benkimim">Ben Kimim?</a></li>
+      <li><a href="<?= base_url() ?>Home/sss">S.S.S</a></li>
+      <li><a href="<?= base_url() ?>Home/bize_ulasin">İletişim</a></li>
      <!-- end #nav -->    
-     <li><div style="width:250px; display:inline-block float: right;"><a href="#"></a></div></li>
-            
-     <li> <a href="">Hoşgeldin 
+     <li><div style="width:200px; display:inline-block float: right;"><a href=""></a></div></li>
+
+     <li> <a href="
+
+      <?php 
+          if($this->session->oturum_data['yetki']=="Üye"){
+            echo base_url()."uye";
+          }
+          elseif($this->session->oturum_data['yetki']=="Admin"){
+            echo base_url()."admin";
+          }
+          else{
+            echo "";
+          }
+      ?>
+      ">Hoşgeldin 
       <?php 
       if( $this -> session -> userdata('oturum_data'))
       {
@@ -37,13 +44,13 @@
         ?>
         <li style=" float: right;"><a href="<?= base_url() ?>login/log_out">Çıkış Yap</a></li>
         <?php } 
-          else{
-            ?>
-            <li><div style=" display:inline-block float: right;"><a href="<?= base_url() ?>login"> Giriş Yap  </a></div></li>   
-            <li style=" float: right;"><a href="<?= base_url() ?>login/kayit">Kayıt Ol</a></li>
+        else{
+          ?>
+          <li><div style=" display:inline-block float: right;"><a href="<?= base_url() ?>login"> Giriş Yap  </a></div></li>   
+          <li style=" float: right;"><a href="<?= base_url() ?>login/kayit">Kayıt Ol</a></li>
 
-            <?php
-          }
+          <?php
+        }
         ?>
 
       </ul>

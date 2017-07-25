@@ -47,7 +47,7 @@
                      {
                          ?>
                          <tr class="odd gradeX">
-                            <td><a href="<?= base_url() ?>/admin/kullanicilar/goster/<?=$rs->id?>"><?=$rs->ad?></a></td>
+                            <td><a href="<?= base_url() ?>admin/kullanicilar/goster/<?=$rs->id?>"><?=$rs->ad?></a></td>
                             <td><?=$rs->mail?></td>
                             <td><?=$rs->yetki?></td>
                             <td class="center"><?php

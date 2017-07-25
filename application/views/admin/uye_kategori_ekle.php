@@ -31,7 +31,7 @@ $this->load->view('admin/_sidebar');
                 <form role="form" action="<?= base_url() ?>admin/Uye_Kategori/eklekaydet" method="post">
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input name="ad" type="text" class="form-control" placeholder="kategori">
+                        <input name="ad" type="text" class="form-control" placeholder="kategori" required="">
                     </div>
                     <div class="form-group input-group">
                         <button type="submit" class="btn btn-default">Kaydet</button>

@@ -10,7 +10,7 @@
                          <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
                      </li>
                      <li>
-                        <a href="<?= base_url() ?>admin/Sayfalar">Sayfalar</a>
+                        <a href="<?= base_url() ?>admin/Yorum">Yorumlar</a>
                     </li>
                 </ul>
             </div>
@@ -26,11 +26,11 @@
         } ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                Tüm Sayfalar
+                Tüm Yorumlarım
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <?php foreach($veri as $row){ ?>
+                <?php foreach($data as $row){ ?>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div style="float:right; display:inline">
@@ -46,34 +46,23 @@
                                 }
                                 else
                                     {?>
-
                                 <fieldset disabled="">
                                     <div class="btn btn-default">Pasif</div></span><br><br>
                                 </fieldset>
                                 <?php }?>
                                 <div class="dropdown">
-                                <button class="btn btn-default btn-sm  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <button class="btn btn-default btn-sm  dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         İşlemler
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <?php
-                                        if($row->durum == 1)
-                                        {
-                                            ?>
-                                            <li><a href="<?php echo base_url() ?>admin/Sayfalar/onaykaldir/<?php echo $row->id;?>">Onayı Kaldır</a></li>
-                                            <?php
-                                        }
-                                        else
-                                            {?>
-                                        <li><a href="<?php echo base_url() ?>admin/Sayfalar/onayla/<?php echo $row->id;?>">Onayla</a></li>
-                                        <?php }?>
-                                        <li><a href="<?php echo base_url() ?>admin/Sayfalar/edit/<?php echo $row->id;?>">Düzenle</a></li>
-                                        <li><a href="<?php echo base_url() ?>admin/Sayfalar/delete/<?php echo $row->id;?>">Sil</a></li>
+                                    <li><a href="<?php echo base_url() ?>admin/Yorum/delete/<?php echo $row->id;?>">Sil</a></li>
+                                    <li><a href="<?php echo base_url() ?>admin/Yorum/edit/<?php echo $row->id;?>">Düzenle</a></li>
                                     </ul>
                                 </div>
-                            </div>
-                            <p><h4><?php echo $row->baslik;  ?></h4></p>
+                            </div><h4><?php echo $row->yazar_ad;  ?></h4>
+                            <p><?php echo $row->ktarih;  ?> / <?php echo $row->yazi_id;  ?> / <?php echo $row->yazar_mail;  ?>       </p><br>
+                            <p><?php echo $row->yorum;  ?></p>
                         </div>
                     </div>
                     <?php } ?>

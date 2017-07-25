@@ -1,50 +1,50 @@
  <!-- Content
  ================================================== -->
  <div id="content-wrap">
-    <br><br><br><br>
+<br><br><br><br>
     <div class="row">
 
         <div id="main" class="eight columns">
-         <?php
-         foreach ($veri as $rs) 
-         {
-           ?>
-           <article class="entry">
+           <?php
+           foreach ($veri as $rs) 
+           {
+             ?>
+             <article class="entry">
 
-            <header class="entry-header">
+                <header class="entry-header">
 
-                <h2 class="entry-title">
-                    <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title=""><?=$rs->baslik?></a>
-                </h2>                
+                    <h2 class="entry-title">
+                        <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title=""><?=$rs->baslik?></a>
+                    </h2>                
 
-                <div class="entry-meta">
-                    <ul>
-                        <li>Yayınlanma Tarihi: <?php echo turkcetarih('j F Y , l',$rs->tarih); ?></li>
-                        <span class="meta-sep">&bull;</span>                                
-                        <li><?=$rs->katadi?></li>
-                        <span class="meta-sep">&bull;</span>
-                        <li><?=$rs->yazar_ad?></li>
-                    </ul>
-                </div> 
+                    <div class="entry-meta">
+                        <ul>
+                            <li>Yayınlanma Tarihi: <?php echo turkcetarih('j F Y , l',$rs->tarih); ?></li>
+                            <span class="meta-sep">&bull;</span>                                
+                            <li><a href="<?= base_url() ?>Home/kategori/<?=$rs->kategori_id?>" title=""><?=$rs->katadi?></a></li>
+                            <span class="meta-sep">&bull;</span>
+                            <li><a href="<?= base_url() ?>Home/yazar/<?=$rs->yazar_id?>" title=""><?=$rs->yazar_ad?></a></li>
+                        </ul>
+                    </div> 
 
-            </header> 
+                </header> 
 
-            <div class="entry-content" style="font-size: 13px;">
-                <p> 
-                    <?php
-                    if (strlen($rs->metin) > 500) {
+                <div class="entry-content" style="font-size: 13px;">
+                    <p> 
+                        <?php
+                         if (strlen($rs->metin) > 500) {
                               $sonhali = substr($rs->metin, 0, 500); // "Tablo içinde göst"
                               $sonhali = $sonhali . '...';
                               echo $sonhali;
-                          } 
-                          else
-                              echo $rs->metin; 
-                          ?>
-                      </p>
-                  </div> 
-                  <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title="">Devamını Oku »</a>
-              </article> <!-- end entry -->   
-              <hr>      
+                            } 
+                            else
+                              echo $rs->metin;  
+                        ?>
+                    </p>
+                </div> 
+                <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title="">Devamını Oku »</a>
+              </article> <!-- end entry -->    
+              <hr>    
               <?php 
           } 
           ?>

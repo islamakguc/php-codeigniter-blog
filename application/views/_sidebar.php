@@ -1,11 +1,10 @@
-
-        <div id="sidebar" class="four columns">
+        <div id="sidebar" class="four columns"><br>
 
             <div class="widget widget_search">
                   <h3>Search</h3> 
-                  <form action="#">
+                  <form disabled="disabled">
 
-                     <input type="text" disabled="disabled" value="Search here..." onblur="if(this.value == '') { this.value = 'Search here...'; }" onfocus="if (this.value == 'Search here...') { this.value = ''; }" class="text-search">
+                     <input type="text" disabled="disabled" value="Search here..." class="text-search">
                      <input type="submit" disabled="disabled" value="" class="submit-search">
 
                   </form>
@@ -17,7 +16,7 @@
                         foreach ($veri as $rs) 
                         {
                       ?>
-                        <li><a href="<?= base_url() ?>Home/kategori/<?=$rs->id?>" title=""><?=$rs->kategoriadi?></a></li>   
+                        <li><a href="<?= base_url() ?>Home/kategori/<?=$rs->id?>" title=""><?=$rs->kategoriadi?> (<?php echo count($this->Post_model->deneme($rs->id)); ?>)</a></li>   
                      <?php 
                         } 
                       ?>                 

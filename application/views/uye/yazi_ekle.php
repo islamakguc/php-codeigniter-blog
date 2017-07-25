@@ -23,50 +23,63 @@ $this->load->view('uye/_sidebar');
           </li>
         </ul>
       </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Yeni Yazı Ekle
-        </div>
-        <div class="panel-body">
-          <form role="form" action="<?= base_url() ?>uye/Yazilar/eklekaydet" method="post">
-
-            <div class="form-group">
-              <input type="text" class="form-control" name="Title" placeholder="Başlık">
-            </div>
-            <div class="form-group">
-              <select name="yetki" class="form-control">
-                <?php
-                foreach ($veri as $rs) 
-                {
-                 ?>
-                 <option value="<?=$rs->id?>"><?=$rs->kategoriadi?></option>
-
-                 <?php 
-               } 
-               ?>
-             </select>
-           </div>
-           <div class="form-group">
-            <textarea name="Content"></textarea>
-            <script>
-              CKEDITOR.replace( 'Content' );
-            </script>
-          </div>
-          <div class="radio">
-            <label><input type="radio" name="IsDraft" value="1" checked="checked">Yayınla</label>
-          </div>
-          <div class="radio">
-            <label><input type="radio" name="IsDraft" value="0">Taslak Olarak Kaydet</label>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-default">Kaydet</button>
-          </div>
-        </form>
+      <?php 
+      if($this->session->flashdata("sonuc"))
+      {
+       ?>
+       <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>İşlem:</strong> <?=$this->session->flashdata("sonuc"); ?>
       </div>
-    </div>
-    <!-- /.col-lg-12 -->
+      <?php
+    } ?>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Yeni Yazı Ekle
+      </div>
+      <div class="panel-body">
+        <?php echo form_open_multipart(base_url().'uye/Yazilar/eklekaydet');?>
+        <div class="form-group">
+          <input type="text" class="form-control" name="Title" placeholder="Başlık">
+        </div>
+        <div class="form-group">
+          <select name="yetki" class="form-control">
+            <?php
+            foreach ($veri as $rs) 
+            {
+             ?>
+             <option value="<?=$rs->id?>"><?=$rs->kategoriadi?></option>
+
+             <?php 
+           } 
+           ?>
+         </select>
+       </div>
+       <div class="form-group">
+        <textarea name="Content"></textarea>
+        <script>
+          CKEDITOR.replace( 'Content' );
+        </script>
+      </div>
+      <label class="form-group">Resim Ekle</label>
+          <div class="form-group input-group">
+            <input type="file" name="userfile" />                        
+          </div>
+      <div class="radio">
+        <label><input type="radio" name="IsDraft" value="1" checked="checked">Yayınla</label>
+      </div>
+      <div class="radio">
+        <label><input type="radio" name="IsDraft" value="0">Taslak Olarak Kaydet</label>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-default">Kaydet</button>
+      </div>
+    </form>
   </div>
-  <!-- /.row -->
+</div>
+<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
 </div>
 <!-- /.container-fluid -->
 </div>

@@ -31,7 +31,7 @@ $this->load->view('admin/_sidebar');
                 <form role="form" action="<?= base_url() ?>admin/Uye_Kategori/guncellekaydet/<?=$veri[0]->id?>" method="post">
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input name="ad" type="text" value="<?php echo $veri[0]->kategoriadi;?>" class="form-control" placeholder="Kategori">
+                        <input name="ad" type="text" required="" value="<?php echo $veri[0]->kategoriadi;?>" class="form-control" placeholder="Kategori">
                     </div>
                     
                     <div class="form-group input-group">

@@ -1,40 +1,40 @@
    <!-- Content
    ================================================== -->
    <div id="content-wrap">
-<br><br>
-   	<div class="row">
+    <br><br>
+    <div class="row">
 
-   		<div id="main" class="eight columns">
+     <div id="main" class="eight columns">
 
-   			<article class="entry">
+      <article class="entry">
 
-           <header class="entry-header">
-             <h2 class="entry-title">
-              <a href="#" title=""><?=$veri[0]->baslik?></a>
-            </h2>				 
+       <header class="entry-header">
+         <h4 class="entry-title">
+         <?=$veri[0]->baslik?>
+        </h4>				 
 
-            <div class="entry-meta">
-              <ul>
-                <li>Yayınlanma Tarihi: <?php echo turkcetarih('j F Y , l',$veri[0]->tarih); ?></li>
-                <span class="meta-sep">&bull;</span>                                
-                <li><a href="#" title="" rel="category tag"><?=$veri[0]->katadi?></a></li>
-                <span class="meta-sep">&bull;</span>
-                <li><?=$veri[0]->yazar_ad?></li>
-              </ul>
-            </div> 
+        <div class="entry-meta">
+          <ul>
+            <li>Yayınlanma Tarihi: <?php echo turkcetarih('j F Y , l',$veri[0]->tarih); ?></li>
+            <span class="meta-sep">&bull;</span>                                
+            <li><a href="<?= base_url() ?>Home/kategori/<?=$veri[0]->kategori_id?>" title=""><?=$veri[0]->katadi?></a></li>
+            <span class="meta-sep">&bull;</span>
+            <li><a href="<?= base_url() ?>Home/yazar/<?=$veri[0]->yazar_id?>" title=""><?=$veri[0]->yazar_ad?></a></li>
+          </ul>
+        </div> 
 
-          </header> 
+      </header> 
 
-          <div class="entry-content-media">
-            <div class="post-thumb">
-             <img src="<?= base_url() ?>assets/images/m-farmerboy.jpg">
-           </div> 
-         </div>
+      <div class="entry-content-media">
+        <div class="post-thumb">
+         <img src="<?= base_url() ?>uploads/<?=$veri[0]->resim?>">
+       </div> 
+     </div>
 
-         <div class="entry-content">
-          <p class="lead"><?=$veri[0]->metin?></p>
-        </div>
-      </article>
+     <div class="entry-content">
+      <p class="lead"><?=$veri[0]->metin?></p>
+    </div>
+  </article>
 
 				<!-- Comments
         ================================================== -->
@@ -79,32 +79,53 @@
      <!-- respond -->
      <div class="respond">
 
-      <h3>Yorum Yap!</h3>
 
-      <!-- form -->
-      <form name="contactForm" id="contactForm" method="post" action="">
-        <fieldset>
+      <?php 
+      if($this->session->flashdata("sonuc"))
+      {
+       ?>
+       <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>İşlem:</strong> <?=$this->session->flashdata("sonuc"); ?>
+      </div>
+      <?php
+    } ?>
+    <!-- form -->
+    <?php 
+    if($this -> session -> userdata('oturum_data'))
+    {
+      if($ayar[0]->yorum==1)
+      {
+        $durum="";
+        $aciklama="";
+        ?>
+        <h3>Yorum Yap!</h3>
+        <form name="contactForm" id="contactForm" method="post" action="<?= base_url() ?>Home/yorumekle/<?=$veri[0]->id?>">
+          <fieldset>
 
-         <div class="group">
-          <label for="cName">Name <span class="required">*</span></label>
-          <input name="cName" type="text" required="required" id="cName" size="35" value="" />
-        </div>
+            <div class="message group">
+              <label  for="cMessage">Yorum <span class="required">*</span></label>
+              <textarea name="yorum" <?=$durum?> required="required"  id="cMessage" rows="10" cols="50" ></textarea>
+            </div>
 
-        <div class="group">
-          <label for="cEmail">Email <span class="required">*</span></label>
-          <input name="cEmail" type="text" required="required" id="cEmail" size="35" value="" />
-        </div>
+            <button type="submit"<?=$durum?>  class="submit">Yorum Yap</button>
 
-        <div class="message group">
-          <label  for="cMessage">Message <span class="required">*</span></label>
-          <textarea name="cMessage" required="required"  id="cMessage" rows="10" cols="50" ></textarea>
-        </div>
-
-        <button type="submit" class="submit">Submit</button>
-
-      </fieldset>
-    </form> <!-- Form End -->
-
+          </fieldset>
+        </form> <!-- Form End -->
+        <?php 
+      }
+      else
+      {
+        $durum="disabled";
+        echo "Sistem Yorum Yapmaya Kapalı Lütfen Yönetici ile İletişime geçiniz!";
+      }
+    }
+    else
+    {
+      $durum="disabled";
+      echo "Yorum Yapabilmek için ";?><a href="<?= base_url() ?>login/kayit" target="_blank" >Üye</a>/<a href="<?= base_url() ?>login" target="_blank">Giriş</a><?php echo" yapınız"       ;
+    }
+    ?>
   </div> <!-- Respond End -->
 
 </div>  <!-- Comments End -->		
@@ -161,6 +182,4 @@ function turkcetarih($f, $zt = 'now'){
   if(strpos($z, 'Mayıs') !== false && strpos($f, 'F') === false) $z = str_replace('Mayıs', 'May', $z);
   return $z;
 }
-
-
 ?>

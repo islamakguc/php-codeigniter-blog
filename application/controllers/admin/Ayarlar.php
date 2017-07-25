@@ -19,20 +19,21 @@ class Ayarlar extends CI_Controller {
 
 	public function index()
 	{
-		$query=$this->db->get("ayarlar");
-		$data["veri"]=$query->result();
 		$query1=$this->db->get("ayarlar");
 		$data1["veri"]=$query1->result();
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
-		$this->load->view('admin/ayarlar',$data);
+		$this->load->view('admin/ayarlar');
 		$this->load->view('admin/_footer');
 	}
-		
+
 	public function guncellekaydet($id)
 	{
 		$data=array(
+			"adsoyad" => $this -> input -> post('adsoyad'),
 			"baslik" => $this -> input -> post('baslik'),
+			"email" => $this -> input -> post('email'),
+			"keywords" => $this -> input -> post('keywords'),
 			"icerik" => $this -> input -> post('icerik'),
 			"mail" => $this -> input -> post('mail'),
 			"yorum" => $this -> input -> post('yorum'),

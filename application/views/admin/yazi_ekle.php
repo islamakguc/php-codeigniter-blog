@@ -23,18 +23,27 @@ $this->load->view('admin/_sidebar');
           </li>
         </ul>
       </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Yeni Yazı Ekle
-        </div>
-        <div class="panel-body">
-          <form role="form" action="<?= base_url() ?>admin/Yazilar/eklekaydet" method="post">
-
+      <?php 
+      if($this->session->flashdata("sonuc"))
+      {
+       ?>
+       <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>İşlem:</strong> <?=$this->session->flashdata("sonuc"); ?>
+      </div>
+      <?php
+    } ?>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Yeni Yazı Ekle
+      </div>
+      <div class="panel-body">
+          <?php echo form_open_multipart(base_url().'admin/Yazilar/eklekaydet');?>
             <div class="form-group">
-              <input type="text" class="form-control" name="Title" placeholder="Başlık">
+              <input type="text" class="form-control" name="Title" placeholder="Başlık" required="">
             </div>
             <div class="form-group">
-              <select name="yetki" class="form-control">
+              <select name="yetki" class="form-control" required="">
                 <?php
                 foreach ($veri as $rs) 
                 {
@@ -47,16 +56,20 @@ $this->load->view('admin/_sidebar');
              </select>
            </div>
            <div class="form-group">
-            <textarea name="Content"></textarea>
+            <textarea name="Content"  required=""></textarea>
             <script>
               CKEDITOR.replace( 'Content' );
             </script>
           </div>
-          <div class="radio">
-            <label><input type="radio" name="IsDraft" value="1" checked="checked">Yayınla</label>
+          <label class="form-group">Resim Ekle</label>
+          <div class="form-group input-group">
+            <input type="file" name="userfile" />                        
           </div>
           <div class="radio">
-            <label><input type="radio" name="IsDraft" value="0">Taslak Olarak Kaydet</label>
+            <label><input type="radio" name="IsDraft" value="1" checked="checked" required="">Yayınla</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="IsDraft" value="0" required="">Taslak Olarak Kaydet</label>
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-default">Kaydet</button>

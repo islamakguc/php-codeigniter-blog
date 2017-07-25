@@ -1,15 +1,6 @@
 <?php
 class Post_model extends CI_Model {
 
-    public $Content;
-    public $PostDate;
-    public $Title;
-    public $CategoryName;
-    public $CategoryId;
-    public $UserName;
-    public $UserId;
-    public $IsDraft;
-    public $slug;
 
     public function __construct()
     {
@@ -48,6 +39,13 @@ class Post_model extends CI_Model {
         $this->db->from('yorumlar');
         $this->db->where('yazi_id', $id);
         $this->db->where('durum', 1);
+        $query = $this->db->get();
+        return $query->result();
+    }
+     public function deneme($id)
+    {
+        $this->db->from('yazilar');
+        $this->db->where('kategori_id', $id);
         $query = $this->db->get();
         return $query->result();
     }

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
@@ -7,14 +8,15 @@
 
    <!--- Basic Page Needs
    ================================================== -->
-   <meta charset="utf-8">
-   <title>Keep It Simple.</title>
-   <meta name="description" content="">  
-   <meta name="author" content="">
+   <meta charset="utf-8"/>
+   <title><?=$ayar[0]->baslik?></title>
+   <meta name="description" content="<?=$ayar[0]->icerik?>"/>  
+    <meta name="keywords" content="<?=$ayar[0]->keywords?>"/>
+   <meta name="author" content="<?=$ayar[0]->adsoyad?>,<?=$ayar[0]->email?>"/>
 
     <!-- mobile specific metas
     ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
    <!-- CSS
    ================================================== -->
@@ -35,3 +37,4 @@
  </head>
 
  <body>
+    <header id="top">

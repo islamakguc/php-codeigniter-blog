@@ -21,9 +21,9 @@
                         <ul>
                             <li>Yayınlanma Tarihi: <?php echo turkcetarih('j F Y , l',$rs->tarih); ?></li>
                             <span class="meta-sep">&bull;</span>                                
-                            <li><?=$rs->katadi?></li>
+                            <li><a href="<?= base_url() ?>Home/kategori/<?=$rs->kategori_id?>" title=""><?=$rs->katadi?></a></li>
                             <span class="meta-sep">&bull;</span>
-                            <li><?=$rs->yazar_ad?></li>
+                            <li><a href="<?= base_url() ?>Home/yazar/<?=$rs->yazar_id?>" title=""><?=$rs->yazar_ad?></a></li>
                         </ul>
                     </div> 
 
