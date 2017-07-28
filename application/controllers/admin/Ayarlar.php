@@ -37,6 +37,10 @@ class Ayarlar extends CI_Controller {
 			"icerik" => $this -> input -> post('icerik'),
 			"mail" => $this -> input -> post('mail'),
 			"yorum" => $this -> input -> post('yorum'),
+			"smtpserver" => $this -> input -> post('smtpserver'),
+			"smtpport" => $this -> input -> post('smtpport'),
+			"smtpmail" => $this -> input -> post('smtpmail'),
+			"sifre" => $this -> input -> post('sifre'),
 
 			);
 		$this->Database_Model->update_data("ayarlar",$data,$id);

@@ -109,7 +109,7 @@ class Kullanicilar extends CI_Controller {
 		$data["kategori"]=$query1->result();
 		$this->load->view('admin/profil_duzenle',$data,$id);
 	}
-}
+
 
 	public function profilguncelle($id)
 	{

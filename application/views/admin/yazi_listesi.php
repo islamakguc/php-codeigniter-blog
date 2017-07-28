@@ -26,7 +26,7 @@
                     } ?>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Tüm Yazılar
+                            Tüm Yazılar<span style="display:inline; float:right;"><a href="<?=base_url()?>admin/Yazilar/ekle" class="btn btn-primary btn-xs" role="button">Yeni Yazı Ekle</a></span>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

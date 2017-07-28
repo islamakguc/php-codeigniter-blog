@@ -2,127 +2,82 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
           <fieldset disabled="">
-             <li class="sidebar-search">
-                <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
-            </li>
-        </fieldset>
-        <li>
-            <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i> Anasayfa</a>
+           <li class="sidebar-search">
+            <div class="input-group custom-search-form">
+                <input type="text" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
         </li>
+    </fieldset>
+    <li>
+        <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i> Anasayfa</a>
+    </li>
+    <li>
+        <a href="<?= base_url() ?>admin/Kullanicilar"><i class="fa fa-user"></i> Kullanıcılar</a>
+    </li> 
+    <li>
+        <a href="#"><i class="glyphicon glyphicon-font"></i> Yazı İşlemleri<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href="<?= base_url() ?>admin/Yazilar">Tüm Yazılar</a>
+            </li>
+            <li>
+                <a href="<?= base_url() ?>admin/Yazilar/yazilarim">Yazılarım</a>
+            </li>
+        </ul>
+        <!-- /.nav-second-level -->
         <li>
-            <a href="#"><i class="fa fa-user"></i> Kullanıcı İşlemleri<span class="fa arrow"></span></a>
+            <a href="#"><i class="glyphicon glyphicon-folder-close"></i> Kategori İşlemleri<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li>
-                    <a href="<?= base_url() ?>admin/Kullanicilar">Kullanıcıları Listele</a>
+                    <a href="<?= base_url() ?>admin/Kategori">Yazı Kategori Listele</a>
                 </li>
                 <li>
-                    <a href="<?= base_url() ?>admin/Kullanicilar/ekle">Kullanıcı Ekle</a>
+                    <a href="<?= base_url() ?>admin/Uye_Kategori">Üye Kategori Listele</a>
                 </li>
             </ul>
             <!-- /.nav-second-level -->
         </li>
         <li>
-            <a href="#"><i class="glyphicon glyphicon-font"></i> Yazı İşlemleri<span class="fa arrow"></span></a>
+            <a href="<?= base_url() ?>admin/Mesaj"><i class="glyphicon glyphicon-envelope"></i> Mesajlar</a>
+        </li> 
+        <li>
+            <a href="#"><i class="glyphicon glyphicon-comment"></i> Yorumlar<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li>
-                    <a href="<?= base_url() ?>admin/Yazilar">Tüm Yazılar</a>
+                    <a href="<?= base_url() ?>admin/Yorum/yorumlarim">Yorumlarım</a>
                 </li>
                 <li>
-                    <a href="<?= base_url() ?>admin/Yazilar/yazilarim">Yazılarım</a>
+                    <a href="<?= base_url() ?>admin/Yorum/onaybekleyen">Onay Bekleyen Yorumlar</a>
                 </li>
                 <li>
-                    <a href="<?= base_url() ?>admin/Yazilar/ekle">Yazı Ekle</a>
+                    <a href="<?= base_url() ?>admin/Yorum/onay">Onaylı Yorumlar</a>
+                </li>
+                <li>
+                    <a href="<?= base_url() ?>admin/Yorum">Tüm Yorumlar</a>
                 </li>
             </ul>
             <!-- /.nav-second-level -->
-            <li>
-                <a href="#"><i class="glyphicon glyphicon-folder-close"></i> Kategori İşlemleri<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="<?= base_url() ?>admin/Kategori">Yazı Kategori Listele</a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url() ?>admin/Kategori/ekle">Yazı Kategori Ekle</a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url() ?>admin/Uye_Kategori">Üye Kategori Listele</a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url() ?>admin/Uye_Kategori/ekle">Üye Kategori Ekle</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            <li>
-                <a href="#"><i class="glyphicon glyphicon-envelope"></i> Mesajlar<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="<?= base_url() ?>admin/Mesaj">Gelen Mesajlar</a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url() ?>admin/Mesaj/mesajgonder">Mesaj Gönder</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            <li>
-                <a href="#"><i class="glyphicon glyphicon-comment"></i> Yorumlar<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="<?= base_url() ?>admin/Yorum/yorumlarim">Yorumlarım</a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url() ?>admin/Yorum/onaybekleyen">Onay Bekleyen Yorumlar</a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url() ?>admin/Yorum/onay">Onaylı Yorumlar</a>
-                    </li>
-                    <li>
-                        <a href="<?= base_url() ?>admin/Yorum">Tüm Yorumlar</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
         </li>
-        <li>
+    </li>
+    <li>
         <a href="<?= base_url() ?>admin/Mail"><i class="glyphicon glyphicon-envelope"></i> Mailler</a>
-        </li>
-        <li>
-            <a href="#"><i class="glyphicon glyphicon-globe"></i> Sosyal Medya<span class="fa arrow"></span></a>
-            <ul class="nav nav-second-level">
-                <li>
-                    <a href="<?= base_url() ?>admin/Sosyal">Sosyal Medya Listele</a>
-                </li>
-                <li>
-                    <a href="<?= base_url() ?>admin/Sosyal/ekle">Sosyal Medya Ekle</a>
-                </li>
-            </ul>
-            <!-- /.nav-second-level -->
-        </li>    
-        <li>
-            <a href="#"><i class="glyphicon glyphicon-question-sign"></i>  S.S.S<span class="fa arrow"></span></a>
-            <ul class="nav nav-second-level">
-                <li>
-                    <a href="<?= base_url() ?>admin/Sikca_Sorulan_Sorular">S.S.S Listele</a>
-                </li>
-                <li>
-                    <a href="<?= base_url() ?>admin/Sikca_Sorulan_Sorular/ekle">S.S.S Ekle</a>
-                </li>
-            </ul>
-            <!-- /.nav-second-level -->
-        </li>
-        <li>
-            <a href="<?= base_url() ?>admin/Ayarlar"><i class="fa fa-cog"></i> Site Ayarları</a>
-        </li>
+    </li>   
+    <li>
+        <a href="<?= base_url() ?>admin/Sosyal"><i class="glyphicon glyphicon-globe"></i> Sosyal Medya</a>
+    </li>
+    <li>
+        <a href="<?= base_url() ?>admin/Sikca_Sorulan_Sorular"><i class="glyphicon glyphicon-question-sign"></i> S.S.S</a>
+    </li>
+    <li>
+        <a href="<?= base_url() ?>admin/Ayarlar"><i class="fa fa-cog"></i> Site Ayarları</a>
+    </li>
 
-    </ul>
+</ul>
 </div>
 <!-- /.sidebar-collapse -->
 </div>

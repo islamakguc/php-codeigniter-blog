@@ -7,9 +7,9 @@
                 <div>
                     <ul class="breadcrumb">
                         <li>
-                         <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
-                     </li>
-                     <li>
+                           <a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
+                       </li>
+                       <li>
                         <a href="<?= base_url() ?>admin/Mesaj">Mesajlar</a>
                     </li>
                 </ul>
@@ -17,8 +17,8 @@
             <?php 
             if($this->session->flashdata("sonuc"))
             {
-             ?>
-             <div class="alert alert-success alert-dismissable">
+               ?>
+               <div class="alert alert-success alert-dismissable">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <strong>İşlem:</strong> <?=$this->session->flashdata("sonuc"); ?>
             </div>
@@ -26,7 +26,7 @@
         } ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-            Gelen Mesajlar
+                Gelen Mesajlar  <span style="display:inline; float:right;"><a href="<?=base_url()?>admin/Mesaj/Mesajgonder" class="btn btn-primary btn-xs" role="button">Yeni Mesaj Gönder</a></span>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">

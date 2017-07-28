@@ -26,7 +26,7 @@
         } ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-            Sosyal Medya Listesi
+            Sosyal Medya Listesi <span style="display:inline; float:right;"><a href="<?=base_url()?>admin/Sosyal/ekle" class="btn btn-primary btn-xs" role="button">Yeni Sosyal Medya Ekle</a></span>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">

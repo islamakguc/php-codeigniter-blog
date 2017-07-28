@@ -42,7 +42,8 @@ $this->load->view('admin/_sidebar');
 						<?php 
 						if($this -> session -> oturum_data['id'] == $veri[0]->id )
 							{?>
-						<div style="float: right;"><a href="<?= base_url() ?>admin/kullanicilar/profiledit">Profil Düzenle</a></div><?php } ?>
+						<div style="float: right;"><a href="<?= base_url() ?>admin/kullanicilar/profiledit" class="btn btn-primary btn-xs" role="button">Profil Düzenle</a></div>
+						<?php } ?>
 					</div>
 					<div class="panel-body">
 						<table class="table">

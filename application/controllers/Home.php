@@ -145,7 +145,51 @@ class Home extends CI_Controller {
 			"icerik" => $this -> input -> post('icerik')		
 			);
 		$this->Database_Model->insert_data("bizeulasin",$data);
-		$this->session->set_flashdata("sonuc","Mesajınız bize Başarı İle Ulaştı");
+
+		$isim=$this -> input -> post('ad');
+		$mail=$this -> input -> post('mail');
+		
+		$query=$this->db->get("ayarlar");
+		$data["veri"]=$query->result();
+		//E-Mail Ayarlar
+		$config=array(
+			'protocol'=>'smtp',
+			'smtp_host' => $data["veri"][0]->smtpserver,
+			'smtp_port' => $data["veri"][0]->smtpport,
+			'smtp_user'=>$data["veri"][0]->smtpmail,
+			'smtp_pass'=>$data["veri"][0]->sifre,
+			'mailtype' =>'html',
+			'charset'=>'utf-8',
+			'wordwrap'=>TRUE
+		);
+
+		//Mail içeriği
+		$mesaj="Sayın : ".$isim."<br>Göndermiş olduğunuz mesaj alınmıştır.<br>En kısa sürede sizinle iletişime geçilecektir.<br>Teşekkür ederiz.<br>";
+		$mesaj.="=================================================<br/>";
+		$mesaj.=$data["veri"][0]->baslik."<br>";
+		$mesaj.=$data["veri"][0]->email."<br>";
+		$mesaj.="Gönderdiğiniz mesaj aşağıdaki gibidir.<br>=================================================<br/>";
+
+		$mesaj.=$this -> input -> post('icerik');
+
+		//E-Mail gönderme
+		$this->load->library('email',$config);
+		$this->email->set_newline("\r\n");
+		$this->email->from($data["veri"][0]->smtpmail);
+		$this->email->to($mail);
+		$this->email->subject($data["veri"][0]->baslik." Form mesajı alınmıştır.");
+		$this->email->message($mesaj);
+		if($this->email->send()){
+			
+			$this->session->set_flashdata("email_sent","Email başarı ile gönderilmiştir.");
+		
+		}else{
+			$this->session->set_flashdata("email_sent","Email gönderme işleminde hata oluşmuştur..");
+			
+			show_error($this->email->print_debugger());  //ayrıntılı hata dökümü için gönderiliyor.
+		}
+
+		$this->session->set_flashdata("sonuc","Mesajınız bize başarı ile ulaştı, En kısa sürede iletişime geçilecektir. ");
 		redirect(base_url()."Home/bize_ulasin");
 	}
 

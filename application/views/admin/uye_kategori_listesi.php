@@ -26,7 +26,7 @@
             } ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Kategoriler
+                    Kategoriler <span style="display:inline; float:right;"><a href="<?=base_url()?>admin/Uye_Kategori/ekle" class="btn btn-primary btn-xs" role="button">Yeni Kategori Ekle</a></span>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">

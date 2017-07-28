@@ -26,7 +26,7 @@
         } ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-            Gelen Mailler
+                Bize Ulaşın - Gelen Mailler
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -43,8 +43,9 @@
                                     <li><a href="<?php echo base_url() ?>Admin/Mail/sil/<?php echo $row->id;?>">Sil</a></li>
                                 </ul>
                             </div>
-                        </div><h5><?php echo $row->mail;?> / <?php echo $row->tarih;?></h5>
-                        <p><h3><?php echo $row->ad;  ?> </h3> </p><br>
+                        </div><p><h4><?php echo $row->ad;  ?> </h3> </p>
+                        <h5><?php echo $row->mail;?> / 
+                        <?php echo $row->tarih;?></h5>
                         <p><?php echo $row->icerik;  ?></p>
                     </div>
                 </div>

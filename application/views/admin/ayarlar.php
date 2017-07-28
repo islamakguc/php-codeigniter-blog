@@ -50,6 +50,22 @@
                         <span class="input-group-addon"><i class="fa fa-info-circle"></i></span>
                         <input name="icerik" type="text" required="" value="<?=$veri[0]->icerik?>" class="form-control" placeholder="description">
                     </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-info-circle"></i> SMTP Server</span>
+                        <input name="smtpserver" type="text" required="" value="<?=$veri[0]->smtpserver?>" class="form-control" placeholder="SMTP Server">
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-info-circle"></i> SMTP port</span>
+                        <input name="smtpport" type="text" required="" value="<?=$veri[0]->smtpport?>" class="form-control" placeholder="SMTP port">
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-info-circle"></i> SMTP Mail</span>
+                        <input name="smtpmail" type="text" required="" value="<?=$veri[0]->smtpmail?>" class="form-control" placeholder="SMTP Mail">
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-info-circle"></i> SMTP Sifre</span>
+                        <input name="sifre" type="password" required="" value="<?=$veri[0]->sifre?>" class="form-control" placeholder="SMTP Sifre">
+                    </div>
                     <?php
                     if($veri[0]->yorum == 1)
                     {

@@ -26,7 +26,7 @@
         } ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                Sıkça Sorulan Sorular
+                Sıkça Sorulan Sorular<span style="display:inline; float:right;"><a href="<?=base_url()?>admin/Sikca_Sorulan_Sorular/ekle" class="btn btn-primary btn-xs" role="button">Yeni S.S.S Ekle</a></span>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
