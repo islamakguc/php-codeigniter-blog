@@ -77,8 +77,9 @@ class Home extends CI_Controller {
 
 		$query=$this->db->get("ayarlar");
 		$data1["ayar"]=$query->result();
+
 		$this->load->view('_header',$data1);
-		$this->load->view('_slider');
+		$this->load->view('_slider',$data);
 		$this->load->view('_header2');
 		$this->load->view('kategori_goster',$data);
 		$this->load->view('_sidebar',$data2);
@@ -101,7 +102,7 @@ class Home extends CI_Controller {
 		$data1["ayar"]=$query->result();
 		
 		$this->load->view('_header',$data1);
-		$this->load->view('_slider');
+		$this->load->view('_slider',$data);
 		$this->load->view('_header2');
 		$this->load->view('kategori_goster',$data);
 		$this->load->view('_sidebar',$data2);
