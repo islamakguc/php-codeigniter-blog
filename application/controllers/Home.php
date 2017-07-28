@@ -9,7 +9,8 @@ class Home extends CI_Controller {
 		$this -> load -> library ('session');
 		$this -> load -> helper ('url');
 		$this->load->model('Post_model');		
-		$this->load->model('Database_Model'); 
+		$this->load->model('Database_Model'); 	
+		$this->load->model('Admin/Admin_Model'); 
 		$this -> load -> database ();
 	}
 	
@@ -28,10 +29,11 @@ class Home extends CI_Controller {
 		ORDER BY tarih DESC";
 		$sorgular=$this->db->query($sql);
 		$data["veri"] =$sorgular->result();
+		$slider["veri"]=$this->Admin_Model->slider();
 		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
 
 		$this->load->view('_header',$ayarlar);
-		$this->load->view('_slider',$data);
+		$this->load->view('_slider',$slider);
 		$this->load->view('_header2');
 		$this->load->view('_content',$data);		
 		$this->load->view('_sidebar',$data2);
@@ -66,6 +68,7 @@ class Home extends CI_Controller {
 	{
 		$sosyal=$this->db->get("sosyal");
 		$data5["medya"]=$sosyal->result();
+
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id
@@ -73,13 +76,15 @@ class Home extends CI_Controller {
 		$sorgular=$this->db->query($sql);
 		$data["veri"] =$sorgular->result();
 
+		$slider["veri"]=$this->Admin_Model->slider();
+
 		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
 
 		$query=$this->db->get("ayarlar");
 		$data1["ayar"]=$query->result();
 
 		$this->load->view('_header',$data1);
-		$this->load->view('_slider',$data);
+		$this->load->view('_slider',$slider);
 		$this->load->view('_header2');
 		$this->load->view('kategori_goster',$data);
 		$this->load->view('_sidebar',$data2);
@@ -98,11 +103,13 @@ class Home extends CI_Controller {
 
 		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
 
+		$slider["veri"]=$this->Admin_Model->slider();
+
 		$query=$this->db->get("ayarlar");
 		$data1["ayar"]=$query->result();
 		
 		$this->load->view('_header',$data1);
-		$this->load->view('_slider',$data);
+		$this->load->view('_slider',$slider);
 		$this->load->view('_header2');
 		$this->load->view('kategori_goster',$data);
 		$this->load->view('_sidebar',$data2);

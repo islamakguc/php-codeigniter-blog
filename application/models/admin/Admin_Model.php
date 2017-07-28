@@ -67,4 +67,14 @@ class Admin_Model extends CI_Model {
 			return false;
 		}
     }
+    public function slider()
+    {
+    	$this->db->select('*');
+		$this->db->from('yazilar');
+		$this->db->order_by("tarih","desc");
+		$this->db->where('durum',1);
+		$this->db->limit(5);
+		$query = $this->db->get();
+		return $query->result();
+	}
 }

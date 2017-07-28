@@ -67,10 +67,10 @@ class Yazilar extends CI_Controller {
 	public function eklekaydet()
 	{
 		$config['upload_path']          = './uploads/';
-		$config['allowed_types']        = 'gif|jpg|png';
+		$config['allowed_types']        = 'gif|jpg|jpeg|png';
 		$config['max_size']             = 1000000;
-		$config['max_width']            = 1024;
-		$config['max_height']           = 900;
+		$config['max_width']            = 3872;
+		$config['max_height']           = 2592;
 
 		$this->load->library('upload', $config);
 		if ( ! $this->upload->do_upload('userfile'))
@@ -142,10 +142,10 @@ class Yazilar extends CI_Controller {
 	public function resim_upload($id)
 	{
 		$config['upload_path']          = './uploads/';
-		$config['allowed_types']        = 'gif|jpg|png';
+		$config['allowed_types']        = 'gif|jpg|jpeg|png';
 		$config['max_size']             = 1000000;
-		$config['max_width']            = 1024;
-		$config['max_height']           = 900;
+		$config['max_width']            = 3872;
+		$config['max_height']           = 2592;
 
 		$this->load->library('upload', $config);
 
