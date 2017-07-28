@@ -38,10 +38,10 @@
                         <form role="form" action="<?= base_url() ?>login/login_ol" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" name="email" placeholder="E-mail" type="email" autofocus>
+                                    <input class="form-control" name="email" placeholder="E-mail" type="email" autofocus required="">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="sifre" placeholder="Şifre" type="password">
+                                    <input class="form-control" name="sifre" placeholder="Şifre" type="password" required="">
                                 </div>
                                 <button type="submit" class="btn btn-lg btn-success btn-block">Giriş Yap</button>
                             </fieldset>

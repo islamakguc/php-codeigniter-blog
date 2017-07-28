@@ -40,15 +40,15 @@
                             <fieldset>
                              <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input name="ad" type="text" class="form-control" placeholder="Ad Soyad">
+                                <input name="ad" type="text" class="form-control" placeholder="Ad Soyad" required="">
                             </div>
                             <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                <input name="sifre" type="password" class="form-control" placeholder="Şifre">
+                                <input name="sifre" type="password" class="form-control" placeholder="Şifre" required="">
                             </div>
                             <div class="form-group input-group">
                                 <span class="input-group-addon">@</span>
-                                <input name="mail" type="email" class="form-control" placeholder="E-Mail">
+                                <input name="mail" type="email" class="form-control" placeholder="E-Mail" required="">
                             </div>
                             <button type="submit" class="btn btn-lg btn-success btn-block">Kayıt Ol</button>
                         </fieldset>
