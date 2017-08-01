@@ -28,7 +28,6 @@
                     </div> 
 
                 </header> 
-
                 <div class="entry-content" style="font-size: 13px;">
                     <p> 
                         <?php

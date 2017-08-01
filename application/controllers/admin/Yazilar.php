@@ -42,6 +42,7 @@ class Yazilar extends CI_Controller {
 	public function yazilarim()
 	{
 		$id=$this->session->oturum_data['id'];
+		
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id
