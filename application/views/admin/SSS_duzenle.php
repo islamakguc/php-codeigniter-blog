@@ -34,10 +34,7 @@ $this->load->view('admin/_sidebar');
                         <input name="baslik" type="text" required="" value="<?php echo $veri[0]->baslik;?>" class="form-control" placeholder="Soru">
                     </div>
                     <div class="form-group">
-                        <textarea name="icerik" required=""><?php echo $veri[0]->icerik;?></textarea>
-                        <script>
-                            CKEDITOR.replace( 'icerik' );
-                        </script>
+                        <textarea name="icerik" class="form-control" rows="5" required=""><?php echo $veri[0]->icerik;?></textarea>
                     </div>
                     <div class="form-group input-group">
                         <button type="submit" class="btn btn-default">Güncelle</button>

@@ -124,8 +124,6 @@ class Yazilar extends CI_Controller {
 		$data=array(
 			"baslik" => $this -> input -> post('Title'),
 			"metin" => $this -> input -> post('Content'),
-			"yazilar.yazar_ad" => $this->session->oturum_data['ad'],
-			"yazilar.yazar_id" => $this->session->oturum_data['id'],
 			"yazilar.kategori_id" => $this -> input -> post('yetki'),
 			"durum" => $this -> input -> post('IsDraft'),
 			);

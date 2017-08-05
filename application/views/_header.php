@@ -11,7 +11,7 @@
    <meta charset="utf-8"/>
    <title><?=$ayar[0]->baslik?></title>
    <meta name="description" content="<?=$ayar[0]->icerik?>"/>  
-    <meta name="keywords" content="<?=$ayar[0]->keywords?>"/>
+   <meta name="keywords" content="<?=$ayar[0]->keywords?>"/>
    <meta name="author" content="<?=$ayar[0]->adsoyad?>,<?=$ayar[0]->email?>"/>
 
     <!-- mobile specific metas
@@ -20,8 +20,9 @@
 
    <!-- CSS
    ================================================== -->
-    <link href="<?= base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= base_url() ?>assets/css/full-slider.css" rel="stylesheet">
+   <link href="<?= base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
+   <link href="<?= base_url() ?>assets/css/full-slider.css" rel="stylesheet">
+   <link rel="stylesheet" media="screen" href="<?= base_url() ?>assets/css/deneme2.css"/>
    <link rel="stylesheet" href="<?= base_url() ?>assets/css/default.css">
    <link rel="stylesheet" href="<?= base_url() ?>assets/css/layout.css">  
    <link rel="stylesheet" href="<?= base_url() ?>assets/css/media-queries.css"> 
@@ -37,4 +38,4 @@
  </head>
 
  <body>
-    <header id="top">
+  <header id="top">

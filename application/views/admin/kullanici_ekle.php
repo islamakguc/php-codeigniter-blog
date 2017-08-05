@@ -35,7 +35,7 @@ $this->load->view('admin/_sidebar');
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        <input name="sifre" type="text" class="form-control" placeholder="Şifre" required="">
+                        <input name="sifre" type="password" class="form-control" placeholder="Şifre" required="">
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon">@</span>

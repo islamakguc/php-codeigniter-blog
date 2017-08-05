@@ -16,5 +16,9 @@ class Database_Model extends CI_Model {
 		$this -> db -> update($table, $data);
 		return true;
 	}
+	public function delete_data($table,$id)
+	{
+		$this->db->delete("$table",array('id' => $id));
+	}
 	
 }

@@ -20,9 +20,9 @@ class Post_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
- public function get_entries_by_sayfalar()
+    public function yazarcek()
     {
-        $this->db->from('sayfalar');
+        $this->db->from('kullanicilar');
         $query = $this->db->get();
         return $query->result();
     }
@@ -42,10 +42,36 @@ class Post_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-     public function deneme($id)
+     public function kategorisayi($id)
     {
         $this->db->from('yazilar');
         $this->db->where('kategori_id', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+     public function yazarsayi($id)
+    {
+        $this->db->from('yazilar');
+        $this->db->where('yazar_id', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function yazicek($per,$segment){
+        $result=$this->db->select('*')
+        ->from('yazilar')
+        ->where('durum',1)
+        ->limit($per,$segment)
+        ->order_by('tarih','DESC')
+        ->get()
+        ->result();
+
+        return $result;
+
+    }
+    public function kategoricek($id)
+    {
+        $this->db->from('kategori');
+        $this->db->where('id', $id);
         $query = $this->db->get();
         return $query->result();
     }

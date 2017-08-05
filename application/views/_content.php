@@ -1,57 +1,64 @@
  <!-- Content
  ================================================== -->
  <div id="content-wrap">
-<br><br><br><br>
+    <br><br><br><br>
     <div class="row">
-
+<br>
         <div id="main" class="eight columns">
-           <?php
-           foreach ($veri as $rs) 
-           {
-             ?>
-             <article class="entry">
+         <?php
+         foreach ($veri as $rs) 
+         {
+           ?>
+           <section class="listing-cont">
+              <ul>
+                <li class="item post">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" class="media-box">
+                          <img  src="<?= base_url() ?>uploads/<?=$rs->resim?>" class="img-rounded" sizes="(max-width: 2400px) 100vw, 2400px"/></a>
+                      </div>
+                      <div class="col-md-8">
+                          <div class="post-title">
+                            <h3 ><a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title="<?=$rs->baslik?>"><?=$rs->baslik?></a></h3>
+                            <span class="meta-data" style="font-size: 12px;"><i class="fa fa-calendar"></i> <?php echo turkcetarih('j F Y , l',$rs->tarih); ?> - 
+                            <?php $kategori=$this->Post_model->kategoricek($rs->kategori_id);?>
 
-                <header class="entry-header">
+                              <a href="<?= base_url() ?>Home/kategori/<?=$rs->kategori_id?>" title="<?=$kategori[0]->kategoriadi?>"><?=$kategori[0]->kategoriadi; ?></a>
+                             - <a href="<?= base_url() ?>Home/yazar/<?=$rs->yazar_id?>" title="<?=$rs->yazar_ad?>"><?=$rs->yazar_ad?></a>
+                                <hr style="margin-bottom: 5%"></span></div>
+                                <div class="entry-content" style="font-size: 13px; line-height: 150%">
+                                    <?php
+                                    if (strlen($rs->metin) > 500) {
+                                      $sonhali = substr($rs->metin, 0, 500); // "Tablo içinde göst"
+                                      $sonhali = $sonhali . '...';
+                                      echo $sonhali;
+                                  } 
+                                  else
+                                  {
+                                    echo $rs->metin;
+                                }
+                                ?>
+                                <div>
+                                    <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title="">Devamını Oku »</a></div>
+                                </div>
 
-                    <h2 class="entry-title">
-                        <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title=""><?=$rs->baslik?></a>
-                    </h2>                
+                            </div>
+                        </div>
+                    </li>
+                      <hr> 
+                </ul>
+            </section>    
+            <?php 
+        } 
+        ?>
+       <ul class="pager">
+          <?php echo $linkler?>
+        </ul>
+        
+    </div> 
+    <?php 
 
-                    <div class="entry-meta">
-                        <ul>
-                            <li>Yayınlanma Tarihi: <?php echo turkcetarih('j F Y , l',$rs->tarih); ?></li>
-                            <span class="meta-sep">&bull;</span>                                
-                            <li><a href="<?= base_url() ?>Home/kategori/<?=$rs->kategori_id?>" title=""><?=$rs->katadi?></a></li>
-                            <span class="meta-sep">&bull;</span>
-                            <li><a href="<?= base_url() ?>Home/yazar/<?=$rs->yazar_id?>" title=""><?=$rs->yazar_ad?></a></li>
-                        </ul>
-                    </div> 
-
-                </header> 
-                <div class="entry-content" style="font-size: 13px;">
-                    <p> 
-                        <?php
-                         if (strlen($rs->metin) > 500) {
-                              $sonhali = substr($rs->metin, 0, 500); // "Tablo içinde göst"
-                              $sonhali = $sonhali . '...';
-                              echo $sonhali;
-                            } 
-                            else
-                              echo $rs->metin;  
-                        ?>
-                    </p>
-                </div> 
-                <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title="">Devamını Oku »</a>
-              </article> <!-- end entry -->    
-              <hr>    
-              <?php 
-          } 
-          ?>
-      </div> <!-- end main -->
-
-      <?php 
-
-      function turkcetarih($f, $zt = 'now'){
+    function turkcetarih($f, $zt = 'now'){
         $z = date("$f", strtotime($zt));
         $donustur = array(
             'Monday'    => 'Pazartesi',

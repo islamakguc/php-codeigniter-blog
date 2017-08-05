@@ -38,7 +38,8 @@ class Sikca_Sorulan_Sorular extends CI_Controller {
 			"baslik" => $this -> input -> post('baslik'),
 			"icerik" => $this -> input -> post('icerik'),
 			);
-		$this->Database_Model->insert_data("sorular",$data);
+		//$this->Database_Model->insert_data("sorular",$data);
+		$this -> db -> insert("sorular", $data);
 		$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Sikca_Sorulan_Sorular");
 	}

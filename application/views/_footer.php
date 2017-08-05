@@ -10,7 +10,7 @@
        foreach ($medya as $rs) 
        {
          ?>
-         <li><a href="<?=$rs->link;?>" title="<?=$rs->ad;?>" target="_blank"><i class="<?=$rs->resim;?>"></i></a></li>
+         <li><a href="<?=$rs->link;?>" title="<?=$rs->ad;?>" target="_blank"><i class="<?=$rs->resim;?>" ></i></a></li>
          <?php } ?>
        </ul>           
      </div>

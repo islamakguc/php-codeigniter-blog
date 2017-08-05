@@ -7,10 +7,12 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		$this -> load -> library ('session');
+		$this -> load -> library ('pagination');
 		$this -> load -> helper ('url');
-		$this->load->model('Post_model');		
-		$this->load->model('Database_Model'); 	
-		$this->load->model('Admin/Admin_Model'); 
+		$this -> load -> model ('Post_model');		
+		$this -> load -> model ('Database_Model'); 	
+		$this -> load -> model ('Admin/Admin_Model'); 
+		$this -> load -> model ('Post_Model');
 		$this -> load -> database ();
 	}
 	
@@ -22,15 +24,30 @@ class Home extends CI_Controller {
 		$ayar=$this->db->get("ayarlar");
 		$ayarlar["ayar"]=$ayar->result();
 
-		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
-		LEFT JOIN kategori
-		ON yazilar.kategori_id=kategori.id
-		WHERE yazilar.durum=1 
-		ORDER BY tarih DESC";
-		$sorgular=$this->db->query($sql);
-		$data["veri"] =$sorgular->result();
 		$slider["veri"]=$this->Admin_Model->slider();
 		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
+		$data2["yazarcek"]=$this->Post_model->yazarcek();
+		
+
+		$sonuc=count($this->db->get("yazilar")->result());
+		$config=array(
+			"base_url"=>base_url()."Home/index/",
+			"per_page"=>3,
+			"total_rows"=>$sonuc,
+			'full_tag_open' =>' <div class="pagination pagination-centered"> <ul> ',
+			'full_tag_close' => ' </ul> </div> ',
+			'cur_tag_open' => ' <li> <a href=# style="color:#ffffff; background-color:#258BB5;"> ',
+			'cur_tag_close' => ' </a></li> ',
+			'num_tag_open' => ' <li> ',  'num_tag_close' => ' </li> ',
+			'prev_tag_open'=> ' <li> ', 'prev_tag_close'=> ' <li> ',
+			'next_tag_open'=> ' <li> ',  'next_tag_close'=> ' <li> ',  
+			'first_tag_open'=> ' <li> ', 'first_tag_close'=> ' <li> ',
+			'last_tag_open'=> ' <li> ', 'last_tag_close'=> ' <li> ',  
+			);
+		$this->pagination->initialize($config);
+		$data["linkler"]=$this->pagination->create_links(); 
+		$data["veri"]=$this->Post_model->yazicek($config["per_page"],$this->uri->segment(3,0));
+
 
 		$this->load->view('_header',$ayarlar);
 		$this->load->view('_slider',$slider);
@@ -51,6 +68,7 @@ class Home extends CI_Controller {
 		$sorgular=$this->db->query($sql);
 		$data["veri"] =$sorgular->result();
 
+		$data2["yazarcek"]=$this->Post_model->yazarcek();
 		$query1=$this->db->get("ayarlar");
 		$data1["ayar"]=$query1->result();
 
@@ -75,6 +93,7 @@ class Home extends CI_Controller {
 		WHERE yazilar.durum=1 and yazilar.kategori_id=$id";
 		$sorgular=$this->db->query($sql);
 		$data["veri"] =$sorgular->result();
+		$data2["yazarcek"]=$this->Post_model->yazarcek();
 
 		$slider["veri"]=$this->Admin_Model->slider();
 
@@ -100,6 +119,7 @@ class Home extends CI_Controller {
 		WHERE yazilar.durum=1 and yazilar.yazar_id=$ad";
 		$sorgular=$this->db->query($sql);
 		$data["veri"] =$sorgular->result();
+		$data2["yazarcek"]=$this->Post_model->yazarcek();
 
 		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
 
@@ -136,7 +156,7 @@ class Home extends CI_Controller {
 		$data5["medya"]=$sosyal->result();
 		$query1=$this->db->get("ayarlar");
 		$data["ayar"]=$query1->result();
-
+		$data2["yazarcek"]=$this->Post_model->yazarcek();
 		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
 
 		$this->load->view('_header',$data);
@@ -192,61 +212,63 @@ class Home extends CI_Controller {
 			$this->email->to($mail);
 			$this->email->subject($data["veri"][0]->baslik." Form mesajı alınmıştır.");
 			$this->email->message($mesaj);
-			if($this->email->send()){
+			if($this->email->send())
+			{
 
 				$this->session->set_flashdata("email_sent","Email başarı ile gönderilmiştir.");
 
-			}else{
+			}
+			else
+			{
 				$this->session->set_flashdata("email_sent","Email gönderme işleminde hata oluşmuştur..");
+				show_error($this->email->print_debugger());  //ayrıntılı hata dökümü için gönderiliyor.
+			}
 
-			show_error($this->email->print_debugger());  //ayrıntılı hata dökümü için gönderiliyor.
+			$this->session->set_flashdata("sonuc","Mesajınız bize başarı ile ulaştı, En kısa sürede iletişime geçilecektir. ");
+			redirect(base_url()."Home/bize_ulasin");
 		}
-
-		$this->session->set_flashdata("sonuc","Mesajınız bize başarı ile ulaştı, En kısa sürede iletişime geçilecektir. ");
-		redirect(base_url()."Home/bize_ulasin");
+		else
+		{
+			$this->session->set_flashdata("sonuc","Mesaj Gönderme Yönetici tarafından engellenmiştir.");
+			$this->session->set_flashdata("email_sent","Email gönderme işleminde hata oluşmuştur..");
+			redirect(base_url()."Home/bize_ulasin");
+		}
 	}
-	else
+
+	public function sss()
 	{
-		$this->session->set_flashdata("sonuc","Mesaj Gönderme Yönetici tarafından engellenmiştir.");
-		$this->session->set_flashdata("email_sent","Email gönderme işleminde hata oluşmuştur..");
-		redirect(base_url()."Home/bize_ulasin");
+		$sosyal=$this->db->get("sosyal");
+		$data5["medya"]=$sosyal->result();
+
+		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
+		$data2["yazarcek"]=$this->Post_model->yazarcek();
+		$query1=$this->db->get("sorular");
+		$data["soru"]=$query1->result();
+
+		$query=$this->db->get("ayarlar");
+		$data1["ayar"]=$query->result();
+		$this->load->view('_header',$data1);
+		$this->load->view('_header2');
+		$this->load->view('sss',$data);		
+		$this->load->view('_sidebar',$data2);
+		$this->load->view('_footer',$data5);
 	}
-}
 
-public function sss()
-{
-	$sosyal=$this->db->get("sosyal");
-	$data5["medya"]=$sosyal->result();
+	public function benkimim()
+	{
+		$sosyal=$this->db->get("sosyal");
+		$data5["medya"]=$sosyal->result();
 
-	$data2["veri"]=$this->Post_model->get_entries_by_kategori();
-
-	$query1=$this->db->get("sorular");
-	$data["soru"]=$query1->result();
-
-	$query=$this->db->get("ayarlar");
-	$data1["ayar"]=$query->result();
-	$this->load->view('_header',$data1);
-	$this->load->view('_header2');
-	$this->load->view('sss',$data);		
-	$this->load->view('_sidebar',$data2);
-	$this->load->view('_footer',$data5);
-}
-
-public function benkimim()
-{
-	$sosyal=$this->db->get("sosyal");
-	$data5["medya"]=$sosyal->result();
-
-	$data2["veri"]=$this->Post_model->get_entries_by_kategori();
-
-	$query1=$this->db->get("sorular");
-	$data["soru"]=$query1->result();
-	$query=$this->db->get("ayarlar");
-	$data1["ayar"]=$query->result();
-	$this->load->view('_header',$data1);
-	$this->load->view('_header2');
-	$this->load->view('benkimim',$data);		
-	$this->load->view('_sidebar',$data2);
-	$this->load->view('_footer',$data5);
-}
+		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
+		$data2["yazarcek"]=$this->Post_model->yazarcek();
+		$query1=$this->db->get("sorular");
+		$data["soru"]=$query1->result();
+		$query=$this->db->get("ayarlar");
+		$data1["ayar"]=$query->result();
+		$this->load->view('_header',$data1);
+		$this->load->view('_header2');
+		$this->load->view('benkimim',$data);		
+		$this->load->view('_sidebar',$data2);
+		$this->load->view('_footer',$data5);
+	}
 }

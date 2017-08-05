@@ -50,7 +50,7 @@ class Kullanicilar extends CI_Controller {
 
 	public function delete($id)
 	{
-		$this->db->query("DELETE FROM kullanicilar WHERE id=$id");
+		$this->Database_Model->delete_data("kullanicilar",$id);
 		$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/kullanicilar");
 	}
