@@ -10,25 +10,20 @@ class Home extends CI_Controller {
 		$this -> load -> library ('pagination');
 		$this -> load -> helper ('url');
 		$this -> load -> model ('Post_model');		
-		$this -> load -> model ('Database_Model'); 	
+		$this -> load -> model ('Admin/Database_Model'); 	
 		$this -> load -> model ('Admin/Admin_Model'); 
-		$this -> load -> model ('Post_Model');
 		$this -> load -> database ();
 	}
 	
 	public function index()
 	{
-		$sosyal=$this->db->get("sosyal");
-		$data5["medya"]=$sosyal->result();
-
-		$ayar=$this->db->get("ayarlar");
-		$ayarlar["ayar"]=$ayar->result();
-
+		$data5["medya"]=$this->Database_Model->get_data("sosyal");
+		$ayarlar["ayar"]=$this->Database_Model->get_data("ayarlar");
 		$slider["veri"]=$this->Admin_Model->slider();
-		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
-		$data2["yazarcek"]=$this->Post_model->yazarcek();
+		$data2["veri"]=$this->Database_Model->get_data("kategori");
+		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+		$data2["yazicek"]=$this->Post_model->yazi();
 		
-
 		$sonuc=count($this->db->get("yazilar")->result());
 		$config=array(
 			"base_url"=>base_url()."Home/index/",
@@ -36,12 +31,16 @@ class Home extends CI_Controller {
 			"total_rows"=>$sonuc,
 			'full_tag_open' =>' <div class="pagination pagination-centered"> <ul> ',
 			'full_tag_close' => ' </ul> </div> ',
-			'cur_tag_open' => ' <li> <a href=# style="color:#ffffff; background-color:#258BB5;"> ',
+			'cur_tag_open' => ' <li> <a href=# style="color:#ffffff; background-color:#93B876;"> ',
 			'cur_tag_close' => ' </a></li> ',
 			'num_tag_open' => ' <li> ',  'num_tag_close' => ' </li> ',
 			'prev_tag_open'=> ' <li> ', 'prev_tag_close'=> ' <li> ',
 			'next_tag_open'=> ' <li> ',  'next_tag_close'=> ' <li> ',  
 			'first_tag_open'=> ' <li> ', 'first_tag_close'=> ' <li> ',
+			'next_link'=>'Eski &gt;&gt;',
+			'prev_link'=>'&lt;&lt; Yeni',
+			'last_link'=>false,
+			'first_link'=>false,
 			'last_tag_open'=> ' <li> ', 'last_tag_close'=> ' <li> ',  
 			);
 		$this->pagination->initialize($config);
@@ -58,22 +57,18 @@ class Home extends CI_Controller {
 	}
 	public function yazi_goster($id)
 	{
-		$sosyal=$this->db->get("sosyal");
-		$data5["medya"]=$sosyal->result();
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id
 		WHERE yazilar.durum=1 and yazilar.id=$id";
+		$data["veri"] =$this->db->query($sql)->result();
 
-		$sorgular=$this->db->query($sql);
-		$data["veri"] =$sorgular->result();
-
-		$data2["yazarcek"]=$this->Post_model->yazarcek();
-		$query1=$this->db->get("ayarlar");
-		$data1["ayar"]=$query1->result();
-
-		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
+		$data5["medya"]=$this->Database_Model->get_data("sosyal");
+		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+		$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+		$data2["veri"]=$this->Database_Model->get_data("kategori");
 		$data["yorum"] =$this->Post_model->get_entries_by_yorum($id);
+		$data2["yazicek"]=$this->Post_model->yazi();
 
 		$this->load->view('_header',$data1);
 		$this->load->view('_header2');
@@ -84,23 +79,18 @@ class Home extends CI_Controller {
 
 	public function kategori($id)
 	{
-		$sosyal=$this->db->get("sosyal");
-		$data5["medya"]=$sosyal->result();
-
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id
 		WHERE yazilar.durum=1 and yazilar.kategori_id=$id";
-		$sorgular=$this->db->query($sql);
-		$data["veri"] =$sorgular->result();
-		$data2["yazarcek"]=$this->Post_model->yazarcek();
+		$data["veri"] =$this->db->query($sql)->result();
 
+		$data5["medya"]=$this->Database_Model->get_data("sosyal");
+		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
 		$slider["veri"]=$this->Admin_Model->slider();
-
-		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
-
-		$query=$this->db->get("ayarlar");
-		$data1["ayar"]=$query->result();
+		$data2["veri"]=$this->Database_Model->get_data("kategori");
+		$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+		$data2["yazicek"]=$this->Post_model->yazi();
 
 		$this->load->view('_header',$data1);
 		$this->load->view('_slider',$slider);
@@ -109,24 +99,20 @@ class Home extends CI_Controller {
 		$this->load->view('_sidebar',$data2);
 		$this->load->view('_footer',$data5);
 	}
-	public function yazar($ad)
+	public function yazar($id)
 	{
-		$sosyal=$this->db->get("sosyal");
-		$data5["medya"]=$sosyal->result();
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id
-		WHERE yazilar.durum=1 and yazilar.yazar_id=$ad";
-		$sorgular=$this->db->query($sql);
-		$data["veri"] =$sorgular->result();
-		$data2["yazarcek"]=$this->Post_model->yazarcek();
-
-		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
-
+		WHERE yazilar.durum=1 and yazilar.yazar_id=$id";
+		$data["veri"] =$this->db->query($sql)->result();
+		
+		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+		$data2["veri"]=$this->Database_Model->get_data("kategori");
 		$slider["veri"]=$this->Admin_Model->slider();
-
-		$query=$this->db->get("ayarlar");
-		$data1["ayar"]=$query->result();
+		$data5["medya"]=$this->Database_Model->get_data("sosyal");
+		$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+		$data2["yazicek"]=$this->Post_model->yazi();
 		
 		$this->load->view('_header',$data1);
 		$this->load->view('_slider',$slider);
@@ -152,12 +138,11 @@ class Home extends CI_Controller {
 
 	public function bize_ulasin()
 	{
-		$sosyal=$this->db->get("sosyal");
-		$data5["medya"]=$sosyal->result();
-		$query1=$this->db->get("ayarlar");
-		$data["ayar"]=$query1->result();
-		$data2["yazarcek"]=$this->Post_model->yazarcek();
-		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
+		$data5["medya"]=$this->Database_Model->get_data("sosyal");
+		$data["ayar"]=$this->Database_Model->get_data("ayarlar");
+		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+		$data2["veri"]=$this->Database_Model->get_data("kategori");
+		$data2["yazicek"]=$this->Post_model->yazi();
 
 		$this->load->view('_header',$data);
 		$this->load->view('_header2');
@@ -167,11 +152,9 @@ class Home extends CI_Controller {
 	}
 	public function mailgonder()
 	{
-		$query=$this->db->get("ayarlar");
-		$data["veri"]=$query->result();
+		$data["veri"]=$this->Database_Model->get_data("ayarlar");
 		if($data["veri"][0]->mail==1)
 		{
-
 			$data=array(
 				"ad" => $this -> input -> post('ad'),
 				"mail" => $this -> input -> post('mail'),
@@ -181,9 +164,7 @@ class Home extends CI_Controller {
 
 			$isim=$this -> input -> post('ad');
 			$mail=$this -> input -> post('mail');
-
-			$query=$this->db->get("ayarlar");
-			$data["veri"]=$query->result();
+			$data["veri"]=$this->Database_Model->get_data("ayarlar");
 		//E-Mail Ayarlar
 			$config=array(
 				'protocol'=>'smtp',
@@ -214,16 +195,13 @@ class Home extends CI_Controller {
 			$this->email->message($mesaj);
 			if($this->email->send())
 			{
-
 				$this->session->set_flashdata("email_sent","Email başarı ile gönderilmiştir.");
-
 			}
 			else
 			{
 				$this->session->set_flashdata("email_sent","Email gönderme işleminde hata oluşmuştur..");
 				show_error($this->email->print_debugger());  //ayrıntılı hata dökümü için gönderiliyor.
 			}
-
 			$this->session->set_flashdata("sonuc","Mesajınız bize başarı ile ulaştı, En kısa sürede iletişime geçilecektir. ");
 			redirect(base_url()."Home/bize_ulasin");
 		}
@@ -237,16 +215,13 @@ class Home extends CI_Controller {
 
 	public function sss()
 	{
-		$sosyal=$this->db->get("sosyal");
-		$data5["medya"]=$sosyal->result();
+		$data5["medya"]=$this->Database_Model->get_data("sosyal");
+		$data2["veri"]=$this->Database_Model->get_data("kategori");
+		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+		$data["soru"]=$this->Database_Model->get_data("sorular");
+		$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+		$data2["yazicek"]=$this->Post_model->yazi();
 
-		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
-		$data2["yazarcek"]=$this->Post_model->yazarcek();
-		$query1=$this->db->get("sorular");
-		$data["soru"]=$query1->result();
-
-		$query=$this->db->get("ayarlar");
-		$data1["ayar"]=$query->result();
 		$this->load->view('_header',$data1);
 		$this->load->view('_header2');
 		$this->load->view('sss',$data);		
@@ -256,15 +231,13 @@ class Home extends CI_Controller {
 
 	public function benkimim()
 	{
-		$sosyal=$this->db->get("sosyal");
-		$data5["medya"]=$sosyal->result();
+		$data5["medya"]=$this->Database_Model->get_data("sosyal");
+		$data2["veri"]=$this->Database_Model->get_data("kategori");
+		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+		$data["soru"]=$this->Database_Model->get_data("sorular");
+		$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+		$data2["yazicek"]=$this->Post_model->yazi();
 
-		$data2["veri"]=$this->Post_model->get_entries_by_kategori();
-		$data2["yazarcek"]=$this->Post_model->yazarcek();
-		$query1=$this->db->get("sorular");
-		$data["soru"]=$query1->result();
-		$query=$this->db->get("ayarlar");
-		$data1["ayar"]=$query->result();
 		$this->load->view('_header',$data1);
 		$this->load->view('_header2');
 		$this->load->view('benkimim',$data);		

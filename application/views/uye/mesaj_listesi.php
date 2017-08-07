@@ -26,7 +26,7 @@
         } ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-            Gelen Mesajlar
+            Gelen Mesajlar<span style="display:inline; float:right;"><a href="<?=base_url()?>uye/Mesaj/mesajgonder" class="btn btn-primary btn-xs" role="button">Yeni Mesaj Gönder</a></span>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">

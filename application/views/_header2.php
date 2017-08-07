@@ -7,12 +7,12 @@
   <div class="row">                       
 
     <ul id="nav" class="nav"  style="float: right;">
-      <li><a href="<?= base_url() ?>">Home</a></li>
+      <li><a href="<?= base_url() ?>">Anasayfa</a></li>
       <li><a href="<?= base_url() ?>Home/benkimim">Ben Kimim?</a></li>
       <li><a href="<?= base_url() ?>Home/sss">S.S.S</a></li>
       <li><a href="<?= base_url() ?>Home/bize_ulasin">İletişim</a></li>
      <!-- end #nav -->    
-     <li><div style="width:200px; display:inline-block float: right;"><a href=""></a></div></li>
+     <li><div style="width:180px; display:inline-block float: right;"><a href=""></a></div></li>
 
      <li> <a href="
 

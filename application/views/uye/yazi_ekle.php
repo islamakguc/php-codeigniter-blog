@@ -65,12 +65,6 @@ $this->load->view('uye/_sidebar');
           <div class="form-group input-group">
             <input type="file" name="userfile" />                        
           </div>
-      <div class="radio">
-        <label><input type="radio" name="IsDraft" value="1" checked="checked">Yayınla</label>
-      </div>
-      <div class="radio">
-        <label><input type="radio" name="IsDraft" value="0">Taslak Olarak Kaydet</label>
-      </div>
       <div class="form-group">
         <button type="submit" class="btn btn-default">Kaydet</button>
       </div>

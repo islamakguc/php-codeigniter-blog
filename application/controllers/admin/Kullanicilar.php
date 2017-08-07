@@ -18,10 +18,8 @@ class Kullanicilar extends CI_Controller {
 
 	public function index()
 	{
-		$query=$this->db->get("kullanicilar");
-		$data["veri"]=$query->result();
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		$data["veri"]=$this->Database_Model->get_data("kullanicilar");
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/kullanicilar_listesi',$data);
@@ -30,8 +28,7 @@ class Kullanicilar extends CI_Controller {
 
 	public function ekle()
 	{
-		$query=$this->db->get("uyekategori");
-		$data1["kategori"]=$query->result();
+		$data1["kategori"]=$this->Database_Model->get_data("uyekategori");
 		$this->load->view('admin/kullanici_ekle',$data1);
 	}
 
@@ -57,10 +54,8 @@ class Kullanicilar extends CI_Controller {
 
 	public function edit($id)
 	{
-		$sorgu=$this->db->query("SELECT * FROM kullanicilar WHERE id=$id");
-		$data["veri"]=$sorgu->result();
-		$query1=$this->db->get("uyekategori");
-		$data["kategori"]=$query1->result();
+		$data["veri"]=$this->Database_Model->get_data_id("kullanicilar",$id);
+		$data["kategori"]=$this->Database_Model->get_data("uyekategori");
 		$this->load->view('admin/kullanici_duzenle',$data,$id);
 	}
 
@@ -82,15 +77,13 @@ class Kullanicilar extends CI_Controller {
 	{
 		if($this -> session -> oturum_data['yetki'] == "Admin")
 		{
-			$sorgu = $this -> db -> query ("SELECT * FROM kullanicilar WHERE id=$id");
-			$data["veri"] = $sorgu -> result();
+			$data["veri"] = $this->Database_Model->get_data_id("kullanicilar",$id);
 			$this->load->view('admin/kullanici_goster',$data);
 
 		}
 		elseif ($this -> session -> oturum_data['id'] == $id)
 		{
-			$sorgu = $this -> db -> query ("SELECT * FROM kullanicilar WHERE id=$id");
-			$data["veri"] = $sorgu -> result();
+			$data["veri"] = $this->Database_Model->get_data_id("kullanicilar",$id);
 			$this->load->view('admin/kullanici_goster',$data);
 		}
 		else
@@ -102,12 +95,9 @@ class Kullanicilar extends CI_Controller {
 
 	public function profiledit()
 	{	
-		$id=$this -> session -> oturum_data['id'];
-		$sorgu=$this->db->query("SELECT * FROM kullanicilar WHERE id=$id");
-		$data["veri"]=$sorgu->result();
-		$query1=$this->db->get("uyekategori");
-		$data["kategori"]=$query1->result();
-		$this->load->view('admin/profil_duzenle',$data,$id);
+		$data["veri"]=$this->Database_Model->get_data_id("kullanicilar",$this->session->oturum_data['id']);
+		$data["kategori"]=$this->Database_Model->get_data("uyekategori");
+		$this->load->view('admin/profil_duzenle',$data,$this->session->oturum_data['id']);
 	}
 
 

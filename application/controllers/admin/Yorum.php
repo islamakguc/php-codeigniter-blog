@@ -21,8 +21,8 @@ class Yorum extends CI_Controller {
 	public function index()
 	{
 		$data['veri'] = $this->Yorum_model->get_entries_yorumm();
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/yorum_listesi',$data);
@@ -32,8 +32,8 @@ class Yorum extends CI_Controller {
 	public function onay()
 	{
 		$data['data'] = $this->Yorum_model->get_entries_onay();
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/yorum_listesi_onay',$data);
@@ -42,8 +42,8 @@ class Yorum extends CI_Controller {
 	public function onaybekleyen()
 	{
 		$data['data'] = $this->Yorum_model->get_entries_onaybekleyen();
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/yorum_listesi_onaybekleyen',$data);
@@ -51,7 +51,7 @@ class Yorum extends CI_Controller {
 	}
 	public function delete($id)
 	{
-		$this->db->query("DELETE FROM yorumlar WHERE id=$id");
+		$this->Database_Model->delete_data("yorumlar",$id);
 		$this->session->set_flashdata("sonuc","Yorum Silme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Yorum");
 	}
@@ -78,8 +78,8 @@ class Yorum extends CI_Controller {
 	public function yorumlarim()
 	{
 		$data['data'] = $this->Yorum_model->get_entries_yorum($this->session->oturum_data['ad']);
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/yorumlarim',$data);
@@ -88,7 +88,8 @@ class Yorum extends CI_Controller {
 	}
 		public function edit($id)
 	{
-		$data['data'] = $this->Yorum_model->get_entries_yorum_edit($id);
+		$data['data'] = $this->Database_Model->get_data_id("yorumlar",$id);
+		$data["veri"]=$this->Database_Model->get_data("ayarlar");
 		$this->load->view('admin/yorum_duzenle',$data);
 	}
 		public function guncellekaydet($id)

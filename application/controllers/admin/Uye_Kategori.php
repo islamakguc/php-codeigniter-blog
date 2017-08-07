@@ -16,13 +16,10 @@ class Uye_Kategori extends CI_Controller {
 		}
 	}
 
-
 	public function index()
 	{
-		$query=$this->db->get("uyekategori");
-		$data["veri"]=$query->result();
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		$data["veri"]=$this->Database_Model->get_data("uyekategori");
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/uye_kategori_listesi',$data);
@@ -43,15 +40,14 @@ class Uye_Kategori extends CI_Controller {
 	}
 	public function delete($id)
 	{
-		$this->db->query("DELETE FROM uyekategori WHERE id=$id");
+		$this->Database_Model->delete_data("uyekategori",$id);
 		$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Uye_Kategori");
 	}
 
 	public function edit($id)
 	{
-		$sorgu=$this->db->query("SELECT * FROM uyekategori WHERE id=$id");
-		$data["veri"]=$sorgu->result();
+		$data["veri"]=$this->Database_Model->get_data_id("uyekategori",$id);
 		$this->load->view('admin/uye_kategori_duzenle',$data,$id);
 	}
 	public function guncellekaydet($id)

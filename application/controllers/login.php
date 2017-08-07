@@ -9,13 +9,22 @@ class Login extends CI_Controller {
 		$this -> load -> helper ('url');
 		$this -> load -> library ('form_validation');
 		$this -> load -> library ('session');
-		$this -> load -> Model ("Database_Model");
+		$this -> load -> Model ("admin/Database_Model");
 		$this -> load -> Model ("Uye_Model");
 		$this -> load -> database ();
 	}
 	
 	public function index()
 	{
+		if($this->session->oturum_data['yetki']=="Admin")
+		{
+			redirect(base_url().'admin');
+		}
+		elseif($this->session->oturum_data['yetki']=="Üye")
+		{
+			redirect(base_url().'Uye');
+		}
+		
 		$this->load->view('login_form');
 	}
 

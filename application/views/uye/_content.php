@@ -114,18 +114,18 @@
                                  <form role="form" action="<?= base_url() ?>Uye/Profil/password" method="post">
                                     <div class="form-group input-group">
                                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                        <input name="eski" type="password" class="form-control" placeholder="Eski Şifre">
+                                        <input name="eski" type="password" class="form-control" placeholder="Eski Şifre" required="">
                                     </div>
                                     <div class="form-group input-group">
                                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                        <input name="yeni" type="password" class="form-control" placeholder="Yeni Şifre">
+                                        <input name="yeni" type="password" class="form-control" placeholder="Yeni Şifre" required="">
                                     </div>
                                     <div class="form-group input-group">
                                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                        <input name="yenitekrar" type="password" class="form-control" placeholder="Yeni Şifre Tekrar">
+                                        <input name="yenitekrar" type="password" class="form-control" placeholder="Yeni Şifre Tekrar" required="">
                                     </div>
                                     <div class="form-group input-group">
-                                        <button type="submit" class="btn btn-default">Değiştir</button>
+                                        <button type="submit" class="btn btn-default">Güncelle</button>
                                     </div>
                                 </form>
                             </p>

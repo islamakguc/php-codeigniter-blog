@@ -47,7 +47,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?= base_url() ?>Uye/Home">İslam AKGÜÇ - ÜYE GİRİŞİ</a>
+                <a class="navbar-brand" href="<?= base_url() ?>">İslam AKGÜÇ - ÜYE GİRİŞİ</a>
             </div>
             <!-- /.navbar-header -->
 

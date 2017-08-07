@@ -10,8 +10,8 @@ class Home extends CI_Controller {
 		$this -> load -> helper ('url');
 		$this -> load -> database ();
 		$this -> load -> model('Admin/Yorum_model');
-		$this -> load -> model('Admin/Post_model');
 		$this -> load -> model('Admin/Admin_model');
+		$this -> load -> model('Admin/Database_Model');
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']!="Admin")
 		{
 			$this ->session->set_flashdata("login_hata","Login Olmanız Gerekmektedir.");
@@ -21,19 +21,12 @@ class Home extends CI_Controller {
 	
 	public function index()
 	{
-		$query=$this->db->get("ayarlar");
-		$data["veri"]=$query->result();
-
-		$data2["yorum"] = $this->Yorum_model->yorumcount($this->session->oturum_data['ad']);
-		$data2["yazi"] = $this->Post_model->yazicount($this->session->oturum_data['ad']);
-		$data2["mesaj"] = $this->Admin_model->mesajcount($this->session->oturum_data['ad']);
-
-		$query1=$this->db->get("duyuru");
-		$data2["duyuru"]=$query1->result();
-
-		$id=$this->session->oturum_data['id'];
-		$sorgu = $this -> db -> query ("SELECT * FROM kullanicilar WHERE id=$id");
-		$data2["kisi"] = $sorgu -> result();
+		$data["veri"]=$this->Database_Model->get_data("ayarlar");
+		$data2["yorum"] = $this->Database_Model->get_data_new("yorumlar","yazar_ad",$this->session->oturum_data['ad']);
+		$data2["yazi"] = $this->Database_Model->get_data_new("yazilar","yazar_ad",$this->session->oturum_data['ad']);
+		$data2["mesaj"] = $this->Database_Model->get_data_new("mesajlar","alici_adi",$this->session->oturum_data['ad']);
+		$data2["duyuru"]=$this->Database_Model->get_data("duyuru");
+		$data2["kisi"] =$this->Database_Model->get_data_id("kullanicilar",$this->session->oturum_data['id']);
 
 		$this->load->view('admin/_header',$data);
 		$this->load->view('admin/_sidebar');

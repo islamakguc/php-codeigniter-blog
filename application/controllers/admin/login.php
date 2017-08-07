@@ -16,9 +16,13 @@ class Login extends CI_Controller {
 	
 	public function index()
 	{
-		if( $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Admin")
+		if($this->session->oturum_data['yetki']=="Admin")
 		{
 			redirect(base_url().'admin');
+		}
+		elseif($this->session->oturum_data['yetki']=="Üye")
+		{
+			redirect(base_url().'Uye');
 		}
 		
 		$this->load->view('admin/login_form');

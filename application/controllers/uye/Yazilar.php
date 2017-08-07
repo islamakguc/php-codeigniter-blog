@@ -10,10 +10,6 @@ class Yazilar extends CI_Controller {
 		$this -> load -> database ();
 		$this -> load -> library ("session");
 		$this -> load -> model('uye/Database_Model');
-		$this -> load -> model('uye/Admin_Model');
-		$this -> load -> model('uye/post_model');
-		$this -> load -> model('uye/Post_modell');
-		$this -> load -> model('uye/Category_model');
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']!="Üye")
 		{
 			redirect(base_url().'admin/login');
@@ -29,11 +25,8 @@ class Yazilar extends CI_Controller {
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id WHERE yazilar.yazar_id=$id";
 
-		$sorgular=$this->db->query($sql);
-		$data["veri"] =$sorgular->result();
-
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		$data["veri"] =$this->db->query($sql)->result();
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
 
 		$this->load->view('uye/_header',$data1);
 		$this->load->view('uye/_sidebar');
@@ -43,17 +36,16 @@ class Yazilar extends CI_Controller {
 	}
 	public function ekle()
 	{
-		$query=$this->db->get("kategori");
-		$data["veri"]=$query->result();
+		$data["veri"]=$this->Database_Model->get_data("kategori");
 		$this->load->view('uye/yazi_ekle',$data);
 	}
 	public function eklekaydet()
 	{
 		$config['upload_path']          = './uploads/';
-		$config['allowed_types']        = 'gif|jpg|png';
+		$config['allowed_types']        = 'gif|jpg|jpeg|png';
 		$config['max_size']             = 1000000;
-		$config['max_width']            = 1024;
-		$config['max_height']           = 900;
+		$config['max_width']            = 3872;
+		$config['max_height']           = 2592;
 
 		$this->load->library('upload', $config);
 		if ( ! $this->upload->do_upload('userfile'))
@@ -70,20 +62,20 @@ class Yazilar extends CI_Controller {
 				"yazilar.yazar_ad" => $this->session->oturum_data['ad'],
 				"yazilar.yazar_id" => $this->session->oturum_data['id'],
 				"yazilar.kategori_id" => $this -> input -> post('yetki'),
-				"durum" => $this -> input -> post('IsDraft'),
+				"durum" => 0,
 				"resim" => $this->upload->data('file_name')				
 				);
 			$this->Database_Model->insert_data("yazilar",$data);
 
 			$data = array('upload_data' => $this->upload->data());
-			$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
+			$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi. Yazınız Onay Beklemede.");
 			redirect(base_url()."uye/yazilar");
 		}
 		
 	}
 	public function delete($id)
 	{
-		$this->db->query("DELETE FROM yazilar WHERE id=$id");
+		$this->Database_Model->delete_data("yazilar",$id);
 		$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."uye/yazilar");
 	}
@@ -91,15 +83,14 @@ class Yazilar extends CI_Controller {
 	public function edit($id)
 	{
 
-		$data['categories'] = $this->Category_model->get_entries();
-		$data['data'] = $this->post_model->get_entry($id);
+		$data['categories'] = $this->Database_Model->get_data("kategori");
+		$data['data'] = $this->Database_Model->get_data_id("yazilar",$id);
 
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id
 		WHERE yazilar.id=$id";
-		$sorgular=$this->db->query($sql);
-		$data["veri"] =$sorgular->result();
+		$data["veri"] =$this->db->query($sql)->result();
 		$this->load->view('uye/yazi_duzenle',$data,$id);
 	}
 	public function guncellekaydet($id)
@@ -110,27 +101,26 @@ class Yazilar extends CI_Controller {
 			"yazilar.yazar_ad" => $this->session->oturum_data['ad'],
 			"yazilar.yazar_id" => $this->session->oturum_data['id'],
 			"yazilar.kategori_id" => $this -> input -> post('yetki'),
-			"durum" => $this -> input -> post('IsDraft'),
+			"durum" => 0,
 			);
 		$this->Database_Model->update_data("yazilar",$data,$id);
 		
-		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
+		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi. Yazınız Onay Beklemede.");
 		redirect(base_url()."uye/yazilar");
 	}
 
 	public function resimekle($id)
 	{
-		$query=$this->db->query("SELECT * FROM yazilar WHERE id=$id");
-		$data["resim"]=$query->result();
+		$data["resim"]=$this->Database_Model->get_data_id("yazilar",$id);
 		$this->load->view('uye/resim_ekle',$data);
 	}
 	public function resim_upload($id)
 	{
 		$config['upload_path']          = './uploads/';
-		$config['allowed_types']        = 'gif|jpg|png';
+		$config['allowed_types']        = 'gif|jpg|jpeg|png';
 		$config['max_size']             = 1000000;
-		$config['max_width']            = 1024;
-		$config['max_height']           = 900;
+		$config['max_width']            = 3872;
+		$config['max_height']           = 2592;
 
 		$this->load->library('upload', $config);
 

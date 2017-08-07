@@ -19,8 +19,7 @@ class Profil extends CI_Controller {
 	
 	public function index()
 	{
-		$query=$this->db->get("ayarlar");
-		$data["veri"]=$query->result();
+		$data["veri"]=$this->Database_Model->get_data("ayarlar");
 		$this->load->view('uye/_header',$data);
 		$this->load->view('uye/_sidebar');
 		$this->load->view('uye/_content');
@@ -28,9 +27,7 @@ class Profil extends CI_Controller {
 	}
 	public function goster()
 	{
-		$id=$this -> session -> oturum_data['id'];
-		$sorgu = $this -> db -> query ("SELECT * FROM kullanicilar WHERE id=$id");
-		$data["veri"] = $sorgu -> result();
+		$data["veri"] = $this->Database_Model->get_data_id("kullanicilar",$this->session->oturum_data['id']);
 		$this->load->view('uye/kullanici_goster',$data);
 	}
 	public function password()
@@ -59,12 +56,9 @@ class Profil extends CI_Controller {
 	{
 		if($this -> session -> oturum_data['yetki'] == "Üye")
 		{
-			$id=$this -> session -> oturum_data['id'];
-			$sorgu=$this->db->query("SELECT * FROM kullanicilar WHERE id=$id");
-			$data["veri"]=$sorgu->result();
-			$query1=$this->db->get("uyekategori");
-			$data["kategori"]=$query1->result();
-			$this->load->view('uye/profil_duzenle',$data,$id);
+			$data["veri"]=$this->Database_Model->get_data_id("kullanicilar",$this->session->oturum_data['id']);
+			$data["kategori"]=$this->Database_Model->get_data("uyekategori");
+			$this->load->view('uye/profil_duzenle',$data,$this->session->oturum_data['id']);
 		}
 		else {
 			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");

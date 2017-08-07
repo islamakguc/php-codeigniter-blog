@@ -30,25 +30,11 @@ class Yorum_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-      public function get_entries_yorum_edit($ad)
-    {
-        $this->db->from('yorumlar');
-        $this->db->where('id', $ad);
-        $query = $this->db->get();
-        return $query->result();
-    }
      public function get_entries_yorum($ad)
     {
         $this->db->from('yorumlar');
         $this->db->where('yazar_ad', $ad);
         $this->db->order_by("id", "desc");
-        $query = $this->db->get();
-        return $query->result();
-    }
-      public function yorumcount($ad)
-    {
-        $this->db->from('yorumlar');
-        $this->db->where('yazar_ad', $ad);
         $query = $this->db->get();
         return $query->result();
     }

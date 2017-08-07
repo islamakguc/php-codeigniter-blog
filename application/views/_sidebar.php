@@ -16,7 +16,7 @@
             foreach ($veri as $rs) 
             {
               ?>
-              <li><a href="<?= base_url() ?>Home/kategori/<?=$rs->id?>" title=""><?=$rs->kategoriadi?> (<?php echo count($this->Post_model->kategorisayi($rs->id)); ?>)</a></li>   
+              <li><a href="<?= base_url() ?>Home/kategori/<?=$rs->id?>" title=""><?=$rs->kategoriadi?> (<?php echo count($this->Database_Model->get_data_new("yazilar","kategori_id",$rs->id)); ?>)</a></li>   
               <?php 
             } 
             ?>                 
@@ -28,31 +28,48 @@
             foreach ($yazarcek as $rs) 
             {
               ?>
-              <li><a href="<?= base_url() ?>Home/yazar/<?=$rs->id?>" title=""><?=$rs->ad?> (<?php echo count($this->Post_model->yazarsayi($rs->id)); ?>)</a></li>   
+              <li><a href="<?= base_url() ?>Home/yazar/<?=$rs->id?>" title=""><?=$rs->ad?> (<?php echo count($this->Database_Model->get_data_new("yazilar","yazar_id",$rs->id)); ?>)</a></li>   
               <?php 
             } 
             ?>                 
           </ul>
         </div>
-        <div class="widget widget_tags">
-         <h3>Post Tags</h3>
+        <div class="widget widget_categories group">
+          <h3>Son Yazılar</h3> 
+          <ul> <?php
+            foreach ($yazicek as $rs) 
+            {
+              if (strlen($rs->baslik) > 25)
+              {
+                  $rs->baslik = substr($rs->baslik, 0, 25); // "Tablo içinde göst"
+                  $rs->baslik = $rs->baslik . '...';
+                } 
+                ?>
+                <li><a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title="<?=$rs->baslik?>"><?=$rs->baslik?></a></li>   
+                <?php 
+              } 
+              ?>                 
+            </ul>
+          </div>
+          <div class="widget widget_tags">
+           <h3>Post Tags</h3>
 
-         <div class="tagcloud group">
-           <?php
-           foreach ($veri as $rs) 
-           {
-            ?>
-            <a href="#"><?=$rs->kategoriadi?></a> 
-            <?php 
-          } 
-          ?> 
+           <div class="tagcloud group">
+             <?php
+             foreach ($veri as $rs) 
+             {
+              ?>
+              <a href="<?= base_url() ?>Home/kategori/<?=$rs->id?>"><?=$rs->kategoriadi?></a> 
+              <?php 
+            } 
+            ?> 
+          </div>
+
         </div>
 
-      </div>
+      </div> <!-- end sidebar -->
 
-  </div> <!-- end sidebar -->
+    </div> <!-- end row -->
 
-</div> <!-- end row -->
-
-</div> <!-- end content-wrap -->
+  </div> <!-- end content-wrap -->
 

@@ -10,7 +10,6 @@ class Sosyal extends CI_Controller {
 		$this -> load -> database ();
 		$this -> load -> library ("session");
 		$this -> load -> model('admin/Database_Model');
-		$this -> load -> model('admin/Sosyal_model');
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
 		{
 			redirect(base_url().'admin/login');
@@ -18,10 +17,8 @@ class Sosyal extends CI_Controller {
 	}
 	public function index()
 	{
-		$query=$this->db->get("ayarlar");
-		$data["veri"]=$query->result();
-		$query1=$this->db->get("sosyal");
-		$data1["sosyal"]=$query1->result();
+		$data["veri"]=$this->Database_Model->get_data("ayarlar");
+		$data1["sosyal"]=$this->Database_Model->get_data("sosyal");
 		$this->load->view('admin/_header',$data);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/sosyal_listesi',$data1);
@@ -29,7 +26,6 @@ class Sosyal extends CI_Controller {
 	}
 	public function ekle()
 	{
-
 		$this->load->view('admin/sosyal_ekle');
 	}
 	
@@ -47,7 +43,7 @@ class Sosyal extends CI_Controller {
 	}
 	public function guncelle($id)
 	{
-		$data['data'] = $this->Sosyal_model->guncelle($id);
+		$data['data'] = $this->Database_Model->get_data_id("sosyal",$id);
 		$this->load->view('admin/sosyal_duzenle',$data);
 	}
 	public function guncelle_kaydet($id)
@@ -66,7 +62,7 @@ class Sosyal extends CI_Controller {
 
 	public function sil($id)
 	{
-		$this->db->query("DELETE FROM sosyal WHERE id=$id");
+		$this->Database_Model->delete_data("sosyal",$id);
 		$this->session->set_flashdata("sonuc","Silme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Sosyal");
 	}

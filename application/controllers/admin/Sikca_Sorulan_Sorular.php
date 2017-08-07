@@ -16,13 +16,10 @@ class Sikca_Sorulan_Sorular extends CI_Controller {
 		}
 	}
 
-
 	public function index()
 	{
-		$query=$this->db->get("sorular");
-		$data["veri"]=$query->result();
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		$data["veri"]=$this->Database_Model->get_data("sorular");
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/SSS_listesi',$data);
@@ -45,15 +42,14 @@ class Sikca_Sorulan_Sorular extends CI_Controller {
 	}
 	public function delete($id)
 	{
-		$this->db->query("DELETE FROM sorular WHERE id=$id");
+		$this->Database_Model->delete_data("sorular",$id);
 		$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Sikca_Sorulan_Sorular");
 	}
 
 	public function edit($id)
 	{
-		$sorgu=$this->db->query("SELECT * FROM sorular WHERE id=$id");
-		$data["veri"]=$sorgu->result();
+		$data["veri"]=$this->Database_Model->get_data_id("sorular",$id);
 		$this->load->view('admin/SSS_duzenle',$data,$id);
 	}
 	public function guncellekaydet($id)

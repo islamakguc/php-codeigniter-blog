@@ -10,28 +10,20 @@ class Yazilar extends CI_Controller {
 		$this -> load -> library ("session");
 		$this -> load -> model('Admin/Database_Model');
 		$this -> load -> model('Admin/Admin_Model');
-		$this -> load -> model('Admin/post_model');
 		$this -> load -> model('Post_model');
-		$this -> load -> model('Admin/Category_model');
 		$this->load->helper(array('form', 'url'));
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
 		{
 			redirect(base_url().'admin/login');
 		}
 	}
-
-
 	public function index()
 	{
-
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
-		ON yazilar.kategori_id=kategori.id";
-		$sorgular=$this->db->query($sql);
-		$data["veri"] =$sorgular->result();
-
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		ON yazilar.kategori_id=kategori.id"; 
+		$data["veri"] =$this->db->query($sql)->result();
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
 
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
@@ -42,16 +34,12 @@ class Yazilar extends CI_Controller {
 	public function yazilarim()
 	{
 		$id=$this->session->oturum_data['id'];
-		
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id
 		WHERE yazilar.yazar_id=$id";
-		$sorgular=$this->db->query($sql);
-		$data["veri"] =$sorgular->result();
-
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		$data["veri"] =$this->db->query($sql)->result();
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
 
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
@@ -59,10 +47,23 @@ class Yazilar extends CI_Controller {
 		$this->load->view('admin/_footer');
 		//echo "Hoşgeldiniz";
 	}
+	public function taslakYazi()
+	{
+		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
+		LEFT JOIN kategori
+		ON yazilar.kategori_id=kategori.id
+		WHERE durum=0";
+		$data["veri"] =$this->db->query($sql)->result();
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+
+		$this->load->view('admin/_header',$data1);
+		$this->load->view('admin/_sidebar');
+		$this->load->view('admin/taslakyazi',$data);
+		$this->load->view('admin/_footer');
+	}
 	public function ekle()
 	{
-		$query=$this->db->get("kategori");
-		$data["veri"]=$query->result();
+		$data["veri"]=$this->Database_Model->get_data("kategori");
 		$this->load->view('admin/yazi_ekle',$data);
 	}
 	public function eklekaydet()
@@ -100,23 +101,21 @@ class Yazilar extends CI_Controller {
 	}
 	public function delete($id)
 	{
-		$this->db->query("DELETE FROM yazilar WHERE id=$id");
+		$this->Database_Model->delete_data("yazilar",$id);
 		$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/yazilar");
 	}
 
 	public function edit($id)
 	{
-
-		$data['categories'] = $this->Category_model->get_entries();
-		$data['data'] = $this->post_model->get_entry($id);
+		$data['categories'] = $this->Database_Model->get_data("kategori");
+		$data['data'] = $this->Database_Model->get_data_id("yazilar",$id);
 
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id
 		WHERE yazilar.id=$id";
-		$sorgular=$this->db->query($sql);
-		$data["veri"] =$sorgular->result();
+		$data["veri"] =$this->db->query($sql)->result();
 		$this->load->view('admin/yazi_duzenle',$data,$id);
 	}
 	public function guncellekaydet($id)
@@ -134,8 +133,7 @@ class Yazilar extends CI_Controller {
 	}
 	public function resimekle($id)
 	{
-		$query=$this->db->query("SELECT * FROM yazilar WHERE id=$id");
-		$data["resim"]=$query->result();
+		$data["resim"]=$this->Database_Model->get_data_id("yazilar",$id);
 		$this->load->view('admin/resim_ekle',$data);
 	}
 	public function resim_upload($id)

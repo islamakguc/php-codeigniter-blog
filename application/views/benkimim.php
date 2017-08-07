@@ -26,7 +26,7 @@
             </header> 
             <div class="entry-content-media">
               <div class="post-thumb">
-              <img height="150" width="150" class="img-circle" src="<?= base_url() ?>uploads/121855704.jpg">
+              <img height="200" width="200" class="img-circle" src="<?= base_url() ?>uploads/121855704.jpg">
              </div> 
            </div>
             <div class="entry-content" style="font-size: 13px;">

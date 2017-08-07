@@ -19,8 +19,7 @@ class Ayarlar extends CI_Controller {
 
 	public function index()
 	{
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/ayarlar');

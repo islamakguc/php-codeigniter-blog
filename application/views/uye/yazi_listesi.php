@@ -26,7 +26,7 @@
             } ?>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Tüm Yazılar
+                    Tüm Yazılar<span style="display:inline; float:right;"><a href="<?=base_url()?>uye/Yazilar/ekle" class="btn btn-primary btn-xs" role="button">Yeni Yazı Ekle</a></span>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -67,7 +67,7 @@
                                     <?php }
                                     else
                                         { ?>
-                                    <a href="<?= base_url() ?>Uye/Yazilar/resimekle/<?=$rs->id;?>"><img src="<?= base_url() ?>uploads/<?=$rs->resim?>" height="30" weight="30" ></a>
+                                    <a href="<?= base_url() ?>Uye/Yazilar/resimekle/<?=$rs->id;?>"><img height="30" width="50" src="<?= base_url() ?>uploads/<?=$rs->resim?>" ></a>
                                     <?php }
                                     ?>
                                 </td>

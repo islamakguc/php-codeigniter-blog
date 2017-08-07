@@ -19,10 +19,8 @@ class Kategori extends CI_Controller {
 
 	public function index()
 	{
-		$query=$this->db->get("kategori");
-		$data["veri"]=$query->result();
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
+		$data["veri"]=$this->Database_Model->get_data("kategori");
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/kategori_listesi',$data);
@@ -43,15 +41,14 @@ class Kategori extends CI_Controller {
 	}
 	public function delete($id)
 	{
-		$this->db->query("DELETE FROM kategori WHERE id=$id");
+		$this->Database_Model->delete_data("kategori",$id);
 		$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Kategori");
 	}
 
 	public function edit($id)
 	{
-		$sorgu=$this->db->query("SELECT * FROM kategori WHERE id=$id");
-		$data["veri"]=$sorgu->result();
+		$data["veri"]=$this->Database_Model->get_data_id("kategori",$id);
 		$this->load->view('admin/kategori_duzenle',$data,$id);
 	}
 	public function guncellekaydet($id)

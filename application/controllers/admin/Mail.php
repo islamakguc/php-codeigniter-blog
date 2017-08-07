@@ -10,6 +10,7 @@ class Mail extends CI_Controller {
 		$this -> load -> database ();
 		$this -> load -> library ("session");
 		$this -> load -> model('admin/Mail_model');
+		$this -> load -> model('admin/Database_Model');
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
 		{
 			redirect(base_url().'admin/login');
@@ -19,11 +20,8 @@ class Mail extends CI_Controller {
 
 	public function index()
 	{
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
-
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
 		$data["veri"]=$this->Mail_model->Mail_getir();
-
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/mail_listesi',$data);
@@ -32,7 +30,7 @@ class Mail extends CI_Controller {
 	
 	public function sil($id)
 	{
-		$this->db->query("DELETE FROM bizeulasin WHERE id=$id");
+		$this->Database_Model->delete_data("bizeulasin",$id);
 		$this->session->set_flashdata("sonuc","Mail Silme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Mail");
 	}

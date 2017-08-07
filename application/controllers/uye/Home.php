@@ -9,9 +9,7 @@ class Home extends CI_Controller {
 		$this -> load -> library ('session');
 		$this -> load -> helper ('url');
 		$this -> load -> database ();
-		$this -> load -> model('uye/Yorum_model');
-		$this -> load -> model('uye/Post_model');
-		$this -> load -> model('uye/Admin_model');
+		$this -> load -> model('uye/Database_Model');
 		if(! $this -> session -> userdata('oturum_data'))
 		{
 			redirect(base_url().'login');
@@ -23,19 +21,14 @@ class Home extends CI_Controller {
 	}
 	
 	public function index()
-	{
-		$query=$this->db->get("ayarlar");
-		$data["veri"]=$query->result();
-		$data2["yorum"] = $this->Yorum_model->yorumcount($this->session->oturum_data['ad']);
-		$data2["yazi"] = $this->Post_model->yazicount($this->session->oturum_data['ad']);
-		$data2["mesaj"] = $this->Admin_model->mesajcount($this->session->oturum_data['ad']);
+	{		
+		$data["veri"]=$this->Database_Model->get_data("ayarlar");
+		$data2["yorum"] = $this->Database_Model->get_data_new("yorumlar","yazar_ad",$this->session->oturum_data['ad']);
+		$data2["yazi"] = $this->Database_Model->get_data_new("yazilar","yazar_ad",$this->session->oturum_data['ad']);
+		$data2["mesaj"] = $this->Database_Model->get_data_new("mesajlar","alici_adi",$this->session->oturum_data['ad']);
+		$data2["duyuru"]=$this->Database_Model->get_data("duyuru");
+		$data2["kisi"] = $this->Database_Model->get_data_id("kullanicilar",$this->session->oturum_data['id']);
 
-		$query1=$this->db->get("duyuru");
-		$data2["duyuru"]=$query1->result();
-
-		$id=$this->session->oturum_data['id'];
-		$sorgu = $this -> db -> query ("SELECT * FROM kullanicilar WHERE id=$id");
-		$data2["kisi"] = $sorgu -> result();
 		$this->load->view('uye/_header',$data);
 		$this->load->view('uye/_sidebar');
 		$this->load->view('uye/_content',$data2);

@@ -11,22 +11,16 @@ class Mesaj extends CI_Controller {
 		$this -> load -> library ("session");
 		$this -> load -> model('admin/Database_Model');
 		$this -> load -> model('admin/Admin_Model');
-		$this -> load -> model('admin/post_model');
-		$this -> load -> model('admin/Category_model');
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
 		{
 			redirect(base_url().'admin/login');
 		}
 	}
 
-
 	public function index()
 	{
-		$query1=$this->db->get("ayarlar");
-		$data1["veri"]=$query1->result();
-
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
 		$data["veri"]=$this->Admin_Model->mesajalici($this->session->oturum_data['ad']);
-
 		$this->load->view('admin/_header',$data1);
 		$this->load->view('admin/_sidebar');
 		$this->load->view('admin/mesaj_listesi',$data);
@@ -35,7 +29,7 @@ class Mesaj extends CI_Controller {
 	
 	public function mesajgonder()
 	{
-		$data["veri"]=$this->Admin_Model->mesajaliciadi();
+		$data["veri"]=$this->Database_Model->get_data("kullanicilar");
 		$this->load->view('admin/mesaj_gonder',$data);
 	}
 
@@ -54,7 +48,7 @@ class Mesaj extends CI_Controller {
 
 	public function sil($id)
 	{
-		$this->db->query("DELETE FROM mesajlar WHERE id=$id");
+		$this->Database_Model->delete_data("mesajlar",$id);
 		$this->session->set_flashdata("sonuc","Mesaj Silme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Mesaj");
 	}

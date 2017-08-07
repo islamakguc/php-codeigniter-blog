@@ -1,8 +1,8 @@
 <?php 
 $query1=$this->db->get("ayarlar");
 $data1["veri"]=$query1->result();
-$this->load->view('uye/_header',$data1);
-$this->load->view('uye/_sidebar');
+$this->load->view('admin/_header',$data1);
+$this->load->view('admin/_sidebar');
 ?>
 <!-- Page Content -->
 <div id="page-wrapper">

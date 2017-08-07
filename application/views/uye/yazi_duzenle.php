@@ -46,23 +46,6 @@ $this->load->view('uye/_sidebar');
                             CKEDITOR.replace( 'Content' );
                         </script>
                     </div>
-                    <?php
-                    if($data[0]->durum == 1)
-                    {
-                        $Draft = "checked";
-                        $NoDraft = "";
-                    }else{
-                        $Draft = "";
-                        $NoDraft = "checked";
-
-                    }
-                    ?>
-                    <div class="radio">
-                        <label><input type="radio" name="IsDraft" value="1" <?php echo $Draft ?>>Yayınla</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="IsDraft" value="0" <?php echo $NoDraft ?>>Taslak Olarak Kaydet</label>
-                    </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-default">Kaydet</button>
                     </div>

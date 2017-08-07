@@ -28,6 +28,9 @@
             <li>
                 <a href="<?= base_url() ?>admin/Yazilar/yazilarim">Yazılarım</a>
             </li>
+            <li>
+                <a href="<?= base_url() ?>admin/Yazilar/taslakYazi">Taslak Yazılar</a>
+            </li>
         </ul>
         <!-- /.nav-second-level -->
         <li>
