@@ -7,10 +7,10 @@
                 <div>
                     <ul class="breadcrumb">
                         <li>
-                         <a href="<?= base_url() ?>Uye/Home"><i class="glyphicon glyphicon-home"></i></a>
+                         <a href="<?= base_url() ?>uye/Home"><i class="glyphicon glyphicon-home"></i></a>
                      </li>
                      <li>
-                        <a href="<?= base_url() ?>Uye/Yorum">Yorumlar</a>
+                        <a href="<?= base_url() ?>uye/Yorum">Yorumlar</a>
                     </li>
                 </ul>
             </div>

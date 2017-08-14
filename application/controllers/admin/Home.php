@@ -9,13 +9,13 @@ class Home extends CI_Controller {
 		$this -> load -> library ('session');
 		$this -> load -> helper ('url');
 		$this -> load -> database ();
-		$this -> load -> model('Admin/Yorum_model');
-		$this -> load -> model('Admin/Admin_model');
-		$this -> load -> model('Admin/Database_Model');
+		$this -> load -> model('admin/Yorum_model');
+		$this -> load -> model('admin/Admin_Model');
+		$this -> load -> model('admin/Database_Model');
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']!="Admin")
 		{
 			$this ->session->set_flashdata("login_hata","Login Olmanız Gerekmektedir.");
-			redirect(base_url().'admin/login');
+			redirect(base_url().'admin/Login');
 		}
 	}
 	

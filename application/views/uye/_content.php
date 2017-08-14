@@ -25,7 +25,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="<?= base_url() ?>Uye/Yazilar">
+                    <a href="<?= base_url() ?>uye/Yazilar">
                         <div class="panel-footer">
                             <span class="pull-left">Detaylar</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="<?= base_url() ?>Uye/Yorum">
+                    <a href="<?= base_url() ?>uye/Yorum">
                         <div class="panel-footer">
                             <span class="pull-left">Detaylar</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="<?= base_url() ?>Uye/Mesaj">
+                    <a href="<?= base_url() ?>uye/Mesaj">
                         <div class="panel-footer">
                             <span class="pull-left">Detaylar</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -111,7 +111,7 @@
                             <div class="tab-pane fade" id="profile-pills">
                                 <br>
                                 <p>
-                                 <form role="form" action="<?= base_url() ?>Uye/Profil/password" method="post">
+                                 <form role="form" action="<?= base_url() ?>uye/Profil/password" method="post">
                                     <div class="form-group input-group">
                                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
                                         <input name="eski" type="password" class="form-control" placeholder="Eski Şifre" required="">

@@ -15,7 +15,7 @@ $this->load->view('uye/_sidebar');
                        <a href="<?= base_url() ?>uye/Home"><i class="glyphicon glyphicon-home"></i></a>
                    </li>
                    <li>
-                   <a href="<?= base_url() ?>uye/profil/profiledit/">Profil</a>
+                   <a href="<?= base_url() ?>uye/Profil/profiledit/">Profil</a>
                 </li>
             </ul>
         </div>
@@ -24,7 +24,7 @@ $this->load->view('uye/_sidebar');
                 Profil  Düzenle
             </div>
             <div class="panel-body">
-                <form role="form" action="<?= base_url() ?>uye/profil/profilguncelle/<?=$veri[0]->id?>" method="post">
+                <form role="form" action="<?= base_url() ?>uye/Profil/profilguncelle/<?=$veri[0]->id?>" method="post">
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input name="ad" type="text" value="<?=$veri[0]->ad?>" class="form-control" placeholder="Ad Soyad">

@@ -10,15 +10,16 @@ class Home extends CI_Controller {
 		$this -> load -> library ('pagination');
 		$this -> load -> helper ('url');
 		$this -> load -> model ('Post_model');		
-		$this -> load -> model ('Admin/Database_Model'); 	
-		$this -> load -> model ('Admin/Admin_Model'); 
+		$this -> load -> model ('admin/Database_Model'); 	
+		$this -> load -> model ('admin/Admin_Model'); 
 		$this -> load -> database ();
 	}
 	
 	public function index()
 	{
 		$data5["medya"]=$this->Database_Model->get_data("sosyal");
-		$ayarlar["ayar"]=$this->Database_Model->get_data("ayarlar");
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+		$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
 		$slider["veri"]=$this->Admin_Model->slider();
 		$data2["veri"]=$this->Database_Model->get_data("kategori");
 		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
@@ -48,7 +49,7 @@ class Home extends CI_Controller {
 		$data["veri"]=$this->Post_model->yazicek($config["per_page"],$this->uri->segment(3,0));
 
 
-		$this->load->view('_header',$ayarlar);
+		$this->load->view('_header',$data1);
 		$this->load->view('_slider',$slider);
 		$this->load->view('_header2');
 		$this->load->view('_content',$data);		
@@ -57,69 +58,142 @@ class Home extends CI_Controller {
 	}
 	public function yazi_goster($id)
 	{
+		$id=(string)$id;
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id
-		WHERE yazilar.durum=1 and yazilar.id=$id";
-		$data["veri"] =$this->db->query($sql)->result();
+		WHERE yazilar.durum=1 and yazilar.link='$id'";
+		if($this->db->query($sql)->result())
+		{
+			$data["veri"] =$this->db->query($sql)->result();
 
-		$data5["medya"]=$this->Database_Model->get_data("sosyal");
-		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
-		$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
-		$data2["veri"]=$this->Database_Model->get_data("kategori");
-		$data["yorum"] =$this->Post_model->get_entries_by_yorum($id);
-		$data2["yazicek"]=$this->Post_model->yazi();
+			$data5["medya"]=$this->Database_Model->get_data("sosyal");
+			$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+			$data["ayar"]=$this->Database_Model->get_data("ayarlar");
+			$data2["veri"]=$this->Database_Model->get_data("kategori");
+			$data["yorum"] =$this->Post_model->get_entries_by_yorum($id);
+			$data2["yazicek"]=$this->Post_model->yazi();
+			$data["data"]=$this->Database_Model->get_data_new("yazi_resim","yazi_id",$this->db->query($sql)->result()[0]->id);
+			
+			$this->load->view('_header',$data);
+			$this->load->view('_header2');
+			$this->load->view('yazi_goster',$data);		
+			$this->load->view('_sidebar',$data2);
+			$this->load->view('_footer',$data5);
+		}
+		else
+		{
+			$data5["medya"]=$this->Database_Model->get_data("sosyal");
+			$data2["veri"]=$this->Database_Model->get_data("kategori");
+			$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+			$data["soru"]=$this->Database_Model->get_data("sorular");
+			$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+			$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+			$data2["yazicek"]=$this->Post_model->yazi();
 
-		$this->load->view('_header',$data1);
-		$this->load->view('_header2');
-		$this->load->view('yazi_goster',$data);		
-		$this->load->view('_sidebar',$data2);
-		$this->load->view('_footer',$data5);
+			$this->load->view('_header',$data1);
+			$this->load->view('_header2');
+			$this->load->view('errors/html/error_404');		
+			$this->load->view('_sidebar',$data2);
+			$this->load->view('_footer',$data5);
+		}
+		
 	}
 
 	public function kategori($id)
 	{
+		$id=(string)$id;
+		
+		$idi=$this->db->query("SELECT * FROM kategori where kategoriadi LIKE '%".$id."%'  ")->result()[0]->id;
+
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id
-		WHERE yazilar.durum=1 and yazilar.kategori_id=$id";
-		$data["veri"] =$this->db->query($sql)->result();
+		WHERE yazilar.durum=1 and yazilar.kategori_id=$idi";
 
-		$data5["medya"]=$this->Database_Model->get_data("sosyal");
-		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
-		$slider["veri"]=$this->Admin_Model->slider();
-		$data2["veri"]=$this->Database_Model->get_data("kategori");
-		$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
-		$data2["yazicek"]=$this->Post_model->yazi();
+		if($this->db->query($sql)->result())
+		{
+			$data["veri"] =$this->db->query($sql)->result();
 
-		$this->load->view('_header',$data1);
-		$this->load->view('_slider',$slider);
-		$this->load->view('_header2');
-		$this->load->view('kategori_goster',$data);
-		$this->load->view('_sidebar',$data2);
-		$this->load->view('_footer',$data5);
+			$data5["medya"]=$this->Database_Model->get_data("sosyal");
+			$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+			$slider["veri"]=$this->Admin_Model->slider();
+			$data2["veri"]=$this->Database_Model->get_data("kategori");
+			$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+			$data1["veri"]=$this->Post_model->get_data_id("kategori",$idi);
+			$data2["yazicek"]=$this->Post_model->yazi();
+
+			$this->load->view('_header',$data1);
+			$this->load->view('_slider',$slider);
+			$this->load->view('_header2');
+			$this->load->view('kategori_goster',$data);
+			$this->load->view('_sidebar',$data2);
+			$this->load->view('_footer',$data5);
+		}
+		else
+		{
+			$data5["medya"]=$this->Database_Model->get_data("sosyal");
+			$data2["veri"]=$this->Database_Model->get_data("kategori");
+			$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+			$data["soru"]=$this->Database_Model->get_data("sorular");
+			$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+			$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+			$data2["yazicek"]=$this->Post_model->yazi();
+
+			$this->load->view('_header',$data1);
+			$this->load->view('_header2');
+			$this->load->view('errors/html/error_404');		
+			$this->load->view('_sidebar',$data2);
+			$this->load->view('_footer',$data5);
+		}
 	}
 	public function yazar($id)
 	{
+		$id=(string)$id;
+
+		$idi= $this->db->query("SELECT * FROM kullanicilar where link LIKE '%".$id."%'  ")->result()[0]->id;
+
 		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
 		LEFT JOIN kategori
 		ON yazilar.kategori_id=kategori.id
-		WHERE yazilar.durum=1 and yazilar.yazar_id=$id";
-		$data["veri"] =$this->db->query($sql)->result();
-		
-		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
-		$data2["veri"]=$this->Database_Model->get_data("kategori");
-		$slider["veri"]=$this->Admin_Model->slider();
-		$data5["medya"]=$this->Database_Model->get_data("sosyal");
-		$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
-		$data2["yazicek"]=$this->Post_model->yazi();
-		
-		$this->load->view('_header',$data1);
-		$this->load->view('_slider',$slider);
-		$this->load->view('_header2');
-		$this->load->view('kategori_goster',$data);
-		$this->load->view('_sidebar',$data2);
-		$this->load->view('_footer',$data5);
+		WHERE yazilar.durum=1 and yazilar.yazar_id='$idi'";
+
+		if($this->db->query($sql)->result())
+		{
+			$data["veri"] =$this->db->query($sql)->result();
+
+			$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+			$data2["veri"]=$this->Database_Model->get_data("kategori");
+			$slider["veri"]=$this->Admin_Model->slider();
+			$data5["medya"]=$this->Database_Model->get_data("sosyal");
+			$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+			$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+			$data1["veri"]=$this->Post_model->get_data_id("kullanicilar",$idi);
+			$data2["yazicek"]=$this->Post_model->yazi();
+
+			$this->load->view('_header',$data1);
+			$this->load->view('_slider',$slider);
+			$this->load->view('_header2');
+			$this->load->view('kategori_goster',$data);
+			$this->load->view('_sidebar',$data2);
+			$this->load->view('_footer',$data5);
+		}
+		else
+		{
+			$data5["medya"]=$this->Database_Model->get_data("sosyal");
+			$data2["veri"]=$this->Database_Model->get_data("kategori");
+			$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+			$data["soru"]=$this->Database_Model->get_data("sorular");
+			$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+			$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+			$data2["yazicek"]=$this->Post_model->yazi();
+
+			$this->load->view('_header',$data1);
+			$this->load->view('_header2');
+			$this->load->view('errors/html/error_404');		
+			$this->load->view('_sidebar',$data2);
+			$this->load->view('_footer',$data5);
+		}
 	}
 
 	public function yorumekle($id)
@@ -140,6 +214,7 @@ class Home extends CI_Controller {
 	{
 		$data5["medya"]=$this->Database_Model->get_data("sosyal");
 		$data["ayar"]=$this->Database_Model->get_data("ayarlar");
+		$data["veri"]=$this->Database_Model->get_data("ayarlar");
 		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
 		$data2["veri"]=$this->Database_Model->get_data("kategori");
 		$data2["yazicek"]=$this->Post_model->yazi();
@@ -167,7 +242,6 @@ class Home extends CI_Controller {
 			$data["veri"]=$this->Database_Model->get_data("ayarlar");
 		//E-Mail Ayarlar
 			$config=array(
-				'protocol'=>'smtp',
 				'smtp_host' => $data["veri"][0]->smtpserver,
 				'smtp_port' => $data["veri"][0]->smtpport,
 				'smtp_user'=>$data["veri"][0]->smtpmail,
@@ -220,6 +294,7 @@ class Home extends CI_Controller {
 		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
 		$data["soru"]=$this->Database_Model->get_data("sorular");
 		$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+		$data1["veri"]=$this->Database_Model->get_data("ayarlar");
 		$data2["yazicek"]=$this->Post_model->yazi();
 
 		$this->load->view('_header',$data1);
@@ -234,8 +309,9 @@ class Home extends CI_Controller {
 		$data5["medya"]=$this->Database_Model->get_data("sosyal");
 		$data2["veri"]=$this->Database_Model->get_data("kategori");
 		$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
-		$data["soru"]=$this->Database_Model->get_data("sorular");
+		$data["data"]=$this->Database_Model->get_data_id("sosyal",2);
 		$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+		$data1["veri"]=$this->Database_Model->get_data("benkimim");
 		$data2["yazicek"]=$this->Post_model->yazi();
 
 		$this->load->view('_header',$data1);
@@ -243,5 +319,51 @@ class Home extends CI_Controller {
 		$this->load->view('benkimim',$data);		
 		$this->load->view('_sidebar',$data2);
 		$this->load->view('_footer',$data5);
+	}
+	public function etiket($id)
+	{
+		$id=(string)$id;
+
+		$sql="SELECT kategori.kategoriadi as katadi,yazilar.* FROM yazilar
+		LEFT JOIN kategori
+		ON yazilar.kategori_id=kategori.id
+		WHERE yazilar.keywords
+		LIKE '%".$id."%' ";
+		if($this->db->query($sql)->result())
+		{
+			$data["veri"] =$this->db->query($sql)->result();
+
+			$data5["medya"]=$this->Database_Model->get_data("sosyal");
+			$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+			$slider["veri"]=$this->Admin_Model->slider();
+			$data2["veri"]=$this->Database_Model->get_data("kategori");
+			$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+			$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+			$data2["yazicek"]=$this->Post_model->yazi();
+
+			$this->load->view('_header',$data1);
+			$this->load->view('_slider',$slider);
+			$this->load->view('_header2');
+			$this->load->view('kategori_goster',$data);
+			$this->load->view('_sidebar',$data2);
+			$this->load->view('_footer',$data5);
+		}
+		else
+		{
+			$data5["medya"]=$this->Database_Model->get_data("sosyal");
+			$data2["veri"]=$this->Database_Model->get_data("kategori");
+			$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
+			$data["soru"]=$this->Database_Model->get_data("sorular");
+			$data1["ayar"]=$this->Database_Model->get_data("ayarlar");
+			$data1["veri"]=$this->Database_Model->get_data("ayarlar");
+			$data2["yazicek"]=$this->Post_model->yazi();
+
+			$this->load->view('_header',$data1);
+			$this->load->view('_header2');
+			$this->load->view('errors/html/error_404');		
+			$this->load->view('_sidebar',$data2);
+			$this->load->view('_footer',$data5);
+		}
+
 	}
 }

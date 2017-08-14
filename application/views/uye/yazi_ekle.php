@@ -56,6 +56,12 @@ $this->load->view('uye/_sidebar');
          </select>
        </div>
        <div class="form-group">
+            <input type="text" class="form-control" name="keywords" placeholder="keywords" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="description" placeholder="Açıklama" required="">
+          </div>
+       <div class="form-group">
         <textarea name="Content"></textarea>
         <script>
           CKEDITOR.replace( 'Content' );

@@ -79,6 +79,10 @@ $db['default'] = array(
 	'username' => 'root',
 	'password' => '',
 	'database' => 'vtblog',
+	//'hostname' => 'mysql.hostinger.web.tr',
+	//'username' => 'u724943988_root',
+	//'password' => 'casper28',
+	//'database' => 'u724943988_blog',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -93,4 +97,4 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
-);
+	);

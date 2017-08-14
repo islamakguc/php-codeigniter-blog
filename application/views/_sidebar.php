@@ -15,21 +15,12 @@
           <ul> <?php
             foreach ($veri as $rs) 
             {
-              ?>
-              <li><a href="<?= base_url() ?>Home/kategori/<?=$rs->id?>" title=""><?=$rs->kategoriadi?> (<?php echo count($this->Database_Model->get_data_new("yazilar","kategori_id",$rs->id)); ?>)</a></li>   
-              <?php 
-            } 
-            ?>                 
-          </ul>
-        </div>
-        <div class="widget widget_categories group">
-          <h3>Yazarlar</h3> 
-          <ul> <?php
-            foreach ($yazarcek as $rs) 
-            {
-              ?>
-              <li><a href="<?= base_url() ?>Home/yazar/<?=$rs->id?>" title=""><?=$rs->ad?> (<?php echo count($this->Database_Model->get_data_new("yazilar","yazar_id",$rs->id)); ?>)</a></li>   
-              <?php 
+              if((count($this->Database_Model->get_data_new("yazilar","kategori_id",$rs->id)))>0)
+              {
+                ?>
+                <li><a href="<?= base_url() ?>Home/kategori/<?=$rs->kategoriadi?>" title="<?=$rs->kategoriadi?>"><?=$rs->kategoriadi?> (<?php echo count($this->Database_Model->get_data_new("yazilar","kategori_id",$rs->id)); ?>)</a></li>   
+                <?php 
+              }
             } 
             ?>                 
           </ul>
@@ -41,35 +32,50 @@
             {
               if (strlen($rs->baslik) > 25)
               {
-                  $rs->baslik = substr($rs->baslik, 0, 25); // "Tablo içinde göst"
-                  $rs->baslik = $rs->baslik . '...';
-                } 
-                ?>
-                <li><a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id?>" title="<?=$rs->baslik?>"><?=$rs->baslik?></a></li>   
-                <?php 
+                $rs->baslik = substr($rs->baslik, 0, 25);
+                $rs->baslik = $rs->baslik . '...';
               } 
-              ?>                 
-            </ul>
-          </div>
-          <div class="widget widget_tags">
-           <h3>Post Tags</h3>
-
-           <div class="tagcloud group">
-             <?php
-             foreach ($veri as $rs) 
-             {
               ?>
-              <a href="<?= base_url() ?>Home/kategori/<?=$rs->id?>"><?=$rs->kategoriadi?></a> 
+              <li><a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->link?>" title="<?=$rs->baslik?>"><?=$rs->baslik?></a></li>   
               <?php 
             } 
-            ?> 
-          </div>
+            ?>                 
+          </ul>
+        </div>
+        <div class="widget widget_categories group">
+          <h3>Yazarlar</h3> 
+          <ul> <?php
+            foreach ($yazarcek as $rs) 
+            {
+              if((count($this->Database_Model->get_data_new("yazilar","yazar_id",$rs->id)))>0)
+              {
+                ?>
+                <li><a href="<?= base_url() ?>Home/yazar/<?=$rs->link?>" title=""><?=$rs->ad?> (<?php echo count($this->Database_Model->get_data_new("yazilar","yazar_id",$rs->id)); ?>)</a></li>   
+                <?php 
+              }
+            } 
+            ?>                 
+          </ul>
+        </div>
+        <div class="widget widget_tags">
+         <h3>Post Tags</h3>
 
+         <div class="tagcloud group">
+           <?php
+           foreach ($veri as $rs) 
+           {
+            ?>
+            <a href="<?= base_url() ?>Home/kategori/<?=$rs->kategoriadi?>"><?=$rs->kategoriadi?></a> 
+            <?php 
+          } 
+          ?> 
         </div>
 
-      </div> <!-- end sidebar -->
+      </div>
 
-    </div> <!-- end row -->
+    </div> <!-- end sidebar -->
 
-  </div> <!-- end content-wrap -->
+  </div> <!-- end row -->
+
+</div> <!-- end content-wrap -->
 

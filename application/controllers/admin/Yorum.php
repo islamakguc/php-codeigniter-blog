@@ -9,11 +9,11 @@ class Yorum extends CI_Controller {
 		$this -> load -> helper ('url');
 		$this -> load -> database ();
 		$this -> load -> library ("session");
-		$this -> load -> model('Admin/Database_Model');		
-		$this -> load -> model('Admin/Yorum_model');
+		$this -> load -> model('admin/Database_Model');		
+		$this -> load -> model('admin/Yorum_model');
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
 		{
-			redirect(base_url().'admin/login');
+			redirect(base_url().'admin/Login');
 		}
 	}
 
@@ -100,6 +100,6 @@ class Yorum extends CI_Controller {
 		$this->Database_Model->update_data("yorumlar",$data,$id);
 		
 		$this->session->set_flashdata("sonuc","Yorum Güncelleme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/yorum/yorumlarim");
+		redirect(base_url()."admin/Yorum/yorumlarim");
 	}
 }

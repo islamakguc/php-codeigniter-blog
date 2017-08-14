@@ -9,10 +9,10 @@ class Kullanicilar extends CI_Controller {
 		$this -> load -> helper ('url');
 		$this -> load -> database ();
 		$this -> load -> library ("session");
-		$this -> load -> model('Admin/Database_Model');
+		$this -> load -> model('admin/Database_Model');
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
 		{
-			redirect(base_url().'admin/login');
+			redirect(base_url().'admin/Login');
 		}
 	}
 
@@ -34,22 +34,34 @@ class Kullanicilar extends CI_Controller {
 
 	public function eklekaydet()
 	{
+		$a=$this -> input -> post('ad');
+		$a=str_replace(" ","-",$a);
+		$a = trim($a);
+		$search = array('Ç','ç','Ğ','ğ','ı','İ','Ö','ö','Ş','ş','Ü','ü',' ');
+		$replace = array('c','c','g','g','i','i','o','o','s','s','u','u','-');
+		$a = str_replace($search,$replace,$a);
+		$a=strtolower($a);
+		$veri["veri"]=$this->Database_Model->get_data("ayarlar");
 		$data=array(
 			"ad" => $this -> input -> post('ad'),
 			"sifre" => $this -> input -> post('sifre'),
 			"mail" => $this -> input -> post('mail'),
 			"yetki" => $this -> input -> post('yetki'),
+			"baslik" => $this -> input -> post('ad')." "."|"." ".$veri["veri"][0]->baslik,
+			"keywords" => $veri["veri"][0]->keywords,
+			"description" => $veri["veri"][0]->description,
+			"link" => $a
 			);
 		$this->Database_Model->insert_data("kullanicilar",$data);
 		$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/kullanicilar");
+		redirect(base_url()."admin/Kullanicilar");
 	}
 
 	public function delete($id)
 	{
 		$this->Database_Model->delete_data("kullanicilar",$id);
 		$this->session->set_flashdata("sonuc","Kayıt Silme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/kullanicilar");
+		redirect(base_url()."admin/Kullanicilar");
 	}
 
 	public function edit($id)
@@ -61,16 +73,29 @@ class Kullanicilar extends CI_Controller {
 
 	public function guncellekaydet($id)
 	{
+		$a=$this -> input -> post('ad');
+		$a=str_replace(" ","-",$a);
+		$a = trim($a);
+		$search = array('Ç','ç','Ğ','ğ','ı','İ','Ö','ö','Ş','ş','Ü','ü',' ');
+		$replace = array('c','c','g','g','i','i','o','o','s','s','u','u','-');
+		$a = str_replace($search,$replace,$a);
+		$a=strtolower($a);
+		
+		$veri["veri"]=$this->Database_Model->get_data("ayarlar");
 		$data=array(
 			"ad" => $this -> input -> post('ad'),
 			"sifre" => $this -> input -> post('sifre'),
 			"mail" => $this -> input -> post('mail'),
 			"yetki" => $this -> input -> post('yetki'),
 			"durum" => $this -> input -> post('durum'),
+			"baslik" => $this -> input -> post('ad')." "."|"." ".$veri["veri"][0]->baslik,
+			"keywords" => $veri["veri"][0]->keywords,
+			"description" => $veri["veri"][0]->description,
+			"link" => $a
 			);
 		$this->Database_Model->update_data("kullanicilar",$data,$id);
 		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/kullanicilar");
+		redirect(base_url()."admin/Kullanicilar");
 	}
 
 	public function goster($id)
@@ -89,7 +114,7 @@ class Kullanicilar extends CI_Controller {
 		else
 		{
 			$this -> session -> set_flashdata("sonuc","Yetkiniz Bulunmamaktadır.");
-			redirect(base_url()."admin/kullanicilar");
+			redirect(base_url()."admin/Kullanicilar");
 		}
 	}
 
@@ -103,12 +128,16 @@ class Kullanicilar extends CI_Controller {
 
 	public function profilguncelle($id)
 	{
+		$a=$this -> input -> post('ad');
+		$a=str_replace(" ","-",$a);
+
 		$data=array(
 			"ad" => $this -> input -> post('ad'),
 			"mail" => $this -> input -> post('mail'),
+			"link" => $a
 			);
 		$this->Database_Model->update_data("kullanicilar",$data,$id);
 		$this->session->set_flashdata("sonuc","Kayıt Güncelleme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/kullanicilar/goster/$id");
+		redirect(base_url()."admin/Kullanicilar/goster/$id");
 	}
 }

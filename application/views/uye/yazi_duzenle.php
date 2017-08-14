@@ -9,13 +9,13 @@ $this->load->view('uye/_sidebar');
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-             <br>
-             <div>
+               <br>
+               <div>
                 <ul class="breadcrumb">
                     <li>
-                       <a href="<?= base_url() ?>uye/Home"><i class="glyphicon glyphicon-home"></i></a>
-                   </li>
-                   <li>
+                     <a href="<?= base_url() ?>uye/Home"><i class="glyphicon glyphicon-home"></i></a>
+                 </li>
+                 <li>
                     <a href="<?= base_url() ?>uye/Yazilar/">Yazılar</a>
                 </li>
                 <li>
@@ -39,6 +39,12 @@ $this->load->view('uye/_sidebar');
                             <option value="<?php echo $row->id;  ?>" ><?php echo $row->kategoriadi;  ?></option>
                             <?php } ?>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="keywords" placeholder="keywords" required="" value="<?php echo $data[0]->keywords;?>">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="description" placeholder="Açıklama" required="" value="<?php echo $data[0]->description;?>">
                     </div>
                     <div class="form-group">
                         <textarea name="Content"><?php echo $data[0]->metin; ?> </textarea>

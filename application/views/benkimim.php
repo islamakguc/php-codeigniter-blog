@@ -1,6 +1,6 @@
    <!-- Content
    ================================================== -->
-   <div id="content-wrap"><br>
+   <div id="content-wrap"><br><br>
     <div class="row">
 
       <div id="main" class="eight columns">
@@ -16,23 +16,19 @@
             </div>
             <?php } ?>
             
-           <article class="entry">
 
-            <header class="entry-header">
-
-              <h2 class="entry-title">
-                <p>asasdasdasd</p>
-              </h2>               
-            </header> 
-            <div class="entry-content-media">
+            <div style="float: left; width: 40%;"><div class="entry-content-media">
               <div class="post-thumb">
-              <img height="200" width="200" class="img-circle" src="<?= base_url() ?>uploads/121855704.jpg">
-             </div> 
-           </div>
-            <div class="entry-content" style="font-size: 13px;">
-              <p>adasdas</p>
-            </div>
-          </article>
+                <img height="200" width="200" class="img-circle" src="<?= base_url() ?>uploads/121855704.jpg">
+              </div> 
+            </div>  
+          </div>
+          <div class="entry-content" style="font-size: 13px;">
+            <p><span><h3><i class="fa fa-user"> <a href="#"><?=$veri[0]->ad?></a></i></h3></span></p>
+            <span><h3><i class="<?=$data[0]->resim;?>" > <a href="<?=$data[0]->link;?>" title="<?=$data[0]->ad;?>" target="_blank">Facebook</a> </i></h3></span><br>
+            <span><h4><i class="fa fa-envelope"> <a href="mailto:<?=$veri[0]->mail?>"><?=$veri[0]->mail?></a></i></h4></span><br>
+            <p><?=$veri[0]->icerik?></p>
+          </div> 
 
 
         </div> <!-- Respond End -->

@@ -9,8 +9,8 @@ class Login extends CI_Controller {
 		$this -> load -> helper ('url');
 		$this -> load -> library ('form_validation');
 		$this -> load -> library ('session');
-		$this -> load -> Model ("Admin/Admin_Model");
-		$this -> load -> Model ("Admin/Database_Model");
+		$this -> load -> Model ("admin/Admin_Model");
+		$this -> load -> Model ("admin/Database_Model");
 		$this -> load -> database ();
 	}
 	
@@ -22,7 +22,7 @@ class Login extends CI_Controller {
 		}
 		elseif($this->session->oturum_data['yetki']=="Üye")
 		{
-			redirect(base_url().'Uye');
+			redirect(base_url().'uye');
 		}
 		
 		$this->load->view('admin/login_form');
@@ -43,7 +43,7 @@ class Login extends CI_Controller {
 					'ad' => $result[0]->ad
 					);
 				$this->session->set_userdata('oturum_data',$oturum_dizi);
-				redirect(base_url().'admin/home');
+				redirect(base_url().'admin/Home');
 			}
 			else
 			{
@@ -64,7 +64,7 @@ class Login extends CI_Controller {
 	{
 		$this -> session -> unset_userdata('oturum_data');
 		$this -> session -> sess_destroy();
-		redirect(base_url().'home');
+		redirect(base_url().'Home');
 	}
 	public function password()
 	{
@@ -84,7 +84,7 @@ class Login extends CI_Controller {
 		else
 		{
 			$this->session->set_flashdata("sonuc","Eksik Veya Yanlış Bilgi Girişi");
-			redirect(base_url()."Uye");
+			redirect(base_url()."admin");
 		}
 		
 		

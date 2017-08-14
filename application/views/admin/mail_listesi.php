@@ -40,7 +40,7 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="<?php echo base_url() ?>Admin/Mail/sil/<?php echo $row->id;?>">Sil</a></li>
+                                    <li><a href="<?php echo base_url() ?>admin/Mail/sil/<?php echo $row->id;?>">Sil</a></li>
                                 </ul>
                             </div>
                         </div><p><h4><?php echo $row->ad;  ?> </h3> </p>

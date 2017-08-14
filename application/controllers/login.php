@@ -22,7 +22,7 @@ class Login extends CI_Controller {
 		}
 		elseif($this->session->oturum_data['yetki']=="Üye")
 		{
-			redirect(base_url().'Uye');
+			redirect(base_url().'uye');
 		}
 		
 		$this->load->view('login_form');
@@ -45,7 +45,7 @@ class Login extends CI_Controller {
 			);
 		$this->Database_Model->insert_data("kullanicilar",$data);
 		$this->session->set_flashdata("login_hata","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."login");
+		redirect(base_url()."Login");
 	}
 
 	public function login_ol()
@@ -64,7 +64,7 @@ class Login extends CI_Controller {
 					'ad' => $result[0]->ad
 					);
 				$this->session->set_userdata('oturum_data',$oturum_dizi);
-				redirect(base_url().'home');
+				redirect(base_url().'Home');
 			}
 			else
 			{
@@ -85,6 +85,6 @@ class Login extends CI_Controller {
 	{
 		$this -> session -> unset_userdata('oturum_data');
 		$this -> session -> sess_destroy();
-		redirect(base_url().'home');
+		redirect(base_url().'Home');
 	}
 }

@@ -38,6 +38,7 @@
                           <th>Yazar Adı</th>
                           <th>Durum</th>
                           <th>Resim</th>
+                          <th>Galeri</th>
                           <th>Kayıt Tarihi</th>
                           <th>İşlemler</th>
                         </tr>
@@ -48,7 +49,7 @@
                        {
                          ?>
                          <tr class="odd gradeX">
-                           <td><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->id?>" title="<?=$rs->baslik?>" ><?= kisalt($rs->baslik) ?></a></td>  
+                           <td><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->link?>" title="<?=$rs->baslik?>" ><?= kisalt($rs->baslik) ?></a></td>  
                            <td><?=kisalt($rs->katadi)?></td>                              
                            <td><?=kisalt($rs->yazar_ad)?></td>
                            <td class="center"><?php
@@ -67,16 +68,17 @@
                               <?php }
                               else
                                 { ?>
-                              <a href="<?= base_url() ?>admin/Yazilar/resimekle/<?=$rs->id;?>"><img height="30" width="50" src="<?= base_url() ?>uploads/<?=$rs->resim?>" ></a>
+                              <a href="<?= base_url() ?>admin/Yazilar/resimekle/<?=$rs->id;?>"><img height="30" width="30" src="<?= base_url() ?>uploads/<?=$rs->resim?>"></a>
                               <?php }
                               ?>
                             </td>
+                            <td class="center" style="text-align: center;"><a href="<?= base_url() ?>admin/Yazilar/resim_galeri_ekle/<?=$rs->id;?>"><img height="30" width="30" src="<?= base_url() ?>assets/images/galery.png"></a></td>
                             <td class="center"><?=$rs->tarih?></td>
                             <td class="center"><div class="btn-group">
                               <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;İşlemler&nbsp;&nbsp;&nbsp;<span class="caret"></span>
                               </button>
                               <ul class="dropdown-menu">
-                                <li><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->id?>">Düzenle</a></li>
+                                <li><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->link?>">Düzenle</a></li>
                                 <li><a href="<?= base_url() ?>admin/Yazilar/delete/<?=$rs->id?>" onclick="return confirm('Silinecek !! emin misiniz. ?');">Sil</a></li>
                               </ul>
                             </div></td>

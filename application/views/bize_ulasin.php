@@ -1,6 +1,6 @@
    <!-- Content
    ================================================== -->
-   <div id="content-wrap"><br>
+   <div id="content-wrap"><br><br>
     <div class="row">
 
       <div id="main" class="eight columns">
@@ -29,7 +29,7 @@
               <div class="message group">
                 <textarea name="icerik"  required="required" placeholder="Mesajınızı yazınız"  id="icerik" rows="10" cols="50" ></textarea>
               </div>
-              <button type="submit" class="submit">Yorum Yap</button>
+              <button type="submit" class="submit">Gönder Gelsin</button>
 
             </fieldset>
           </form> <!-- Form End -->

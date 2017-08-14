@@ -23,7 +23,7 @@
 
                 <div <?php echo $clas ?> >
                     <!-- Set the first background image using inline CSS below. -->
-                    <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->id;?>"> <div class="fill" style="background-image:url('<?= base_url() ?>uploads/<?=$rs->resim;?>');"></div>
+                    <a href="<?= base_url() ?>Home/yazi_goster/<?=$rs->link;?>"> <div class="fill" style="background-image:url('<?= base_url() ?>uploads/<?=$rs->resim;?>');"></div>
                         <div class="carousel-caption">
                             <h2><?=$rs->baslik;?></h2>
                         </div></a>

@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-info-circle"></i></span>
-                        <input name="icerik" type="text" required="" value="<?=$veri[0]->icerik?>" class="form-control" placeholder="description">
+                        <input name="icerik" type="text" required="" value="<?=$veri[0]->description?>" class="form-control" placeholder="description">
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-info-circle"></i> SMTP Server</span>

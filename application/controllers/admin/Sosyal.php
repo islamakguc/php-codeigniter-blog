@@ -12,7 +12,7 @@ class Sosyal extends CI_Controller {
 		$this -> load -> model('admin/Database_Model');
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
 		{
-			redirect(base_url().'admin/login');
+			redirect(base_url().'admin/Login');
 		}
 	}
 	public function index()
@@ -39,7 +39,7 @@ class Sosyal extends CI_Controller {
 			);
 		$this->Database_Model->insert_data("sosyal",$data);
 		$this->session->set_flashdata("sonuc","Kayıt Ekleme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/sosyal");
+		redirect(base_url()."admin/Sosyal");
 	}
 	public function guncelle($id)
 	{

@@ -9,10 +9,10 @@ class Ayarlar extends CI_Controller {
 		$this -> load -> helper ('url');
 		$this -> load -> database ();
 		$this -> load -> library ("session");
-		$this -> load -> model('Admin/Database_Model');
+		$this -> load -> model('admin/Database_Model');
 		if(! $this -> session -> userdata('oturum_data')|| $this->session->oturum_data['yetki']=="Üye")
 		{
-			redirect(base_url().'admin/login');
+			redirect(base_url().'admin/Login');
 		}
 	}
 
@@ -33,7 +33,7 @@ class Ayarlar extends CI_Controller {
 			"baslik" => $this -> input -> post('baslik'),
 			"email" => $this -> input -> post('email'),
 			"keywords" => $this -> input -> post('keywords'),
-			"icerik" => $this -> input -> post('icerik'),
+			"description" => $this -> input -> post('icerik'),
 			"mail" => $this -> input -> post('mail'),
 			"yorum" => $this -> input -> post('yorum'),
 			"smtpserver" => $this -> input -> post('smtpserver'),

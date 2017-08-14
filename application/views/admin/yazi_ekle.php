@@ -40,7 +40,7 @@ $this->load->view('admin/_sidebar');
       <div class="panel-body">
           <?php echo form_open_multipart(base_url().'admin/Yazilar/eklekaydet');?>
             <div class="form-group">
-              <input type="text" class="form-control" name="Title" placeholder="Başlık" required="">
+              <input type="text" class="form-control" name="Title" placeholder="Başlık" required="" autofocus="">
             </div>
             <div class="form-group">
               <select name="yetki" class="form-control" required="">
@@ -56,6 +56,12 @@ $this->load->view('admin/_sidebar');
              </select>
            </div>
            <div class="form-group">
+            <input type="text" class="form-control" name="keywords" placeholder="keywords" required="">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="description" placeholder="Açıklama" required="">
+          </div>
+           <div class="form-group">
             <textarea name="Content"  required=""></textarea>
             <script>
               CKEDITOR.replace( 'Content' );
@@ -63,7 +69,7 @@ $this->load->view('admin/_sidebar');
           </div>
           <label class="form-group">Resim Ekle</label>
           <div class="form-group input-group">
-            <input type="file" name="userfile" />                        
+            <input type="file" name="userfile" required="" />                        
           </div>
           <div class="radio">
             <label><input type="radio" name="IsDraft" value="1" checked="checked" required="">Yayınla</label>

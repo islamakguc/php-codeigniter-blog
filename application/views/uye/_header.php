@@ -6,7 +6,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="<?=$veri[0]->icerik?>"/>
+    <meta name="description" content="<?=$veri[0]->description?>"/>
     <meta name="author" content="<?=$veri[0]->adsoyad?>,<?=$veri[0]->email?>"/>
     <meta name="keywords" content="<?=$veri[0]->keywords?>"/>
 
@@ -111,7 +111,7 @@
                         <li><a href="<?= base_url() ?>uye/profil/goster/"><i class="fa fa-user fa-fw"></i> Profil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="<?= base_url() ?>/admin/login/log_out"><i class="fa fa-sign-out fa-fw"></i> Çıkış Yap</a>
+                        <li><a href="<?= base_url() ?>Login/log_out"><i class="fa fa-sign-out fa-fw"></i> Çıkış Yap</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

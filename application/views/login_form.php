@@ -35,7 +35,7 @@
                         <h3 class="panel-title">Üye Kullanıcı Girişi<div style="float: right;"> <a href="<?= base_url() ?>Login/kayit"> Üye Kayıt Ol</a></div></h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="<?= base_url() ?>login/login_ol" method="post">
+                        <form role="form" action="<?= base_url() ?>Login/login_ol" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" name="email" placeholder="E-mail" type="email" autofocus required="">
@@ -74,7 +74,7 @@
 <script src="<?= base_url() ?>assets/admin/vendor/metisMenu/metisMenu.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="<?= base_url() ?>assets/admin /dist/js/sb-admin-2.js"></script>
+<script src="<?= base_url() ?>assets/admin/dist/js/sb-admin-2.js"></script>
 
 </body>
 

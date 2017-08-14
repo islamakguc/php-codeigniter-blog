@@ -40,7 +40,7 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                    <li><a href="<?php echo base_url() ?>Admin/Mesaj/sil/<?php echo $row->id;?>">Sil</a></li>
+                                    <li><a href="<?php echo base_url() ?>admin/Mesaj/sil/<?php echo $row->id;?>">Sil</a></li>
                                 </ul>
                             </div>
                         </div><h5><?php echo $row->gonderici_adi;?> / <?php echo $row->tarih;?></h5>

@@ -38,5 +38,17 @@ class Post_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    public function get_data_id($table,$id)
+    {
+        $this -> db -> where("id", $id);
+        $query=$this->db->get($table);
+        return $query->result();
+    }
+    public function get_data_new($table,$sutun,$id)
+    {
+        $this -> db -> where($sutun, $id);
+        $query=$this->db->get($table);
+        return $query->result();
+    }
 }
 ?>

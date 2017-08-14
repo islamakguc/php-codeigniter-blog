@@ -9,7 +9,7 @@ class Sikca_Sorulan_Sorular extends CI_Controller {
 		$this -> load -> helper ('url');
 		$this -> load -> database ();
 		$this -> load -> library ("session");
-		$this -> load -> model('Admin/Database_Model');
+		$this -> load -> model('admin/Database_Model');
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
 		{
 			redirect(base_url().'admin/login');

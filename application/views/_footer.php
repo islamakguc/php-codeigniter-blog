@@ -13,9 +13,17 @@
          <li><a href="<?=$rs->link;?>" title="<?=$rs->ad;?>" target="_blank"><i class="<?=$rs->resim;?>" ></i></a></li>
          <?php } ?>
        </ul>           
+     </div> 
+     <div class="two columns" style="float: right;">
+       <h3 class="social">Yönetim</h3>
+
+       <ul class="navigate group">
+       <li><a href="<?= base_url() ?>admin/Login">Yönetim Paneli</a></li>
+         <li><a href="<?= base_url() ?>Login">Üye Paneli</a></li>
+       </ul>
      </div>
-     <p class="copyright">&copy; Tüm Hakları Saklıdır - Kaynak Belirtilmeden Alıntı Yapılamaz! &nbsp; Design by <a title="İslam AKGÜÇ" href="http://www.islamakguc.com/">İslam AKGÜÇ</a>.</p>
-     
+     <p class="copyright">&copy; Tüm Hakları Saklıdır 2017 - Kaynak Belirtilmeden Alıntı Yapılamaz! &nbsp; Design by <a title="İslam AKGÜÇ" href="http://www.islamakguc.com/">İslam AKGÜÇ</a>.</p>
+
    </div> <!-- End row -->
 
    <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#top"><i class="fa fa-chevron-up"></i></a></div>

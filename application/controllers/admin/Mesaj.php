@@ -13,7 +13,7 @@ class Mesaj extends CI_Controller {
 		$this -> load -> model('admin/Admin_Model');
 		if(! $this -> session -> userdata('oturum_data') || $this->session->oturum_data['yetki']=="Üye")
 		{
-			redirect(base_url().'admin/login');
+			redirect(base_url().'admin/Login');
 		}
 	}
 
@@ -43,7 +43,7 @@ class Mesaj extends CI_Controller {
 			);
 		$this->Database_Model->insert_data("mesajlar",$data);
 		$this->session->set_flashdata("sonuc","Mesaj Gönderme İşlemi Başarı İle Gerçekleştirildi");
-		redirect(base_url()."admin/mesaj");
+		redirect(base_url()."admin/Mesaj");
 	}
 
 	public function sil($id)

@@ -51,7 +51,7 @@
                                {
                                    ?>
                                    <tr class="odd gradeX">
-                                   <td><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->id?>"><?= kisalt($rs->baslik) ?></a></td>  
+                                   <td><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->link?>"><?= kisalt($rs->baslik) ?></a></td>  
                                       <td><?=kisalt($rs->katadi)?></td>                              
                                       <td><?=kisalt($rs->yazar_ad)?></td>
                                       <td class="center"><?php
@@ -79,7 +79,7 @@
                                             <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;&nbsp;İşlemler&nbsp;&nbsp;&nbsp;<span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->id?>">Düzenle</a></li>
+                                                <li><a href="<?= base_url() ?>admin/Yazilar/edit/<?=$rs->link?>">Düzenle</a></li>
                                                 <li><a href="<?= base_url() ?>admin/Yazilar/delete/<?=$rs->id?>" onclick="return confirm('Silinecek !! emin misiniz. ?');">Sil</a></li>
                                             </ul>
                                         </div></td>

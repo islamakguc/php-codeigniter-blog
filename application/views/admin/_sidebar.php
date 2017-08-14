@@ -66,10 +66,22 @@
             </ul>
             <!-- /.nav-second-level -->
         </li>
+        <li>
+            <a href="#"><i class="glyphicon glyphicon-file"></i> Sayfalar<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+                <li>
+                    <a href="<?= base_url() ?>admin/Benkimim/">Ben Kimim?</a>
+                </li>
+            </ul>
+            <!-- /.nav-second-level -->
+        </li>
     </li>
     <li>
         <a href="<?= base_url() ?>admin/Mail"><i class="glyphicon glyphicon-envelope"></i> Mailler</a>
-    </li>   
+    </li> 
+    <li>
+        <a href="<?= base_url() ?>admin/Duyuru"><i class="fa fa-bullhorn"></i> Duyuru</a>
+    </li>  
     <li>
         <a href="<?= base_url() ?>admin/Sosyal"><i class="glyphicon glyphicon-globe"></i> Sosyal Medya</a>
     </li>

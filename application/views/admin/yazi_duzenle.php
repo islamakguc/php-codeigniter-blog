@@ -19,7 +19,7 @@ $this->load->view('admin/_sidebar');
                     <a href="<?= base_url() ?>admin/Yazilar/">Yazılar</a>
                 </li>
                 <li>
-                    <a href="<?= base_url() ?>admin/Yazilar/edit/<?php echo $data[0]->id; ?>">Yazı Düzenle</a>
+                    <a href="<?= base_url() ?>admin/Yazilar/edit/<?php echo $data[0]->link; ?>">Yazı Düzenle</a>
                 </li>
             </ul>
         </div>
@@ -39,6 +39,12 @@ $this->load->view('admin/_sidebar');
                             <option value="<?php echo $row->id;  ?>" ><?php echo $row->kategoriadi;  ?></option>
                             <?php } ?>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="keywords" placeholder="keywords" required="" value="<?php echo $data[0]->keywords;?>">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="description" placeholder="Açıklama" required="" value="<?php echo $data[0]->description;?>">
                     </div>
                     <div class="form-group">
                         <textarea name="Content" required="required"><?php echo $data[0]->metin; ?> </textarea>

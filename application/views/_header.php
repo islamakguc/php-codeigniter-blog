@@ -9,9 +9,10 @@
    <!--- Basic Page Needs
    ================================================== -->
    <meta charset="utf-8"/>
-   <title><?=$ayar[0]->baslik?></title>
-   <meta name="description" content="<?=$ayar[0]->icerik?>"/>  
-   <meta name="keywords" content="<?=$ayar[0]->keywords?>"/>
+   <link rel="icon" href="<?= base_url() ?>assets/images/favicon.png">
+   <title><?=$veri[0]->baslik?></title>
+   <meta name="description" content="<?=$veri[0]->description?>"/>  
+   <meta name="keywords" content="<?=$veri[0]->keywords?>"/>
    <meta name="author" content="<?=$ayar[0]->adsoyad?>,<?=$ayar[0]->email?>"/>
 
     <!-- mobile specific metas

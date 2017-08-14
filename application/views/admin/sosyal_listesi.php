@@ -40,8 +40,8 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="<?php echo base_url() ?>Admin/Sosyal/guncelle/<?php echo $row->id;?>">Güncelle</a></li>
-                                    <li><a href="<?php echo base_url() ?>Admin/Sosyal/sil/<?php echo $row->id;?>">Sil</a></li>
+                                <li><a href="<?php echo base_url() ?>admin/Sosyal/guncelle/<?php echo $row->id;?>">Güncelle</a></li>
+                                    <li><a href="<?php echo base_url() ?>admin/Sosyal/sil/<?php echo $row->id;?>">Sil</a></li>
                                 </ul>
                             </div>
                         </div><p style="font-size: 18px;"><?php echo $row->ad;?> 

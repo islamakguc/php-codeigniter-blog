@@ -111,14 +111,14 @@
                             <div class="tab-pane fade" id="profile-pills">
                                 <br>
                                 <p>
-                                 <form role="form" action="<?= base_url() ?>admin/login/password" method="post">
+                                 <form role="form" action="<?= base_url() ?>admin/Login/password" method="post">
                                     <div class="form-group input-group">
                                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
                                         <input name="eski" type="password" class="form-control" placeholder="Eski Şifre" required="">
                                     </div>
                                     <div class="form-group input-group">
                                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                        <input name="yeni" type="password" class="form-control" placeholder="Yeni Şifre" readonly="">
+                                        <input name="yeni" type="password" class="form-control" placeholder="Yeni Şifre" required="">
                                     </div>
                                     <div class="form-group input-group">
                                         <span class="input-group-addon"><i class="fa fa-key"></i></span>

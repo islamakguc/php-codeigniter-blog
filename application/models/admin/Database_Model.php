@@ -13,7 +13,7 @@ class Database_Model extends CI_Model {
 	public function update_data($table,$data,$id)
 	{
 		$this -> db -> where("id", $id);
-		$this -> db -> update($table, $data);
+		$this -> db -> update($table,$data);
 		return true;
 	}
 	public function delete_data($table,$id)

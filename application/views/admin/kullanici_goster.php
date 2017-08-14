@@ -16,10 +16,10 @@ $this->load->view('admin/_sidebar');
 							<a href="<?= base_url() ?>admin/Home"><i class="glyphicon glyphicon-home"></i></a>
 						</li>
 						<li>
-							<a href="<?= base_url() ?>/admin/kullanicilar">Kullanıcılar</a>
+							<a href="<?= base_url() ?>/admin/Kullanicilar">Kullanıcılar</a>
 						</li>
 						<li>
-							<a href="<?= base_url() ?>/admin/kullanicilar/goster/<?=$this->session->oturum_data['id']?>">Profil</a>
+							<a href="<?= base_url() ?>/admin/Kullanicilar/goster/<?=$this->session->oturum_data['id']?>">Profil</a>
 						</li>
 					</ul>
 				</div>
@@ -42,7 +42,7 @@ $this->load->view('admin/_sidebar');
 						<?php 
 						if($this -> session -> oturum_data['id'] == $veri[0]->id )
 							{?>
-						<div style="float: right;"><a href="<?= base_url() ?>admin/kullanicilar/profiledit" class="btn btn-primary btn-xs" role="button">Profil Düzenle</a></div>
+						<div style="float: right;"><a href="<?= base_url() ?>admin/Kullanicilar/profiledit" class="btn btn-primary btn-xs" role="button">Profil Düzenle</a></div>
 						<?php } ?>
 					</div>
 					<div class="panel-body">
