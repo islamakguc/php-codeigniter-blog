@@ -11,7 +11,8 @@ class Mail_model extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from('bizeulasin');
-        $this->db->order_by("id", "desc");
+        $this->db->order_by("durum", "asc");
+         $this->db->order_by("tarih", "desc");
         $query = $this->db->get();
         return $query->result();
     }

@@ -71,12 +71,17 @@
                                             {?>
                                         <li><a href="<?php echo base_url() ?>admin/Yorum/onayla/<?php echo $row->id;?>">Onayla</a></li>
                                         <?php }?>
-                                        <li><a href="<?php echo base_url() ?>admin/Yorum/delete/<?php echo $row->id;?>">Sil</a></li>
+                                        <li><a href="<?php echo base_url() ?>admin/Yorum/delete/<?php echo $row->id;?>" onclick="return confirm('Silinecek !! emin misiniz. ?');">Sil</a></li>
                                     </ul>
                                 </div>
                             </div><h4><?php echo $row->yazar_ad;  ?></h4>
-                            <p><?php echo $row->ktarih;  ?> / <?php echo $row->yazi_id;  ?> / <?php echo $row->yazar_mail;  ?>       </p><br>
-                            <p><?php echo $row->yorum;  ?></p>
+                            <p><?php echo $row->ktarih;  ?> /
+
+                                <?php $yazi=$this->Database_Model->get_data_id("yazilar",$row->yazi_id);?> 
+
+                                <?php echo $row->yazar_mail;  ?> </p>
+                                <p><?php echo $yazi[0]->baslik;  ?></p><br>
+                                <p><?php echo $row->yorum;  ?></p>
                         </div>
                     </div>
                     <?php } ?>

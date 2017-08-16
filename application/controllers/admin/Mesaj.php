@@ -45,6 +45,17 @@ class Mesaj extends CI_Controller {
 		$this->session->set_flashdata("sonuc","Mesaj Gönderme İşlemi Başarı İle Gerçekleştirildi");
 		redirect(base_url()."admin/Mesaj");
 	}
+	public function oku($id)
+	{
+		$data1["mesaj"]=$this->Database_Model->get_data_id("mesajlar",$id);
+
+		$data=array(
+			"durum" => 1
+			);
+		$this->Database_Model->update_data("mesajlar",$data,$id);
+		
+		$this->load->view('admin/mesaj_oku',$data1);
+	}
 
 	public function sil($id)
 	{

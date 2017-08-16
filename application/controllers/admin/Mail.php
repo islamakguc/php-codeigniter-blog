@@ -27,7 +27,28 @@ class Mail extends CI_Controller {
 		$this->load->view('admin/mail_listesi',$data);
 		$this->load->view('admin/_footer');
 	}
-	
+	public function oku($id)
+	{
+		$data1["mail"]=$this->Database_Model->get_data_id("bizeulasin",$id);
+
+		$data=array(
+			"durum" => 1
+			);
+		$this->Database_Model->update_data("bizeulasin",$data,$id);
+		
+		$this->load->view('admin/mail_oku',$data1);
+	}
+	public function cevap($id)
+	{
+		$data1["mail"]=$this->Database_Model->get_data_id("bizeulasin",$id);
+
+		$data=array(
+			"cevap" => 1
+			);
+		$this->Database_Model->update_data("bizeulasin",$data,$id);
+		$this->session->set_flashdata("sonuc","Mail cevaplama İşlemi Başarı İle Gerçekleştirildi");
+		redirect(base_url()."admin/Mail");
+	}
 	public function sil($id)
 	{
 		$this->Database_Model->delete_data("bizeulasin",$id);

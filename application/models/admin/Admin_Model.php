@@ -30,6 +30,7 @@ class Admin_Model extends CI_Model {
 	{
 		$this->db->select('*');
 		$this->db->from('mesajlar');
+		$this->db->order_by("durum", "asc");
 		$this->db->order_by("tarih", "desc");
 		$this->db->where('alici_adi',$ad);
 		$query = $this->db->get();

@@ -71,7 +71,7 @@ class Home extends CI_Controller {
 			$data2["yazarcek"]=$this->Database_Model->get_data("kullanicilar");
 			$data["ayar"]=$this->Database_Model->get_data("ayarlar");
 			$data2["veri"]=$this->Database_Model->get_data("kategori");
-			$data["yorum"] =$this->Post_model->get_entries_by_yorum($id);
+			$data["yorum"] =$this->Post_model->get_entries_by_yorum($this->db->query($sql)->result()[0]->id);
 			$data2["yazicek"]=$this->Post_model->yazi();
 			$data["data"]=$this->Database_Model->get_data_new("yazi_resim","yazi_id",$this->db->query($sql)->result()[0]->id);
 			
